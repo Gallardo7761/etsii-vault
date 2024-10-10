@@ -247,3 +247,42 @@ Las solicitudes son generalmente independientes entre ellas y son atómicas (se 
 `Abandon:` parar solicitud que se ha enviado pero no ha terminado
 `Start TLS:` inicia el mecanismo de seguridad para encriptar 
 `Extended:` añadir operaciones a LDAP
+# <mark style="background: #FFF3A3A6;">TEMA 3: Servicio de Nombres de Dominio (DNS)</mark>
+
+- **Cómo se forman los nombres de los servidores**
+- **Que información guarda cada servidor**
+- **Cómo se organiza la información**
+- **Protocolo que establezca los mensajes a transmitir**
+## <mark style="background: #ADCCFFA6;">1. Sistema de nombres</mark>
+Hay dos tipos: **plano** y **jerárquico**.
+![[Pasted image 20241009111053.png|600]]
+DNS es **jerárquico**. 
+## <mark style="background: #ADCCFFA6;">2. Introducción</mark>
+### <mark style="background: #FFB86CA6;">Espacio de nombres</mark>
+Todo nombre unívoco de un host en Internet termina en **"."** de forma que un posible nombre podría ser: www.dte.us.es. Empezando desde la derecha se puede formar un árbol de nombres con raíz en el **"."**
+![[Pasted image 20241009112826.png|500]]
+Características:
+- **Dominios:** nodos intermedios del árbol 
+- **Hostname:** nodos hoja del árbol
+- Cada nodo puede tener una etiqueta de como máximo 63 caracteres
+- Un path (hostname + dominio) puede ser de 127 niveles como máximo
+- Los hijos del nodo **"."** (Raíz) se llaman TLD (Top Level Domain). 
+- Los hijos de los nodos TLD son **autoritativos** (de primer, segundo... nivel). Al igual que los servidores son **autoritativos** si son capaces de resolver una consulta (suelen estar en los nodos autoritativos).
+- Para nombrar a un host se puede hacer:
+	- **FQDN (Fully Qualified Domain Name):** nombre completo del nodo (www.dte.us.es.)
+	- **PQDN (Partially-Qualified Domain Name):** nombre **relativo** de un nodo respecto a otro (www.dte.us respecto a es)
+- En cada nodo (no hoja) hay un servidor DNS, por lo que hay un gran número de servidores organizados jerárquicamente. El servidor DNS de un nodo tiene información relacionada con el FQDN de dicho nodo.
+- En todo el mundo existen 13 servidores raíz gestionados por **IANA (Internet Assigned Numbers Authority)**.
+	![[Pasted image 20241009120833.png|600]]
+- Hay varios tipos de TLD:
+	- Genéricos (gTLD): .net, .com, .org (hay restringidos: .edu, .gov, .mil)
+	- Geográficos (ccTLD): .es, .fr, .jp (los gestionan los países, los proporciona IANA)
+	- Zona inversa: .arpa
+	- Reservados: .test, .example, .invalid, .localhost
+### <mark style="background: #FFB86CA6;">Contratar un dominio</mark>
+- **Registry:** mantienen los TLDs. Hay uno por dominio. Definen las "reglas" del dominio.
+- **Registrant:** nombre del usuario final (que recibe el dominio).
+- **Registrador:** empresas que actúan como intermediarios entre el registrant y el registry.
+- **Registrer:** conocido como 'whois'. Directorio que recopila información sobre el registrant. Alojado por el registry, actualizado por el registrador a petición del registrant.
+### <mark style="background: #FFB86CA6;">Delegar un dominio entre servidores</mark>
+Los dominios se delegan a entidades que los gestionan. El padre únicamente contendrá información para indicar a quien preguntar para obtener los datos del dominio delegado.

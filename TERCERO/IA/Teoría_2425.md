@@ -287,4 +287,27 @@ $F\rightarrow H:3$
 | Nodo        | $A$ | $B$ | $C$ | $D$ | $E$ | $F$ | $G$ | $H$ |
 | ----------- | --- | --- | --- | --- | --- | --- | --- | --- |
 | **h(Nodo)** | $4$ | $4$ | $3$ | $3$ | $2$ | $3$ | $2$ | $0$ |
- 
+# <mark style="background: #FFF3A3A6;">TEMA 4: Optimización</mark>
+A diferencia de las búsquedas como A*, no se tienen todos los nodos hijos disponibles, si no que se escoge uno aleatoriamente. Se intenta minimizar la "energía" de nodo en nodo.
+## <mark style="background: #ADCCFFA6;">1. Templado simulado</mark>
+
+![[Pasted image 20241009084536.png|600]]
+Este método casi no tiene memoria, ya que al pasar a un vecino "se olvida" de lo anterior, sólo almacena el mejor nodo que ha visto.
+1. **Función de energía:** que mide la calidad de una solución.
+2. **Temperatura:** nº de saltos que puede dar.
+Una posible implementación en pseudocódigo:
+```julia
+Algoritmo: Templado Simulado (T₀, s₀, N, γ < 1, ϵ > 0)
+    T = T₀
+    while T > ϵ
+        Repeat N:
+            s₁ = Genera_vecino(s₀)
+            ∆E = E(s₀) − E(s₁)
+            if ∆E > 0
+                s₀ = s₁
+            else
+                con probabilidad exp(∆E/T): s₀ = s₁
+        T = T ⋅ γ
+    return s₀
+```
+Las iteraciones del algoritmo están perfectamente acotadas ya que dependen de $T$, de $\gamma$, y de $N$.
