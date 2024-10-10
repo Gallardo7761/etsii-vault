@@ -1,0 +1,20 @@
+div.nota {
+    background-color: #ffc4dc;
+    border: 1px solid #ff80aa;
+    border-radius: 5px;
+    padding: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    color: #8b002e;
+}
+
+div.nota > h4 {
+    margin-top: 0;
+    text-decoration: underline;
+    margin-bottom: 5px;
+}
+
+div.nota > p {
+    margin-top: 0;
+    margin-bottom: 0;
+}

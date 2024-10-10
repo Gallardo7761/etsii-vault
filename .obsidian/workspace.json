@@ -1,0 +1,208 @@
+{
+  "main": {
+    "id": "8d26a6fe9f964f6b",
+    "type": "split",
+    "children": [
+      {
+        "id": "8854f31f774c7fae",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "8066c35382950b25",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "TERCERO/SS/SS 24-25.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "a9100b68fb330cb9",
+    "type": "split",
+    "children": [
+      {
+        "id": "e23565b29f0b0277",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "a4eac8e6613b153b",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "dd5726e5114a7c4e",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "1cbe9729fd2cf604",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {}
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "44cf06183e1c1c7d",
+    "type": "split",
+    "children": [
+      {
+        "id": "49cbf6da2f29f564",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "1e44a907904513ce",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "TERCERO/SS/SS 24-25.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "1f08a0ec99cf4a21",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "TERCERO/SS/SS 24-25.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "2f9a57a1dc058b86",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true
+              }
+            }
+          },
+          {
+            "id": "32907795dd5fbf3f",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "TERCERO/SS/SS 24-25.md"
+              }
+            }
+          },
+          {
+            "id": "b40a18c39aef8e17",
+            "type": "leaf",
+            "state": {
+              "type": "git-view",
+              "state": {}
+            }
+          }
+        ],
+        "currentTab": 4
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false,
+      "table-editor-obsidian:Advanced Tables Toolbar": false,
+      "obsidian-git:Open Git source control": false
+    }
+  },
+  "active": "a4eac8e6613b153b",
+  "lastOpenFiles": [
+    "TERCERO/SS/images/Pasted image 20241003113528.png",
+    "TERCERO/SS/SS 24-25.md",
+    "TERCERO/SS/SS Lab.md",
+    "SEGUNDO/ADDA/Teoría_2324.md",
+    "TERCERO/ATR1/Teoría_2425.md",
+    "TERCERO/SS/images/Pasted image 20241002112436.png",
+    "TERCERO/SS/images/Pasted image 20241002112350.png",
+    "TERCERO/SS/images/Pasted image 20241002112049.png",
+    "TERCERO/IA/Teoría_2425.md",
+    "TERCERO/IA/Apuntes Julia.md",
+    "SEGUNDO/IISSI2/Teoría_2324.md",
+    "Pasted image 20240930133736.png",
+    "TERCERO/ATR1/images/Pasted image 20240930133748.png",
+    "TERCERO/ATR1/images/Pasted image 20240930133135.png",
+    "TERCERO/SPD/Teoría_2425.md",
+    "TERCERO/SPD/images/Ley_de_Moore.png",
+    "TERCERO/SPD/images/550px-Ley_de_Moore.png",
+    "TERCERO/SPD/images/medias.png",
+    "SEGUNDO/IISSI1/Teoría_2324.md",
+    "TERCERO/SS/images",
+    "TERCERO/SPD/images",
+    "TERCERO/IA/images",
+    "TERCERO/ATR1/images",
+    "TERCERO/ATR1/Welcome.md",
+    "SEGUNDO/ADDA/MemoriaPI4_SMT4497.docx",
+    "SEGUNDO/ADDA/PI4_SMT4497.zip",
+    "SEGUNDO/ADDA/MemoriaPI5_SMT4497.pdf",
+    "SEGUNDO/ADDA/ADDA 23-24.md",
+    "SEGUNDO/ADDA/MODELOS.md",
+    "SEGUNDO/ADDA/ADDA 15-05.md",
+    "SEGUNDO/ADDA/ADDA 15-03.md",
+    "SEGUNDO/ADDA/ADDA 13-03.md",
+    "SEGUNDO/AC/Teoría_2324.md",
+    "TERCERO/IA",
+    "TERCERO/SS",
+    "TERCERO/SPD",
+    "SEGUNDO/MD/Apuntes Sage.md",
+    "SEGUNDO/RC/Teoría_2324.md",
+    "SEGUNDO/RC/Untitled.md",
+    "SEGUNDO/TC/Teoría_2324.md",
+    "SEGUNDO/SO/Teoría_2324.md",
+    "SEGUNDO/SO/Untitled.md",
+    "SEGUNDO/SO/Sin título.md",
+    "SEGUNDO/SO/Sin título.canvas",
+    "SEGUNDO/SO/Untitled 2.md",
+    "SEGUNDO/SO/Untitled 1.md"
+  ]
+}
