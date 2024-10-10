@@ -4,16 +4,18 @@
     "type": "split",
     "children": [
       {
-        "id": "8854f31f774c7fae",
+        "id": "d7daec3383317892",
         "type": "tabs",
         "children": [
           {
-            "id": "8066c35382950b25",
+            "id": "5a867c9b37d93159",
             "type": "leaf",
             "state": {
-              "type": "image",
+              "type": "markdown",
               "state": {
-                "file": "TERCERO/SPD/images/Imagen de WhatsApp 2024-10-09 a las 21.20.30_7d2eb4f4.jpg"
+                "file": "TERCERO/SS/SS 24-25.md",
+                "mode": "source",
+                "source": false
               }
             }
           }
@@ -83,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "TERCERO/SPD/images/Imagen de WhatsApp 2024-10-09 a las 21.20.30_7d2eb4f4.jpg",
+                "file": "TERCERO/SS/SS 24-25.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -100,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "TERCERO/SPD/images/Imagen de WhatsApp 2024-10-09 a las 21.20.30_7d2eb4f4.jpg",
+                "file": "TERCERO/SS/SS 24-25.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -123,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "TERCERO/SPD/images/Imagen de WhatsApp 2024-10-09 a las 21.20.30_7d2eb4f4.jpg"
+                "file": "TERCERO/SS/SS 24-25.md"
               }
             }
           },
@@ -154,14 +156,16 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "a4eac8e6613b153b",
+  "active": "5a867c9b37d93159",
   "lastOpenFiles": [
+    "TERCERO/SS/images/Pasted image 20241010092102.png",
+    "TERCERO/SS/images/Pasted image 20241010091834.png",
+    "TERCERO/SPD/images/Imagen de WhatsApp 2024-10-09 a las 21.20.30_7d2eb4f4.jpg",
     "TERCERO/SS/SS 24-25.md",
     "TERCERO/SPD/images/Imagen de WhatsApp 2024-10-09 a las 22.05.13_e4102573.jpg",
     "TERCERO/SPD/images/Imagen de WhatsApp 2024-10-09 a las 22.00.36_cbfd6ee8.jpg",
     "TERCERO/SPD/images/Imagen de WhatsApp 2024-10-09 a las 21.39.25_22abea24.jpg",
     "TERCERO/SPD/images/Imagen de WhatsApp 2024-10-09 a las 21.34.14_bd89b69c.jpg",
-    "TERCERO/SPD/images/Imagen de WhatsApp 2024-10-09 a las 21.20.30_7d2eb4f4.jpg",
     "TERCERO/SS/images/Pasted image 20241003113528.png",
     "TERCERO/SS/SS Lab.md",
     "SEGUNDO/ADDA/Teoría_2324.md",
@@ -172,7 +176,6 @@
     "TERCERO/IA/Teoría_2425.md",
     "TERCERO/IA/Apuntes Julia.md",
     "SEGUNDO/IISSI2/Teoría_2324.md",
-    "Pasted image 20240930133736.png",
     "TERCERO/SPD/Teoría_2425.md",
     "SEGUNDO/IISSI1/Teoría_2324.md",
     "TERCERO/SS/images",
