@@ -311,3 +311,17 @@ Algoritmo: Templado Simulado (T₀, s₀, N, γ < 1, ϵ > 0)
     return s₀
 ```
 Las iteraciones del algoritmo están perfectamente acotadas ya que dependen de $T$, de $\gamma$, y de $N$.
+### Describe de forma general cómo se puede usar templado simulado para un problema de satisfacción de restricciones
+:·:·:·:·:·:·:·:·:·:·:·:·:·:·:·:·:·:·:·:·:·:·:·:·:·:·:·:·:·:·:·:·:·:·:·:·:·:·:·:·:·:·:·:·:·:·:·:·:·:·:·:·:·:·:·:·:·:·:·:·:·:·:·:·:·:·:·:·:·:·:·:·:·:·:·:·:·:·:
+### $s=(x_{1}=a_{1},\dots,x_{n}=a_{n})\forall a_{i}\in D_{i}$
+### $S=D_{1}\times D_{2}\times\dots\times D_{n}$
+### $v(s)=s~cambiada~en~una~posicion~al~azar$
+### $E(s)=Nº~restricciones~de~C~que~no~se~cumplen$
+## <mark style="background: #ADCCFFA6;">2. Optimización por Enjambre de Partículas (PSO)</mark>
+Se tienen $N$ partículas denotadas $\{1,...,N\}$ donde cada partícula tiene una posición $x_{i}$
+y una velocidad $v_{i}$. 
+1. Cada partícula es atraída hacia la mejor localización que ella, personalmente, ha encontrado: $x_{i}^{pb}$
+2. Cada partícula es atraída hacia la mejor localización que ha sido encontrada **globalmente**: $x^{gb}$
+
+![[Pasted image 20241011121847.png|400]]
+La fuerza con que las partículas son empujadas a cada dirección se basa en la atracción a $x_{i}^{pb}$ y $x^{gb}$.
