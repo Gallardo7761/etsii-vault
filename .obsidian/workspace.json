@@ -11,11 +11,10 @@
             "id": "63151d4aca9e230c",
             "type": "leaf",
             "state": {
-              "type": "markdown",
+              "type": "diff-view",
               "state": {
                 "file": "TERCERO/SPD/Teoría_2425.md",
-                "mode": "source",
-                "source": false
+                "staged": true
               }
             }
           }
@@ -85,7 +84,6 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "TERCERO/SPD/Teoría_2425.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +100,6 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "TERCERO/SPD/Teoría_2425.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -124,9 +121,7 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {
-                "file": "TERCERO/SPD/Teoría_2425.md"
-              }
+              "state": {}
             }
           },
           {
@@ -158,8 +153,8 @@
   },
   "active": "63151d4aca9e230c",
   "lastOpenFiles": [
-    "TERCERO/IA/Teoría_2425.md",
     "TERCERO/SPD/Teoría_2425.md",
+    "TERCERO/IA/Teoría_2425.md",
     "TERCERO/IA/images/Pasted image 20241011121847.png",
     "TERCERO/SS/SS 24-25.md",
     "TERCERO/SS/images/Pasted image 20241010115957.png",
