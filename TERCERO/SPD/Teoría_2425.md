@@ -109,7 +109,7 @@ Existen localidad temporal y espacial:
 	 <h4>NOTA</h4>
 	 <p>La media aritmética castiga un valor bajo. El cociente de la media de N tiempos es igual a la media de aceleraciones. La media aritmética no cumple con esto.</p>
 	 <p>Se pueden comparar dos máquinas respecto a otra de referencia, normalizando respecto a la media geométrica de referencia (nunca la aritmética)</p>
-	 <img src="C:\Users\jomaa\OneDrive\Educasao\Universidad\ETSII_Vault\TERCERO\SPD\images\medias.png"/>
+	 <img src="C:\Users\jomaa\ETSII_Vault\TERCERO\SPD\images\medias.png"/>
  </div>
 Colecciones de benchmarks:
 ```mermaid
