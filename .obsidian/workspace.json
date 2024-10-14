@@ -11,9 +11,11 @@
             "id": "63151d4aca9e230c",
             "type": "leaf",
             "state": {
-              "type": "image",
+              "type": "markdown",
               "state": {
-                "file": "TERCERO/ATR1/images/Pasted image 20241014101113.png"
+                "file": "TERCERO/SPD/Teoría_2425.md",
+                "mode": "source",
+                "source": false
               }
             }
           }
@@ -83,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "TERCERO/ATR1/images/Pasted image 20241014101113.png",
+                "file": "TERCERO/SPD/Teoría_2425.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -100,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "TERCERO/ATR1/images/Pasted image 20241014101113.png",
+                "file": "TERCERO/SPD/Teoría_2425.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -123,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "TERCERO/ATR1/images/Pasted image 20241014101113.png"
+                "file": "TERCERO/SPD/Teoría_2425.md"
               }
             }
           },
@@ -154,14 +156,14 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "a4eac8e6613b153b",
+  "active": "63151d4aca9e230c",
   "lastOpenFiles": [
+    "TERCERO/ATR1/images/Pasted image 20241014101113.png",
     "TERCERO/ATR1/images/Pasted image 20241014100406.png",
     "TERCERO/ATR1/images/Pasted image 20241014100308.png",
     "TERCERO/ATR1/images/Pasted image 20241014092122.png",
     "TERCERO/SPD/Teoría_2425.md",
     "TERCERO/ATR1/Teoría_2425.md",
-    "TERCERO/ATR1/images/Pasted image 20241014101113.png",
     "TERCERO/IA/Teoría_2425.md",
     "TERCERO/IA/images/Pasted image 20241011121847.png",
     "TERCERO/SS/SS 24-25.md",

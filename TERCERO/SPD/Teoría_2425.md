@@ -170,15 +170,45 @@ El contenido de las RS está formateado  de la siguiente forma:
 ### <mark style="background: #FFB86CA6;">5 casos de bloqueo</mark>
 1. Muchos RAW (como ADD o MUL).
 	$\frac{duracion}{iteracion}=duración~de~ADD~ó~MUL~(EX+WB)$
-5. UF no segmentada (no permite encadenamiento). Normalmente con instrucciones complejas como DIV, SQRT, LOG, TRIGON, aunque no haya RAWs.
 2. Balanceo de UF respecto a tipos de instrucción (no importan las RAWs).
 	- Acceso a memoria
 	- Todo INT
 	- Matemática en la GPU
-3. (y 4.) son casos estadísticos:
-	4. Depende del % de aciertos del predictor de saltos ó **BTB (Branch Target Buffer)**. Si no falla es muy probable que el CPI sea ideal. Si hay al menos 1 fallo del BTB: se vacían las colas de instrucciones (ABORT $\rightarrow$ `AB`).
+3. Fallos en caché. Un fallo en Ln provoca un $t_{latencia}$ para capturar el primer bit de Ln+1 y luego un $t_{rafaga}~\alpha\frac{1}{AB}$ para capturar la línea/bloque: NO PIPELINE. Muchas esperas provocan bloqueo por agotamiento de RS.
+$$
+\begin{equation}
+CPI_{DATOS}=\frac{P~ciclos~(penalidad~por~fallo)}{1~fallo}\times\frac{F~fallos}{100~accesos}\times\frac{N~accesos~a~M_{DATOS}}{100~instrucciones}
+\end{equation}
+$$
+4. Depende del % de aciertos del predictor de saltos ó **BTB (Branch Target Buffer)**. Si no falla es muy probable que el CPI sea ideal. Si hay al menos 1 fallo del BTB: se vacían las colas de instrucciones (ABORT $\rightarrow$ `AB`).
 $$
 \begin{equation}
 CPI_{BLOQ}=\frac{ciclos_{BLOQ}}{1~fallo~predicción}\times\frac{F~fallos}{100~saltos}\times\frac{K~saltos}{100~instrucciones}
 \end{equation}
 $$
+	**Estructura del BTB:** una "caché" que predice la dirección del salto con la dirección desde el PC usando una máquina de estados de 2b. Se puede mejorar el funcionamiento usando una máquina con correlación que usa un historial de saltos para evitar los fallos de la máquina simple.
+5. UF no segmentada (no permite encadenamiento). Normalmente con instrucciones complejas como DIV, SQRT, LOG, TRIGON, aunque no haya RAWs.
+6. Dependencias RAW a través de memoria. 
+	```asm
+	SW (R1)0,R7
+	LW R9,(R6)8
+	```
+	Si R1 == R6+8 se produce una RAW.
+### <mark style="background: #FFB86CA6;">Especulación y el problema de las Interrupciones</mark>
+Al planificar dinámicamente, suelen aparecer instrucciones especulativas que se pueden llegar a ejecutar antes de que se aborte la instrucción por demasiada espera. 
+```asm
+IF IS o  o  o  o  o  o EX WB
+   IF IS EX WB            AB
+   IF IS o  o  EX WB      AB
+   SW     ...  EX
+              (mem)
+```
+Estas escriben en registros y memoria antes de abortarse y es un problema. También hay problemas si hay interrupciones, por eso interesa que toda instrucción **se termine en orden**. Para solucionarlo se implementa un **ROB (ReOrder Buffer)** con una cola FIFO para que estén ordenadas. Al final de las fases "normales" del pipeline aparece una fase `CM (commit)` cuyo propósito es mantener el orden. En cuanto haya fallo de predicción, no realizan la fase `CM` y la cola FIFO se vacía.
+
+- GPP -> superescalares, planificación dinámica y ROB
+- Embedded -> superescalares, sin planififación dinámica. <u>Caso típico</u>: $m=2$ `INT` y `FP`. Interesa que el compilador empareje INT/FP para que no haya dependencias reales.
+## <mark style="background: #ADCCFFA6;">2. Implementación superescalares (p. dinámica)</mark>
+- **Fase IF:** IFU Instruction Fetch Unit. Cola independiente que buscan $m$ o más instrucciones por ciclo y preparan las $m$ instrucciones siguientes para `IS`.
+- **Fase IS:** más compleja (bottleneck). Emite las $m$ instrucciones mientras haya RS libres. 
+- **Fase EX:** total UF > $m$ y doble puerto.
+- **Fase WB:** nº de CDBs y puertos del fichero de registros proporcional a $m$.
