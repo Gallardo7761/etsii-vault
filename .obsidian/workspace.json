@@ -11,11 +11,10 @@
             "id": "63151d4aca9e230c",
             "type": "leaf",
             "state": {
-              "type": "markdown",
+              "type": "diff-view",
               "state": {
-                "file": "TERCERO/SPD/Teoría_2425.md",
-                "mode": "source",
-                "source": false
+                "file": ".obsidian/workspace.json",
+                "staged": false
               }
             }
           }
@@ -85,7 +84,6 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "TERCERO/SPD/Teoría_2425.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +100,6 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "TERCERO/SPD/Teoría_2425.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -124,9 +121,7 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {
-                "file": "TERCERO/SPD/Teoría_2425.md"
-              }
+              "state": {}
             }
           },
           {
@@ -156,13 +151,13 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "63151d4aca9e230c",
+  "active": "b40a18c39aef8e17",
   "lastOpenFiles": [
+    "TERCERO/SPD/Teoría_2425.md",
     "TERCERO/ATR1/images/Pasted image 20241014101113.png",
     "TERCERO/ATR1/images/Pasted image 20241014100406.png",
     "TERCERO/ATR1/images/Pasted image 20241014100308.png",
     "TERCERO/ATR1/images/Pasted image 20241014092122.png",
-    "TERCERO/SPD/Teoría_2425.md",
     "TERCERO/ATR1/Teoría_2425.md",
     "TERCERO/IA/Teoría_2425.md",
     "TERCERO/IA/images/Pasted image 20241011121847.png",
