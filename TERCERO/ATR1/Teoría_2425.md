@@ -262,7 +262,7 @@ DNS es **jerárquico**.
 Todo nombre unívoco de un host en Internet termina en **"."** de forma que un posible nombre podría ser: www.dte.us.es. Empezando desde la derecha se puede formar un árbol de nombres con raíz en el **"."**
 ![[Pasted image 20241009112826.png|500]]
 Características:
-- **Dominios:** nodos intermedios del árbol 
+- **Dominios:** nodos intermedios del árbol y todo lo que hay por debajo de este.
 - **Hostname:** nodos hoja del árbol
 - Cada nodo puede tener una etiqueta de como máximo 63 caracteres
 - Un path (hostname + dominio) puede ser de 127 niveles como máximo
@@ -286,3 +286,51 @@ Características:
 - **Registrer:** conocido como 'whois'. Directorio que recopila información sobre el registrant. Alojado por el registry, actualizado por el registrador a petición del registrant.
 ### <mark style="background: #FFB86CA6;">Delegar un dominio entre servidores</mark>
 Los dominios se delegan a entidades que los gestionan. El padre únicamente contendrá información para indicar a quien preguntar para obtener los datos del dominio delegado.
+**Mapa DNS:** información que contiene el servidor DNS
+**Zona DNS:** de quién tiene información el servidor DNS (hijos del nodo)
+### <mark style="background: #FFB86CA6;">Resolución de nombres</mark>
+Consulta: www.a2.rediris.com.
+1. El cliente envía la solicitud a su servidor DNS por defecto. Este no pertenece a la jerarquía.
+2. El servidor DNS por defecto no tiene la información y le envía la consulta al raíz.
+3. El raíz no tiene la información y envía la IP del servidor TLD com.
+4. El servidor DNS por defecto envía la consulta al servidor TLD com.
+5. El servidor com no tiene la información y envía la IP del servidor autoritativo rediris.
+6. El servidor DNS por defecto envía la consulta al servidor autoritativo rediris.
+7. El servidor rediris (al estar delegando) no tiene la información y envía la IP del servidor autoritativo de segundo nivel a2.
+8. El servidor DNS por defecto envía la consulta al servidor autoritativo de segundo nivel a2.
+9. El servidor a2 se encarga de la zona DNS consultada, por lo que devuelve la IP del servidor www.
+10. El servidor DNS por defecto envía la respuesta al cliente.
+![[Pasted image 20241014092122.png|400]]
+**Consulta recursiva:** el cliente solicita la respuesta completa al servidor y si este no tiene la respuesta está obligado a buscarla. Como puede suponer un problema a la hora de reservar recursos, **todos** los servidores raíces no las admiten.
+**Consulta iterativa:** el cliente solicita la respuesta parcial o completa a la consulta, con la información que contenga el servidor.
+### <mark style="background: #FFB86CA6;">Caching y TTL</mark>
+El objetivo de esto es no sobrecargar el servidor con consultas ya resueltas hace poco. Con cada consulta/respuesta el servidor aprende:
+- La dirección IP del servidor sobre el que se ha consultado.
+- La dirección IP de los servidores DNS que han intervenido. (La IP de com permite hacer consultas sin pasar por raíz).
+Cada entrada de la caché se almacena durante TTL segundos. Si el TTL es pequeño sobrecarga el servidor, y si es grande puede dar lugar a incoherencias.
+<div class="nota"><h4>NOTA</h4><p>En la caché de un servidor sólo se guarda el par hostname/IP si esta NO pertenece al dominio que el servidor gestiona</p></div>
+### <mark style="background: #FFB86CA6;">Formato de mensajes DNS</mark>
+
+![[Pasted image 20241014100406.png|350]]
+<div class="nota"><h4>NOTA</h4><p>RR = Registro de Recursos</p></div>
+- **identification:** identificar el servidor
+- **flags:** especificar datos de la consulta, si es iterativa o recursiva, si es solicitud o respuesta, etc.
+- **number of questions:** número de solicitudes en el mensaje
+- **number of answers RRs:** número de respuestas en el mensaje
+- **number of authority RRs:** información de otros servidores DNS que intervienen en la resolución.
+- **campos de datos:** los datos especificados por la cabecera
+### <mark style="background: #FFB86CA6;">Registros DNS</mark>
+#### <mark style="background: #D2B3FFA6;">Registro SOA</mark>
+![[Pasted image 20241014101113.png|450]]
+- Estructura del registro:
+	- **a2.rediris.com. :** el dominio que se está creando
+	- **IN SOA**: tipo de registro
+	- **ns.a2.rediris.com. :** servidor DNS principal del dominio
+	- **postmaster.a2.rediris.com. :** dirección de correo del admin del domino (postmaster@...).
+	- **Serial:** fecha de la última versión del SOA formato YYYYMMDDnn.
+	- **Refresh:** tiempo máximo que puede pasar un servidor secundario sin contactar con el primario.
+	- **Retry:** segundos para que el secundario recontacte con el primario.
+	- **Expire:** tiempo que el secundario considera el mapa DNS adecuado antes de borrarlo (cuando se hace Refresh reinicia).
+	- **Minimum:** TTL usado para cachear solicitud que no está en el momento de la consulta.
+- Mantiene información de la zona DNS.
+- 
