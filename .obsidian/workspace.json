@@ -4,18 +4,21 @@
     "type": "split",
     "children": [
       {
-        "id": "0d1ea4f169e4254d",
+        "id": "c841a021395cc4d3",
         "type": "tabs",
         "children": [
           {
-            "id": "63151d4aca9e230c",
+            "id": "d8a559569207f8b1",
             "type": "leaf",
             "state": {
-              "type": "diff-view",
+              "type": "markdown",
               "state": {
-                "file": ".obsidian/workspace.json",
-                "staged": false
-              }
+                "file": "TERCERO/SS/SS 24-25.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "SS 24-25"
             }
           }
         ]
@@ -38,7 +41,9 @@
               "type": "file-explorer",
               "state": {
                 "sortOrder": "alphabetical"
-              }
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Files"
             }
           },
           {
@@ -53,7 +58,9 @@
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical"
-              }
+              },
+              "icon": "lucide-search",
+              "title": "Search"
             }
           },
           {
@@ -61,14 +68,17 @@
             "type": "leaf",
             "state": {
               "type": "bookmarks",
-              "state": {}
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "Bookmarks"
             }
           }
         ]
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 300,
+    "collapsed": true
   },
   "right": {
     "id": "44cf06183e1c1c7d",
@@ -84,6 +94,7 @@
             "state": {
               "type": "backlink",
               "state": {
+                "file": "TERCERO/SS/SS 24-25.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -91,7 +102,9 @@
                 "searchQuery": "",
                 "backlinkCollapsed": false,
                 "unlinkedCollapsed": true
-              }
+              },
+              "icon": "links-coming-in",
+              "title": "Backlinks for SS 24-25"
             }
           },
           {
@@ -100,9 +113,12 @@
             "state": {
               "type": "outgoing-link",
               "state": {
+                "file": "TERCERO/SS/SS 24-25.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
-              }
+              },
+              "icon": "links-going-out",
+              "title": "Outgoing links from SS 24-25"
             }
           },
           {
@@ -113,7 +129,9 @@
               "state": {
                 "sortOrder": "frequency",
                 "useHierarchy": true
-              }
+              },
+              "icon": "lucide-tags",
+              "title": "Tags"
             }
           },
           {
@@ -121,7 +139,11 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {}
+              "state": {
+                "file": "TERCERO/SS/SS 24-25.md"
+              },
+              "icon": "lucide-list",
+              "title": "Outline of SS 24-25"
             }
           },
           {
@@ -129,7 +151,9 @@
             "type": "leaf",
             "state": {
               "type": "git-view",
-              "state": {}
+              "state": {},
+              "icon": "git-pull-request",
+              "title": "Source Control"
             }
           }
         ],
@@ -151,8 +175,16 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "b40a18c39aef8e17",
+  "active": "d8a559569207f8b1",
   "lastOpenFiles": [
+    "Pasted image 20241017113556.png",
+    "Pasted image 20241017113522.png",
+    "TERCERO/SS/SS 24-25.md",
+    "Pasted image 20241017113508.png",
+    "Pasted image 20241017113506.png",
+    "Pasted image 20241017113505.png",
+    "TERCERO/SS/images/Pasted image 20241017113303.png",
+    "TERCERO/SS/images/Pasted image 20241017112904.png",
     "TERCERO/SPD/Teoría_2425.md",
     "TERCERO/ATR1/images/Pasted image 20241014101113.png",
     "TERCERO/ATR1/images/Pasted image 20241014100406.png",
@@ -160,13 +192,6 @@
     "TERCERO/ATR1/images/Pasted image 20241014092122.png",
     "TERCERO/ATR1/Teoría_2425.md",
     "TERCERO/IA/Teoría_2425.md",
-    "TERCERO/IA/images/Pasted image 20241011121847.png",
-    "TERCERO/SS/SS 24-25.md",
-    "TERCERO/SS/images/Pasted image 20241010115957.png",
-    "TERCERO/SS/images/Pasted image 20241010120358.png",
-    "TERCERO/SS/images/Pasted image 20241010092102.png",
-    "TERCERO/SS/images/Pasted image 20241010091834.png",
-    "TERCERO/SPD/images/Imagen de WhatsApp 2024-10-09 a las 21.20.30_7d2eb4f4.jpg",
     "TERCERO/SS/SS Lab.md",
     "SEGUNDO/ADDA/Teoría_2324.md",
     "TERCERO/IA/Apuntes Julia.md",
