@@ -321,7 +321,7 @@ Cada entrada de la caché se almacena durante TTL segundos. Si el TTL es pequeñ
 - **campos de datos:** los datos especificados por la cabecera
 ### <mark style="background: #FFB86CA6;">Registros DNS</mark>
 #### <mark style="background: #D2B3FFA6;">Registro SOA</mark>
-![[Pasted image 20241014101113.png|450]]
+![[Pasted image 20241014101113.png|350]]
 - Estructura del registro:
 	- **a2.rediris.com. :** el dominio que se está creando
 	- **IN SOA**: tipo de registro
@@ -333,4 +333,30 @@ Cada entrada de la caché se almacena durante TTL segundos. Si el TTL es pequeñ
 	- **Expire:** tiempo que el secundario considera el mapa DNS adecuado antes de borrarlo (cuando se hace Refresh reinicia).
 	- **Minimum:** TTL usado para cachear solicitud que no está en el momento de la consulta.
 - Mantiene información de la zona DNS.
-- 
+#### <mark style="background: #D2B3FFA6;">Registro NS</mark>
+<div class="nota"><p>Es el más importante y el que más problemas causa en examen</p></div>
+![[Pasted image 20241020204107.png]]
+- Estructura del registro:
+	- **rediris.com.** : el dominio que se está configurando
+	- **dns_rediris.rediris.com. :** el FQDN de un servidor DNS
+- Especifica los servidores DNS del dominio
+- No existe orden de prelación
+- Se deben distribuir geográficamente por distintas redes
+- Pueden ser máquinas de otros dominios
+#### <mark style="background: #D2B3FFA6;">Registro MX</mark>
+![[Pasted image 20241020204340.png]]
+- Estructura del registro:
+	- **Número después de MX:** prioridad
+- Especifican los servidores de correo electrónico del dominio
+- El correo se debe entrega al servidor de correos con menor prioridad
+- Los servidores de correo no tienen por qué estar en el mismo dominio
+#### <mark style="background: #D2B3FFA6;">Registro A</mark>
+![[Pasted image 20241020204701.png]]
+- Determinan relación existente entre el nombre de la máquina y su IP
+- El nombre que aparece a la izquierda puede ser RQDN o FQDN pero <strong><span style="color:red;">se recomienda FQDN</span></strong>.
+#### <mark style="background: #D2B3FFA6;">Registro CNAME</mark>
+![[Pasted image 20241020204947.png]]
+- Permite definir "alias"
+- Se distingue entre el alias y el nombre canónico
+- Si se emplean RQDN el dominio corresponderá con el dominio por defecto
+- En el ejemplo, www.rediris.com es un alias de la dirección titan.rediris.com

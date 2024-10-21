@@ -4,21 +4,19 @@
     "type": "split",
     "children": [
       {
-        "id": "c841a021395cc4d3",
+        "id": "926ba6bce03e735b",
         "type": "tabs",
         "children": [
           {
-            "id": "d8a559569207f8b1",
+            "id": "463744a9b4b2fac2",
             "type": "leaf",
             "state": {
-              "type": "markdown",
+              "type": "image",
               "state": {
-                "file": "TERCERO/SS/SS 24-25.md",
-                "mode": "source",
-                "source": false
+                "file": "TERCERO/ATR1/images/Pasted image 20241020204107.png"
               },
-              "icon": "lucide-file",
-              "title": "SS 24-25"
+              "icon": "lucide-image",
+              "title": "Pasted image 20241020204107"
             }
           }
         ]
@@ -77,8 +75,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300,
-    "collapsed": true
+    "width": 300
   },
   "right": {
     "id": "44cf06183e1c1c7d",
@@ -94,7 +91,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "TERCERO/SS/SS 24-25.md",
+                "file": "TERCERO/ATR1/Teoría_2425.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -104,7 +101,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Backlinks for SS 24-25"
+              "title": "Backlinks for Teoría_2425"
             }
           },
           {
@@ -113,12 +110,12 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "TERCERO/SS/SS 24-25.md",
+                "file": "TERCERO/ATR1/Teoría_2425.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "Outgoing links from SS 24-25"
+              "title": "Outgoing links from Teoría_2425"
             }
           },
           {
@@ -140,10 +137,10 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "TERCERO/SS/SS 24-25.md"
+                "file": "TERCERO/ATR1/Teoría_2425.md"
               },
               "icon": "lucide-list",
-              "title": "Outline of SS 24-25"
+              "title": "Outline of Teoría_2425"
             }
           },
           {
@@ -175,24 +172,26 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "d8a559569207f8b1",
+  "active": "a4eac8e6613b153b",
   "lastOpenFiles": [
-    "Pasted image 20241017113556.png",
-    "Pasted image 20241017113522.png",
+    "TERCERO/ATR1/images/Pasted image 20241020204340.png",
+    "TERCERO/ATR1/images/Pasted image 20241020204107.png",
+    "TERCERO/SS/SS Lab.md",
     "TERCERO/SS/SS 24-25.md",
-    "Pasted image 20241017113508.png",
-    "Pasted image 20241017113506.png",
-    "Pasted image 20241017113505.png",
+    "TERCERO/ATR1/Teoría_2425.md",
+    "TERCERO/ATR1/images/Pasted image 20241020204947.png",
+    "TERCERO/ATR1/images/Pasted image 20241020204701.png",
+    "TERCERO/SS/images/Pasted image 20241017113556.png",
     "TERCERO/SS/images/Pasted image 20241017113303.png",
     "TERCERO/SS/images/Pasted image 20241017112904.png",
-    "TERCERO/SPD/Teoría_2425.md",
     "TERCERO/ATR1/images/Pasted image 20241014101113.png",
     "TERCERO/ATR1/images/Pasted image 20241014100406.png",
     "TERCERO/ATR1/images/Pasted image 20241014100308.png",
-    "TERCERO/ATR1/images/Pasted image 20241014092122.png",
-    "TERCERO/ATR1/Teoría_2425.md",
+    "Untitled.md",
+    "Excalidraw/Drawing 2024-10-18 17.50.51.excalidraw.md",
+    "Excalidraw",
+    "TERCERO/SPD/Teoría_2425.md",
     "TERCERO/IA/Teoría_2425.md",
-    "TERCERO/SS/SS Lab.md",
     "SEGUNDO/ADDA/Teoría_2324.md",
     "TERCERO/IA/Apuntes Julia.md",
     "SEGUNDO/IISSI2/Teoría_2324.md",
@@ -213,7 +212,6 @@
     "SEGUNDO/AC/Teoría_2324.md",
     "TERCERO/IA",
     "TERCERO/SS",
-    "TERCERO/SPD",
     "SEGUNDO/MD/Apuntes Sage.md",
     "SEGUNDO/RC/Teoría_2324.md",
     "SEGUNDO/RC/Untitled.md",
@@ -221,8 +219,6 @@
     "SEGUNDO/SO/Teoría_2324.md",
     "SEGUNDO/SO/Untitled.md",
     "SEGUNDO/SO/Sin título.md",
-    "SEGUNDO/SO/Sin título.canvas",
-    "SEGUNDO/SO/Untitled 2.md",
-    "SEGUNDO/SO/Untitled 1.md"
+    "SEGUNDO/SO/Sin título.canvas"
   ]
 }
