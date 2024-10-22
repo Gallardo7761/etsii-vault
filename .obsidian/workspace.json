@@ -18,8 +18,22 @@
               "icon": "lucide-image",
               "title": "Pasted image 20241022150214"
             }
+          },
+          {
+            "id": "2cf8494471daa0d9",
+            "type": "leaf",
+            "state": {
+              "type": "diff-view",
+              "state": {
+                "file": "conflict-files-obsidian-git.md",
+                "staged": false
+              },
+              "icon": "git-pull-request",
+              "title": "Diff View (conflict-files-obsidian-git)"
+            }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -172,10 +186,15 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "a4eac8e6613b153b",
+  "active": "2cf8494471daa0d9",
   "lastOpenFiles": [
-    "TERCERO/SPD/P4_SPD.md",
+    "conflict-files-obsidian-git.md",
     "TERCERO/SPD/images/Pasted image 20241022150214.png",
+    "TERCERO/ATR1/images/Pasted image 20241020204947.png",
+    "TERCERO/ATR1/images/Pasted image 20241020204701.png",
+    "TERCERO/ATR1/images/Pasted image 20241020204340.png",
+    "TERCERO/ATR1/images/Pasted image 20241020204107.png",
+    "TERCERO/SPD/P4_SPD.md",
     "TERCERO/SPD/images/Pasted image 20241022144832.png",
     "TERCERO/SPD/images/Pasted image 20241022144429.png",
     "TERCERO/SPD/Teoría_2425.md",
@@ -183,10 +202,6 @@
     "Imagen de WhatsApp 2024-10-22 a las 11.43.21_270060da.jpg",
     "TERCERO/IA/images/tic-tac-toe.gif",
     "TERCERO/IA/Teoría_2425.md",
-    "TERCERO/IA/images/mcts.gif",
-    "TERCERO/IA/images/mcts.png",
-    "TERCERO/IA/images/minimax-algorithm-animation.gif",
-    "TERCERO/SS/images/Pasted image 20241017113556.png",
     "TERCERO/SS/SS 24-25.md",
     "TERCERO/ATR1/Teoría_2425.md",
     "TERCERO/SS/SS Lab.md",
@@ -218,7 +233,6 @@
     "SEGUNDO/SO/Teoría_2324.md",
     "SEGUNDO/SO/Untitled.md",
     "SEGUNDO/SO/Sin título.md",
-    "SEGUNDO/SO/Sin título.canvas",
-    "SEGUNDO/SO/Untitled 2.md"
+    "SEGUNDO/SO/Sin título.canvas"
   ]
 }
