@@ -11,14 +11,12 @@
             "id": "d8a559569207f8b1",
             "type": "leaf",
             "state": {
-              "type": "markdown",
+              "type": "image",
               "state": {
-                "file": "TERCERO/SS/SS 24-25.md",
-                "mode": "source",
-                "source": false
+                "file": "TERCERO/SPD/images/Pasted image 20241022150214.png"
               },
-              "icon": "lucide-file",
-              "title": "SS 24-25"
+              "icon": "lucide-image",
+              "title": "Pasted image 20241022150214"
             }
           }
         ]
@@ -77,8 +75,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300,
-    "collapsed": true
+    "width": 300
   },
   "right": {
     "id": "44cf06183e1c1c7d",
@@ -175,23 +172,23 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "d8a559569207f8b1",
+  "active": "a4eac8e6613b153b",
   "lastOpenFiles": [
-    "Pasted image 20241017113556.png",
-    "Pasted image 20241017113522.png",
-    "TERCERO/SS/SS 24-25.md",
-    "Pasted image 20241017113508.png",
-    "Pasted image 20241017113506.png",
-    "Pasted image 20241017113505.png",
-    "TERCERO/SS/images/Pasted image 20241017113303.png",
-    "TERCERO/SS/images/Pasted image 20241017112904.png",
+    "TERCERO/SPD/P4_SPD.md",
+    "TERCERO/SPD/images/Pasted image 20241022150214.png",
+    "TERCERO/SPD/images/Pasted image 20241022144832.png",
+    "TERCERO/SPD/images/Pasted image 20241022144429.png",
     "TERCERO/SPD/Teoría_2425.md",
-    "TERCERO/ATR1/images/Pasted image 20241014101113.png",
-    "TERCERO/ATR1/images/Pasted image 20241014100406.png",
-    "TERCERO/ATR1/images/Pasted image 20241014100308.png",
-    "TERCERO/ATR1/images/Pasted image 20241014092122.png",
-    "TERCERO/ATR1/Teoría_2425.md",
+    "TERCERO/SPD/images/Pasted image 20241022134454.png",
+    "Imagen de WhatsApp 2024-10-22 a las 11.43.21_270060da.jpg",
+    "TERCERO/IA/images/tic-tac-toe.gif",
     "TERCERO/IA/Teoría_2425.md",
+    "TERCERO/IA/images/mcts.gif",
+    "TERCERO/IA/images/mcts.png",
+    "TERCERO/IA/images/minimax-algorithm-animation.gif",
+    "TERCERO/SS/images/Pasted image 20241017113556.png",
+    "TERCERO/SS/SS 24-25.md",
+    "TERCERO/ATR1/Teoría_2425.md",
     "TERCERO/SS/SS Lab.md",
     "SEGUNDO/ADDA/Teoría_2324.md",
     "TERCERO/IA/Apuntes Julia.md",
@@ -222,7 +219,6 @@
     "SEGUNDO/SO/Untitled.md",
     "SEGUNDO/SO/Sin título.md",
     "SEGUNDO/SO/Sin título.canvas",
-    "SEGUNDO/SO/Untitled 2.md",
-    "SEGUNDO/SO/Untitled 1.md"
+    "SEGUNDO/SO/Untitled 2.md"
   ]
 }
