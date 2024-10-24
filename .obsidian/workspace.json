@@ -4,36 +4,24 @@
     "type": "split",
     "children": [
       {
-        "id": "c841a021395cc4d3",
+        "id": "84c5dfd2b48489b3",
         "type": "tabs",
         "children": [
           {
-            "id": "d8a559569207f8b1",
+            "id": "af3658905894d992",
             "type": "leaf",
             "state": {
-              "type": "image",
+              "type": "markdown",
               "state": {
-                "file": "TERCERO/SPD/images/Pasted image 20241022150214.png"
+                "file": "TERCERO/SS/SS 24-25.md",
+                "mode": "source",
+                "source": false
               },
-              "icon": "lucide-image",
-              "title": "Pasted image 20241022150214"
-            }
-          },
-          {
-            "id": "2cf8494471daa0d9",
-            "type": "leaf",
-            "state": {
-              "type": "diff-view",
-              "state": {
-                "file": "conflict-files-obsidian-git.md",
-                "staged": false
-              },
-              "icon": "git-pull-request",
-              "title": "Diff View (conflict-files-obsidian-git)"
+              "icon": "lucide-file",
+              "title": "SS 24-25"
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -89,7 +77,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 300,
+    "collapsed": true
   },
   "right": {
     "id": "44cf06183e1c1c7d",
@@ -186,10 +175,12 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "2cf8494471daa0d9",
+  "active": "af3658905894d992",
   "lastOpenFiles": [
-    "conflict-files-obsidian-git.md",
+    "Pasted image 20241024113018.png",
+    "Pasted image 20241024090239.png",
     "TERCERO/SPD/images/Pasted image 20241022150214.png",
+    "conflict-files-obsidian-git.md",
     "TERCERO/ATR1/images/Pasted image 20241020204947.png",
     "TERCERO/ATR1/images/Pasted image 20241020204701.png",
     "TERCERO/ATR1/images/Pasted image 20241020204340.png",
@@ -200,7 +191,6 @@
     "TERCERO/SPD/Teoría_2425.md",
     "TERCERO/SPD/images/Pasted image 20241022134454.png",
     "Imagen de WhatsApp 2024-10-22 a las 11.43.21_270060da.jpg",
-    "TERCERO/IA/images/tic-tac-toe.gif",
     "TERCERO/IA/Teoría_2425.md",
     "TERCERO/SS/SS 24-25.md",
     "TERCERO/ATR1/Teoría_2425.md",
