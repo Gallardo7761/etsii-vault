@@ -4,17 +4,20 @@
     "type": "split",
     "children": [
       {
-        "id": "17c97c00f5ee559a",
+        "id": "f491ef2f17ba35d2",
         "type": "tabs",
         "children": [
           {
-            "id": "3a67e3b42b337af2",
+            "id": "47f31f3d8e0f4eb6",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {},
-              "icon": "lucide-file",
-              "title": "Nueva pestaña"
+              "type": "diff-view",
+              "state": {
+                "file": "TERCERO/SPD/P4_SPD.md",
+                "staged": true
+              },
+              "icon": "git-pull-request",
+              "title": "Diff View (P4_SPD)"
             }
           }
         ]
@@ -170,21 +173,22 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "b40a18c39aef8e17",
+  "active": "47f31f3d8e0f4eb6",
   "lastOpenFiles": [
+    "conflict-files-obsidian-git.md",
+    "TERCERO/SPD/images/Pasted image 20241022150214.png",
+    "TERCERO/SPD/images/Pasted image 20241022144832.png",
+    "TERCERO/SPD/images/Pasted image 20241022144429.png",
+    "TERCERO/SPD/images/Pasted image 20241022134454.png",
+    "TERCERO/SPD/P4_SPD.md",
+    "TERCERO/IA/images/tic-tac-toe.gif",
+    "TERCERO/IA/images/minimax-algorithm-animation.gif",
+    "TERCERO/IA/images/mcts.png",
+    "TERCERO/IA/images/mcts.gif",
     "TERCERO/SS/images/Pasted image 20241017113556.png",
     "TERCERO/SS/images/Pasted image 20241017113303.png",
-    "TERCERO/SS/images/Pasted image 20241017112904.png",
-    "TERCERO/ATR1/images/Pasted image 20241020204947.png",
-    "TERCERO/ATR1/images/Pasted image 20241020204701.png",
-    "TERCERO/ATR1/images/Pasted image 20241020204340.png",
-    "TERCERO/ATR1/images/Pasted image 20241020204107.png",
     "TERCERO/SPD/Teoría_2425.md",
     "TERCERO/SS/SS 24-25.md",
-    "TERCERO/ATR1/images/Pasted image 20241014101113.png",
-    "TERCERO/ATR1/images/Pasted image 20241014100406.png",
-    "TERCERO/ATR1/images/Pasted image 20241014100308.png",
-    "TERCERO/ATR1/images/Pasted image 20241014092122.png",
     "TERCERO/ATR1/Teoría_2425.md",
     "TERCERO/IA/Teoría_2425.md",
     "TERCERO/SS/SS Lab.md",
@@ -217,7 +221,6 @@
     "SEGUNDO/SO/Untitled.md",
     "SEGUNDO/SO/Sin título.md",
     "SEGUNDO/SO/Sin título.canvas",
-    "SEGUNDO/SO/Untitled 2.md",
-    "SEGUNDO/SO/Untitled 1.md"
+    "SEGUNDO/SO/Untitled 2.md"
   ]
 }

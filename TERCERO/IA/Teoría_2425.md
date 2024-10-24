@@ -325,3 +325,47 @@ y una velocidad $v_{i}$.
 
 ![[Pasted image 20241011121847.png|400]]
 La fuerza con que las partículas son empujadas a cada dirección se basa en la atracción a $x_{i}^{pb}$ y $x^{gb}$.
+# <mark style="background: #FFF3A3A6;">TEMA 5: Búsquedas con incertidumbre</mark>
+### <mark style="background: #FFB86CA6;">Juego formal</mark>
+Un juego formal es una variante de un espacio de estados $(S,P,A,T,g,U)$ donde:
+- $S:$ es el conjunto de estados comenzando por el estado inicial $s_{o}\in S$
+- $P:$ es el conjunto de jugadores $P=\{1,\dots ,n\}$
+- $A:$ son las acciones
+- $T:$ es la función de transferencia $T:S\times A\rightarrow S$, que indica cómo cambian los estados.
+- $g:$ indica si un estado del juego es terminal (goal) $g:S\rightarrow\{true,false\}$
+- $U:$ es una función de utilidad $U:S\times P\rightarrow \rm I\! R$ de estados terminales que indica lo bueno que es un estado terminal para cada jugador.
+## <mark style="background: #ADCCFFA6;">1. Algoritmo Minimax</mark>
+Los pasos son:
+1. Generar el árbol de juego a partir del estado actual hasta llegar a un estado terminal.
+2. Se calculan los valores de la función de evaluación para  cada nodo terminal.
+3. Se evalúan los nodos superiores a partir del valor de los inferiores. Según si estos pertenecen a un nivel MAX o MIN, se elegirán los valores mínimos y máximos representando los valores del jugador y del oponente.
+4. Se repite el paso 3 hasta llegar al nodo superior (estado actual).
+5. Se selecciona la jugada-nodo directamente accesible desde el actual que maximiza el valor de la evaluación.
+![[minimax-algorithm-animation.gif]]
+El problema de esta búsqueda es que el número de estados puede ser exponencial. Si $r$ es cuántos hijos tiene cada nodo y $m$ el nivel de profundidad, la complejidad en tiempo es del orden $O(r^m)$ y en espacio del orden $O(rm)$. 
+### <mark style="background: #FFB86CA6;">Poda alfa-beta</mark>
+La idea es que cada nodo se analiza teniendo en cuenta el valor que por el momento tiene el nodo y el valor que por el momento tiene su padre, lo que determina en cada momento un intervalo $(\alpha,\beta)$ de posibles valores que podría tomar el nodo. El intervalo tiene un significado depende del nodo:
+- En nodos $MAX$: $\alpha$ es el valor del nodo actual (que tendrá ese valor o superior) y $\beta$ es el valor del padre (que tendrá ese valor o inferior).
+- En nodos $MIN$: $\beta$ es el valor del nodo actual (que tendrá ese valor o inferior) y $\alpha$ es el valor del padre (que tendrá ese valor o superior).
+La poda se produce si en algún momento $\alpha\geq\beta$ y en ese momento ya no se analizan los sucesores restantes.
+## <mark style="background: #ADCCFFA6;">2. Monte Carlo Tree Search</mark>
+### <mark style="background: #FFB86CA6;">Problema de las tragaperras múltiples</mark>
+Hay $K$ máquinas y cada una suelta una "riqueza" cada vez que se juega. Las riquezas son variables aleatorias $\{X_{i,n}:1\leq i\leq K,n~\geq 1\}$, donde $i$ es el índice de cada máquina y la $n$ la tirada.
+
+En estas condiciones una **estrategia (policy)** es un algoritmo $A$ que elige la siguiente máquina basándose en la secuencia de jugadas anteriores y los premios recibidos. Si $T_i(n)$ es el número de veces que el algoritmo $A$ ha seleccionado la máquina $i$ durante las primeras $n$ jugadas, la pérdida por no haber elegido siempre la mejor máquina posible viene dada por:
+$$
+\begin{equation}
+\mu^*n-\sum\limits_{i=1}^K{\mu_{i}E[T_{i}(n)]} 
+\end{equation}
+$$
+donde $\mu^*=max_{1\leq i\leq K}\mu_{i}$ 
+
+Se puede usar una estrategia, llamada **UCB (Upper Confidence Bound)** que construye intervalos estadísticos para cada máquina, que es esencialmente la confianza basada en la media de ganancias dentro de un radio dado por $\sqrt{\frac{2\ln{n}}{T_i(n)}}$.
+### <mark style="background: #FFB86CA6;">Aplicación a búsquedas</mark>
+
+![[mcts.png|600]]
+1. **Selección:** se realiza mientras tengamos las estadísticas necesarias para tratar cada estado alcanzado como un problema de tragaperras múltiples. Comenzando por el raíz se selecciona recursivamente el estado más urgente (de acuerdo a UCB) hasta alcanzar un estado terminal o que no está completamente extendido.
+2. **Expansión:** para cuando ya no se puede aplicar Selección. Se elige aleatoriamente una posición sucesora no visitada y se añade un nuevo estado al árbol de estadísticas.
+3. **Simulación:** partiendo del estado recién añadido se simula una partida completa, ya sea al azar o con una heurística. Se obtiene un valor (premio, recompensa, etc) que determina la utilidad de esa rama para el jugador.
+4. **Actualización:** con el estado final alcanzado de la fase anterior se actualizan las estadísticas de todas las posiciones previas visitadas durante la simulación que se ejecutó a partir del nuevo estado (incluyendo la cuenta de ganancias). 
+![[mcts.gif]]
