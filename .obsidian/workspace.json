@@ -11,10 +11,14 @@
             "id": "3b843e69b2a87354",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {},
+              "type": "markdown",
+              "state": {
+                "file": "conflict-files-obsidian-git.md",
+                "mode": "source",
+                "source": false
+              },
               "icon": "lucide-file",
-              "title": "New tab"
+              "title": "conflict-files-obsidian-git"
             }
           }
         ]
@@ -171,8 +175,11 @@
       "obsidian-advanced-slides:Show Slide Preview": false
     }
   },
-  "active": "b40a18c39aef8e17",
+  "active": "3b843e69b2a87354",
   "lastOpenFiles": [
+    "conflict-files-obsidian-git.md",
+    "TERCERO/SS/images/Pasted image 20241024113018.png",
+    "TERCERO/SS/images/Pasted image 20241024090239.png",
     "TERCERO/SPD/Teoría_2425.md",
     "TERCERO/SPD/Guión Practica 4 SPD.md",
     "TERCERO/SPD/P4_SPD_Presentacion.md",
@@ -185,8 +192,6 @@
     "TERCERO/SPD/images/Pasted image 20240916121903.png",
     "export/P4_SPD_Presentacion/plugin/chalkboard/img/whiteboard.png",
     "export/P4_SPD_Presentacion/plugin/chalkboard/img/chalk-yellow.png",
-    "export/P4_SPD_Presentacion/plugin/chalkboard/img/sponge.png",
-    "export/P4_SPD_Presentacion/plugin/chalkboard/img/chalk-white.png",
     "export/P4_SPD_Presentacion/plugin/chalkboard/style.css",
     "export/P4_SPD_Presentacion/plugin/chalkboard/_style.css",
     "export/P4_SPD_Presentacion/plugin/chalkboard/plugin.js",
@@ -202,7 +207,6 @@
     "export/P4_SPD_Presentacion/plugin/customcontrols/README.md",
     "export/P4_SPD_Presentacion/plugin/menu/CONTRIBUTING.md",
     "export/P4_SPD_Presentacion/plugin/menu/README.md",
-    "conflict-files-obsidian-git.md",
     "TERCERO/SS/SS Lab.md",
     "TERCERO/SS/SS 24-25.md",
     "TERCERO/ATR1/Teoría_2425.md",

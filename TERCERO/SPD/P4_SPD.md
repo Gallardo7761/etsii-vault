@@ -78,9 +78,6 @@ double pp2()
 | ![[Pasted image 20241022144832.png]] | ![[Pasted image 20241022150214.png]] |
 
 (Todo para config1 y config2)
-1. CPI (supertomasim)
-2. CPI (reordenado). Cambiar escalaridad (m=1, m=grande).
-3. Identificar CPI_bloq
 5. GFLOPS (o MIPS)
 6. CPI (pp2 pp4) y Ac
 7. Cronograma
