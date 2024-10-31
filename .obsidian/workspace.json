@@ -4,36 +4,20 @@
     "type": "split",
     "children": [
       {
-        "id": "c841a021395cc4d3",
+        "id": "90d0925ab4ee2d0c",
         "type": "tabs",
         "children": [
           {
-            "id": "d8a559569207f8b1",
+            "id": "3b843e69b2a87354",
             "type": "leaf",
             "state": {
-              "type": "image",
-              "state": {
-                "file": "TERCERO/SPD/images/Pasted image 20241022150214.png"
-              },
-              "icon": "lucide-image",
-              "title": "Pasted image 20241022150214"
-            }
-          },
-          {
-            "id": "2cf8494471daa0d9",
-            "type": "leaf",
-            "state": {
-              "type": "diff-view",
-              "state": {
-                "file": "conflict-files-obsidian-git.md",
-                "staged": false
-              },
-              "icon": "git-pull-request",
-              "title": "Diff View (conflict-files-obsidian-git)"
+              "type": "empty",
+              "state": {},
+              "icon": "lucide-file",
+              "title": "New tab"
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -89,7 +73,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 392.5
   },
   "right": {
     "id": "44cf06183e1c1c7d",
@@ -105,7 +89,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "TERCERO/SS/SS 24-25.md",
+                "file": "TERCERO/ATR1/Teoría_2425.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -115,7 +99,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Backlinks for SS 24-25"
+              "title": "Backlinks for Teoría_2425"
             }
           },
           {
@@ -124,12 +108,12 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "TERCERO/SS/SS 24-25.md",
+                "file": "TERCERO/ATR1/Teoría_2425.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "Outgoing links from SS 24-25"
+              "title": "Outgoing links from Teoría_2425"
             }
           },
           {
@@ -151,10 +135,10 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "TERCERO/SS/SS 24-25.md"
+                "file": "TERCERO/ATR1/Teoría_2425.md"
               },
               "icon": "lucide-list",
-              "title": "Outline of SS 24-25"
+              "title": "Outline of Teoría_2425"
             }
           },
           {
@@ -183,56 +167,57 @@
       "templates:Insert template": false,
       "command-palette:Open command palette": false,
       "table-editor-obsidian:Advanced Tables Toolbar": false,
-      "obsidian-git:Open Git source control": false
+      "obsidian-git:Open Git source control": false,
+      "obsidian-advanced-slides:Show Slide Preview": false
     }
   },
-  "active": "2cf8494471daa0d9",
+  "active": "b40a18c39aef8e17",
   "lastOpenFiles": [
-    "conflict-files-obsidian-git.md",
-    "TERCERO/SPD/images/Pasted image 20241022150214.png",
-    "TERCERO/ATR1/images/Pasted image 20241020204947.png",
-    "TERCERO/ATR1/images/Pasted image 20241020204701.png",
-    "TERCERO/ATR1/images/Pasted image 20241020204340.png",
-    "TERCERO/ATR1/images/Pasted image 20241020204107.png",
-    "TERCERO/SPD/P4_SPD.md",
-    "TERCERO/SPD/images/Pasted image 20241022144832.png",
-    "TERCERO/SPD/images/Pasted image 20241022144429.png",
     "TERCERO/SPD/Teoría_2425.md",
+    "TERCERO/SPD/Guión Practica 4 SPD.md",
+    "TERCERO/SPD/P4_SPD_Presentacion.md",
+    "TERCERO/SPD/images/Pasted image 20241022144832.png",
+    "TERCERO/SPD/images/Pasted image 20241022150214.png",
+    "TERCERO/SPD/P4_SPD.md",
+    "TERCERO/SPD/images/Pasted image 20241022144429.png",
     "TERCERO/SPD/images/Pasted image 20241022134454.png",
-    "Imagen de WhatsApp 2024-10-22 a las 11.43.21_270060da.jpg",
-    "TERCERO/IA/images/tic-tac-toe.gif",
-    "TERCERO/IA/Teoría_2425.md",
+    "TERCERO/SPD/images/Pasted image 20240930084659.png",
+    "TERCERO/SPD/images/Pasted image 20240916121903.png",
+    "export/P4_SPD_Presentacion/plugin/chalkboard/img/whiteboard.png",
+    "export/P4_SPD_Presentacion/plugin/chalkboard/img/chalk-yellow.png",
+    "export/P4_SPD_Presentacion/plugin/chalkboard/img/sponge.png",
+    "export/P4_SPD_Presentacion/plugin/chalkboard/img/chalk-white.png",
+    "export/P4_SPD_Presentacion/plugin/chalkboard/style.css",
+    "export/P4_SPD_Presentacion/plugin/chalkboard/_style.css",
+    "export/P4_SPD_Presentacion/plugin/chalkboard/plugin.js",
+    "export/P4_SPD_Presentacion/plugin/chalkboard/README.md",
+    "export/P4_SPD_Presentacion/plugin/chalkboard/plugin (copy).js",
+    "export/P4_SPD_Presentacion/plugin/chalkboard/img",
+    "export/P4_SPD_Presentacion/plugin/chalkboard",
+    "export/P4_SPD_Presentacion/plugin/chart/README.md",
+    "export/P4_SPD_Presentacion/plugin/chart/plugin.js",
+    "export/P4_SPD_Presentacion/plugin/chart/chart.min.js",
+    "export/P4_SPD_Presentacion/plugin/chart",
+    "export/P4_SPD_Presentacion/plugin/customcontrols/style.css",
+    "export/P4_SPD_Presentacion/plugin/customcontrols/README.md",
+    "export/P4_SPD_Presentacion/plugin/menu/CONTRIBUTING.md",
+    "export/P4_SPD_Presentacion/plugin/menu/README.md",
+    "conflict-files-obsidian-git.md",
+    "TERCERO/SS/SS Lab.md",
     "TERCERO/SS/SS 24-25.md",
     "TERCERO/ATR1/Teoría_2425.md",
-    "TERCERO/SS/SS Lab.md",
+    "Excalidraw/Drawing 2024-10-18 17.50.51.excalidraw.md",
+    "TERCERO/IA/Teoría_2425.md",
     "SEGUNDO/ADDA/Teoría_2324.md",
     "TERCERO/IA/Apuntes Julia.md",
     "SEGUNDO/IISSI2/Teoría_2324.md",
     "SEGUNDO/IISSI1/Teoría_2324.md",
-    "TERCERO/SS/images",
-    "TERCERO/SPD/images",
-    "TERCERO/IA/images",
-    "TERCERO/ATR1/images",
     "TERCERO/ATR1/Welcome.md",
-    "SEGUNDO/ADDA/MemoriaPI4_SMT4497.docx",
-    "SEGUNDO/ADDA/PI4_SMT4497.zip",
-    "SEGUNDO/ADDA/MemoriaPI5_SMT4497.pdf",
     "SEGUNDO/ADDA/ADDA 23-24.md",
     "SEGUNDO/ADDA/MODELOS.md",
     "SEGUNDO/ADDA/ADDA 15-05.md",
     "SEGUNDO/ADDA/ADDA 15-03.md",
     "SEGUNDO/ADDA/ADDA 13-03.md",
-    "SEGUNDO/AC/Teoría_2324.md",
-    "TERCERO/IA",
-    "TERCERO/SS",
-    "TERCERO/SPD",
-    "SEGUNDO/MD/Apuntes Sage.md",
-    "SEGUNDO/RC/Teoría_2324.md",
-    "SEGUNDO/RC/Untitled.md",
-    "SEGUNDO/TC/Teoría_2324.md",
-    "SEGUNDO/SO/Teoría_2324.md",
-    "SEGUNDO/SO/Untitled.md",
-    "SEGUNDO/SO/Sin título.md",
     "SEGUNDO/SO/Sin título.canvas"
   ]
 }
