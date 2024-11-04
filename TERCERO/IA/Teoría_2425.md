@@ -369,3 +369,14 @@ Se puede usar una estrategia, llamada **UCB (Upper Confidence Bound)** que const
 3. **Simulación:** partiendo del estado recién añadido se simula una partida completa, ya sea al azar o con una heurística. Se obtiene un valor (premio, recompensa, etc) que determina la utilidad de esa rama para el jugador.
 4. **Actualización:** con el estado final alcanzado de la fase anterior se actualizan las estadísticas de todas las posiciones previas visitadas durante la simulación que se ejecutó a partir del nuevo estado (incluyendo la cuenta de ganancias). 
 ![[mcts.gif]]
+
+# <mark style="background: #FFF3A3A6;">TEMA 6: Fundamentos de ML</mark>
+Básicamente se trata de crear algoritmos capaces de generalizar comportamientos y reconocer patrones a partir de unos datos de entrada. De la forma:
+$$
+\begin{equation}
+f:D\rightarrow r
+\end{equation}
+$$
+sea $f$ una función que dados unos datos $D$ da un resultado $r$. Hace falta saber, **cómo** se manipulan los datos, **qué** datos se cogen y cómo calcular los **errores**. ML es una mezcla de técnicas de álgebra (para representación vectorial de los parámetros de $f$) y optimización.
+### <mark style="background: #FFB86CA6;">Aprendizaje supervisado</mark>
+Se trata de $D\rightarrow ML\rightarrow f~aprox~D$ (o minimizar el error entre $D$ y $f$). Los datos se suelen dividir en dos bloques, uno de **entrenamiento** ($D_{train}$), y otro de **validación** ($D_{val}$) para calcular el error empírico (ya que esos datos "no los ha visto"). También puede haber un tercer bloque de **test** ($D_{test}$) para usarse luego de repetir varias veces el entrenamiento.
