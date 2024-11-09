@@ -320,8 +320,8 @@ Las iteraciones del algoritmo están perfectamente acotadas ya que dependen de $
 ## <mark style="background: #ADCCFFA6;">2. Optimización por Enjambre de Partículas (PSO)</mark>
 Se tienen $N$ partículas denotadas $\{1,...,N\}$ donde cada partícula tiene una posición $x_{i}$
 y una velocidad $v_{i}$. 
-1. Cada partícula es atraída hacia la mejor localización que ella, personalmente, ha encontrado: $x_{i}^{pb}$
-2. Cada partícula es atraída hacia la mejor localización que ha sido encontrada **globalmente**: $x^{gb}$
+1. Cada partícula es atraída hacia la mejor localización que ella, personalmente, ha encontrado: $x_{i}^{pb}$ (componente cognitivo)
+2. Cada partícula es atraída hacia la mejor localización que ha sido encontrada **globalmente**: $x^{gb}$ (componente social)
 
 ![[Pasted image 20241011121847.png|400]]
 La fuerza con que las partículas son empujadas a cada dirección se basa en la atracción a $x_{i}^{pb}$ y $x^{gb}$.

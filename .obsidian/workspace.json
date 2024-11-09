@@ -20,22 +20,8 @@
               "icon": "lucide-file",
               "title": "Teoría_2425"
             }
-          },
-          {
-            "id": "e654a6996736ae9f",
-            "type": "leaf",
-            "state": {
-              "type": "diff-view",
-              "state": {
-                "file": "TERCERO/SPD/P4_SPD.md",
-                "staged": true
-              },
-              "icon": "git-pull-request",
-              "title": "Diff View (P4_SPD)"
-            }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -91,8 +77,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300,
-    "collapsed": true
+    "width": 300
   },
   "right": {
     "id": "44cf06183e1c1c7d",
@@ -189,7 +174,7 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "b40a18c39aef8e17",
+  "active": "7d00eaebf5db2f27",
   "lastOpenFiles": [
     "TERCERO/SPD/P4_SPD.md",
     "conflict-files-obsidian-git.md",
