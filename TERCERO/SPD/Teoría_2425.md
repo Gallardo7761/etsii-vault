@@ -212,3 +212,9 @@ Estas escriben en registros y memoria antes de abortarse y es un problema. Tambi
 - **Fase IS:** más compleja (bottleneck). Emite las $m$ instrucciones mientras haya RS libres. 
 - **Fase EX:** total UF > $m$ y doble puerto.
 - **Fase WB:** nº de CDBs y puertos del fichero de registros proporcional a $m$.
+# <mark style="background: #FFF3A3A6;">TEMA 4: Paralelismo a nivel de datos (DLP)</mark>
+### <mark style="background: #FFB86CA6;">Introducción</mark>
+- DLP sólo es útil para paralelismo de datos (vectores/matrices o código científico/multimedia). 
+- Es más correcto: **Arquitecturas SIMD (Single Instruction Multiple Data)** o de paralelismo de datos, o núcleos vectoriales.
+- Variante: **GP-GPU (General Purpose-Graphics Processor Unit)**.
+

@@ -1,19 +1,19 @@
 {
   "main": {
-    "id": "8d26a6fe9f964f6b",
+    "id": "f7721935e5d20590",
     "type": "split",
     "children": [
       {
-        "id": "2b4a2a38f19c49b5",
+        "id": "5a472a19b40706bf",
         "type": "tabs",
         "children": [
           {
-            "id": "7d00eaebf5db2f27",
+            "id": "6d0aaf9058ab0824",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "TERCERO/IA/Teoría_2425.md",
+                "file": "TERCERO/ATR1/Teoría_2425.md",
                 "mode": "source",
                 "source": false
               },
@@ -27,15 +27,15 @@
     "direction": "vertical"
   },
   "left": {
-    "id": "a9100b68fb330cb9",
+    "id": "d09413c6f30d285f",
     "type": "split",
     "children": [
       {
-        "id": "e23565b29f0b0277",
+        "id": "ba4430d5ae58abf8",
         "type": "tabs",
         "children": [
           {
-            "id": "a4eac8e6613b153b",
+            "id": "6e7ccc69dbda906e",
             "type": "leaf",
             "state": {
               "type": "file-explorer",
@@ -47,7 +47,7 @@
             }
           },
           {
-            "id": "dd5726e5114a7c4e",
+            "id": "0bbf4011591a3efb",
             "type": "leaf",
             "state": {
               "type": "search",
@@ -64,7 +64,7 @@
             }
           },
           {
-            "id": "1cbe9729fd2cf604",
+            "id": "d976c48bbe3d0d08",
             "type": "leaf",
             "state": {
               "type": "bookmarks",
@@ -80,20 +80,20 @@
     "width": 300
   },
   "right": {
-    "id": "44cf06183e1c1c7d",
+    "id": "a41885959e7dd689",
     "type": "split",
     "children": [
       {
-        "id": "49cbf6da2f29f564",
+        "id": "605a8f1c45f2bebb",
         "type": "tabs",
         "children": [
           {
-            "id": "1e44a907904513ce",
+            "id": "2dd43a0ec88feb61",
             "type": "leaf",
             "state": {
               "type": "backlink",
               "state": {
-                "file": "TERCERO/SS/SS 24-25.md",
+                "file": "TERCERO/ATR1/Teoría_2425.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -103,25 +103,25 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Backlinks for SS 24-25"
+              "title": "Backlinks for Teoría_2425"
             }
           },
           {
-            "id": "1f08a0ec99cf4a21",
+            "id": "6f328c1178a2408c",
             "type": "leaf",
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "TERCERO/SS/SS 24-25.md",
+                "file": "TERCERO/ATR1/Teoría_2425.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "Outgoing links from SS 24-25"
+              "title": "Outgoing links from Teoría_2425"
             }
           },
           {
-            "id": "2f9a57a1dc058b86",
+            "id": "c8fb2a3ab51cfcb3",
             "type": "leaf",
             "state": {
               "type": "tag",
@@ -134,33 +134,22 @@
             }
           },
           {
-            "id": "32907795dd5fbf3f",
+            "id": "f40ea1ff3f92e0f2",
             "type": "leaf",
             "state": {
               "type": "outline",
               "state": {
-                "file": "TERCERO/SS/SS 24-25.md"
+                "file": "TERCERO/ATR1/Teoría_2425.md"
               },
               "icon": "lucide-list",
-              "title": "Outline of SS 24-25"
-            }
-          },
-          {
-            "id": "b40a18c39aef8e17",
-            "type": "leaf",
-            "state": {
-              "type": "git-view",
-              "state": {},
-              "icon": "git-pull-request",
-              "title": "Source Control"
+              "title": "Outline of Teoría_2425"
             }
           }
-        ],
-        "currentTab": 4
+        ]
       }
     ],
     "direction": "horizontal",
-    "width": 367.5
+    "width": 300
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -174,53 +163,6 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "7d00eaebf5db2f27",
-  "lastOpenFiles": [
-    "TERCERO/SPD/P4_SPD.md",
-    "conflict-files-obsidian-git.md",
-    "TERCERO/IA/Teoría_2425.md",
-    "TERCERO/SS/SS 24-25.md",
-    "TERCERO/SS/SS Lab.md",
-    "TERCERO/SPD/Teoría_2425.md",
-    "TERCERO/SS/images/Pasted image 20241024113018.png",
-    "TERCERO/SS/images/Pasted image 20241024090239.png",
-    "TERCERO/SPD/images/Pasted image 20241022150214.png",
-    "TERCERO/ATR1/images/Pasted image 20241020204947.png",
-    "TERCERO/ATR1/images/Pasted image 20241020204701.png",
-    "TERCERO/ATR1/images/Pasted image 20241020204340.png",
-    "TERCERO/ATR1/images/Pasted image 20241020204107.png",
-    "TERCERO/SPD/images/Pasted image 20241022144832.png",
-    "TERCERO/SPD/images/Pasted image 20241022144429.png",
-    "TERCERO/SPD/images/Pasted image 20241022134454.png",
-    "TERCERO/ATR1/Teoría_2425.md",
-    "SEGUNDO/ADDA/Teoría_2324.md",
-    "TERCERO/IA/Apuntes Julia.md",
-    "SEGUNDO/IISSI2/Teoría_2324.md",
-    "SEGUNDO/IISSI1/Teoría_2324.md",
-    "TERCERO/SS/images",
-    "TERCERO/SPD/images",
-    "TERCERO/IA/images",
-    "TERCERO/ATR1/images",
-    "TERCERO/ATR1/Welcome.md",
-    "SEGUNDO/ADDA/MemoriaPI4_SMT4497.docx",
-    "SEGUNDO/ADDA/PI4_SMT4497.zip",
-    "SEGUNDO/ADDA/MemoriaPI5_SMT4497.pdf",
-    "SEGUNDO/ADDA/ADDA 23-24.md",
-    "SEGUNDO/ADDA/MODELOS.md",
-    "SEGUNDO/ADDA/ADDA 15-05.md",
-    "SEGUNDO/ADDA/ADDA 15-03.md",
-    "SEGUNDO/ADDA/ADDA 13-03.md",
-    "SEGUNDO/AC/Teoría_2324.md",
-    "TERCERO/IA",
-    "TERCERO/SS",
-    "TERCERO/SPD",
-    "SEGUNDO/MD/Apuntes Sage.md",
-    "SEGUNDO/RC/Teoría_2324.md",
-    "SEGUNDO/RC/Untitled.md",
-    "SEGUNDO/TC/Teoría_2324.md",
-    "SEGUNDO/SO/Teoría_2324.md",
-    "SEGUNDO/SO/Untitled.md",
-    "SEGUNDO/SO/Sin título.md",
-    "SEGUNDO/SO/Sin título.canvas"
-  ]
+  "active": "2dd43a0ec88feb61",
+  "lastOpenFiles": []
 }
