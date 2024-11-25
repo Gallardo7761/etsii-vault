@@ -380,3 +380,33 @@ $$
 sea $f$ una función que dados unos datos $D$ da un resultado $r$. Hace falta saber, **cómo** se manipulan los datos, **qué** datos se cogen y cómo calcular los **errores**. ML es una mezcla de técnicas de álgebra (para representación vectorial de los parámetros de $f$) y optimización.
 ### <mark style="background: #FFB86CA6;">Aprendizaje supervisado</mark>
 Se trata de $D\rightarrow ML\rightarrow f~aprox~D$ (o minimizar el error entre $D$ y $f$). Los datos se suelen dividir en dos bloques, uno de **entrenamiento** ($D_{train}$), y otro de **validación** ($D_{val}$) para calcular el error empírico (ya que esos datos "no los ha visto"). También puede haber un tercer bloque de **test** ($D_{test}$) para usarse luego de repetir varias veces el entrenamiento.
+
+# <mark style="background: #FFF3A3A6;">TEMA 8: Redes neuronales</mark>
+
+Dado un dataset $D=\{(\vec{x},y)\}$ hay que encontrar una función $f\rightarrow f(\vec{x})~\textasciitilde~y~\forall~(\vec{x},y)\in D$. Hay dos posibles espacios:
+- **Lineal:** $f(x)=mx+n$
+- **Polinómica:** $f(x)=a_0+a_1x+a_2x^2+\dots+a_nx^n$ que se puede aproximar mediante sus parámetros $(a_0,a_1,a_2,\dots,a_n)$
+### <mark style="background: #FFB86CA6;">Funcionamiento básico</mark>
+![[neurona.gif]]
+1. **Entrada de datos:** La capa de entrada recibe un vector numérico.
+2. **Peso y sesgo:** Cada conexión entre las neuronas de una capa y la siguiente tiene un peso asociado, y cada neurona de la capa siguiente tiene un sesgo (constante ajustable)
+3. **Suma ponderada:** En cada neurona consideramos la suma ponderada de los valores de las neuronas entrantes a ella, así como de su sesgo.
+4. **Función de activación:** Se aplica una función no lineal sobre los valores que tiene como objetivo cambiar los valores de manera no lineal.
+5. **Capa de salida:** Los valores calculados en la capa de salida son el cálculo final.
+![[Pasted image 20241115112854.png|400]]
+Para esta red, que es muy simple, hacen falta **44 parámetros** (32 pesos y 12 sesgos).
+## <mark style="background: #ADCCFFA6;">1. Teorema de aproximación universal</mark>
+Supongamos:
+- $K\subset ℝ^d$
+- $f$ una función coste arbitraria en $C(K,ℝ)$
+- $\epsilon\in ℝ^d$ arbitrario
+- $\sigma$ función continua no constante, acotada y creciente
+Entonces:
+$\exists n\in N / b_i\in ℝ,~v_i\in ℝ~y~w_i\in ℝ^d~\forall i\in \{1,\dots,d\}$
+tales que se cumple la desigualdad:
+$\max\limits_{x\in K}|φ(x)-f(x)|<\epsilon$
+## <mark style="background: #ADCCFFA6;">2. Funciones de coste</mark>
+### <mark style="background: #FFB86CA6;">Error/coste cuadrático</mark>
+$C_2(W,b):=\frac{1}{2|T|}\sum\limits_{x\in T}{||y(x)-a(x)||_2^2}$ 
+Encontrar la mejor red es encontrar la red con el **menor error posible**.
+## <mark style="background: #ADCCFFA6;">3. Reconocimiento de dígitos</mark>

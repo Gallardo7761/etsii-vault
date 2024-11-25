@@ -360,3 +360,55 @@ Cada entrada de la caché se almacena durante TTL segundos. Si el TTL es pequeñ
 - Se distingue entre el alias y el nombre canónico
 - Si se emplean RQDN el dominio corresponderá con el dominio por defecto
 - En el ejemplo, www.rediris.com es un alias de la dirección titan.rediris.com
+# <mark style="background: #FFF3A3A6;">TEMA 4: Servicios de correo electrónico</mark>
+## <mark style="background: #ADCCFFA6;">1. Introducción</mark>
+Es uno de los servicios más extendidos en Internet. Hay varios tipos de aplicaciones:
+- Interfaz gráfica (Outlook, Thunderbird, Apple Mail)
+- Modo texto (Pine, elm, mail)
+- Web (Squirrelmail, Gmail)
+### <mark style="background: #FFB86CA6;">Conceptos</mark>
+**Cuenta de usuario:** Identificador de usuario que permite acceder al servicio. Tiene asociado el nombre de usuario (usuario@dominio.com) y contraseña.
+**Buzón de correo:** Donde se almacenan los correos
+**Alias de correo**
+**Lista de correo:** Correo a múltiples usuarios.
+### <mark style="background: #FFB86CA6;">Componentes</mark>
+**MUA (Mail User Agent) :** Cliente.
+**MTA (Mail Transfer Agent) :** Servidor de correo.
+**MDA (Mail Delivery Agent) :** Proceso software en el MTA que sirve para colocar los correos recibidos en el buzón de correo correspondiente al usuario.
+### <mark style="background: #FFB86CA6;">Procedimiento</mark>
+![[Captura de pantalla de 2024-11-20 10-54-39.png]]
+## <mark style="background: #ADCCFFA6;">2. Formato de mensajes (IMF)</mark>
+Internet Mail Format. Todo mensaje está compuesto de cabecera y cuerpo separadas por "\n". 
+- **Cabeceras:** 
+	- To:
+	- From:
+	- Subject:
+	- Date:
+- **Cuerpo:**
+	- Mensaje ASCII no extendido (7 bits). No se puede adjuntar archivos.
+## <mark style="background: #ADCCFFA6;">3. SMTP (Simple Mail Transfer Protocol)</mark>
+**Características:**
+- Paradigma C-S
+- Usado entre MUA $\rightarrow$ MTA y MTA $\rightarrow$ MTA
+- TCP
+- Tiene tres fases:
+	- Handshaking (saludo inicial)
+	- Transferencia
+	- Cierre
+- Basado en comando/respuesta
+### <mark style="background: #FFB86CA6;">Respuestas</mark>
+Generalmente formadas por un código numérico formado por un texto libre y tres cifras.
+La primera cifra indica el éxito o fracaso del comando:
+- **2xx** indica que se ha aceptado el comando anterior
+- **3xx** indica que se ha aceptado parcialmente el comando anterior
+- **4xx** indica que se ha producido un error temporal que impide aceptar el comando, pero que si se reintenta más tarde puede que funcione
+- **5xx** indica que se ha producido un error permanente que se volverá a producir si se reintenta más tarde
+### <mark style="background: #FFB86CA6;">Comandos</mark>
+- **HELO/EHLO:** es el primer comando que debe enviar el cliente. Se informa de su nombre de dominio.
+- **MAIL FROM:** indica el remitente del mensaje (se le devuelve el mensaje si falla). A veces se requiere que el dominio detrás de "@" exista, en cambio casi nunca se comprueba si el usuario existe. La información asociada a este comando **no tiene que coincidir** con las cabeceras.
+- **RCPT TO:** indica el destinatario del mensaje. No tiene por qué coincidir con los To o CC del correo y tampoco tiene por qué aceptarse completamente (p.e. fallo de autenticación).
+- **DATA:** permite escribir el mensaje de correo. La respuesta 3xx indica que se espera a que se complete el mensaje y determinar si se acepta. Si se acepta, deberá indicarse tras la señal de fin del mensaje.
+  _Una línea finaliza con ".". Si se quiere incluir un "." hay que poner ".."._ 
+  - **QUIT:** cierra la conexión
+### <mark style="background: #FFB86CA6;">Cabeceras Received</mark>
+Se añaden en cada "salto", se deben leer desde el final al principio (LIFO). 

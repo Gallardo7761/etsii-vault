@@ -217,4 +217,3 @@ Estas escriben en registros y memoria antes de abortarse y es un problema. Tambi
 - DLP sólo es útil para paralelismo de datos (vectores/matrices o código científico/multimedia). 
 - Es más correcto: **Arquitecturas SIMD (Single Instruction Multiple Data)** o de paralelismo de datos, o núcleos vectoriales.
 - Variante: **GP-GPU (General Purpose-Graphics Processor Unit)**.
-
