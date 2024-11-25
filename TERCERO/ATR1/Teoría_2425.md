@@ -412,3 +412,54 @@ La primera cifra indica el éxito o fracaso del comando:
   - **QUIT:** cierra la conexión
 ### <mark style="background: #FFB86CA6;">Cabeceras Received</mark>
 Se añaden en cada "salto", se deben leer desde el final al principio (LIFO). 
+![[Pasted image 20241125143529.png]]
+## <mark style="background: #ADCCFFA6;">4. MIME</mark>
+Son un tipo de cabeceras que, a diferencia de IMF Estándar, permite el adjuntado de archivos.
+### <mark style="background: #FFB86CA6;">Cabeceras</mark>
+- **Mime-Version:** Actualmente 1.0
+- **Content-type:** le indica al cliente de correo el tipo y subtipo del mensaje o parte de este.
+	- Por defecto: Content-type: text/plain; charset=us-ascii
+- **Content-Description:** Campo de información
+- **Content-Transfer-Encoding:** Indica el tipo de codificación que se ha empleado en esa parte del mensaje.
+	-  7 bits: US-ASCII, no sirve para binarios ni caracteres especiales
+	- 8 bits y binary: Ligeramente diferentes, permiten ASCII 7 bits y caracteres especiales
+	- **quoted-printable** y **base64**: Permiten ASCII 7 bits, caracteres especiales y ficheros adjuntos.
+### <mark style="background: #FFB86CA6;">Codificación</mark>
+- **base64:** Para codificar un fichero cualquiera:
+	- El fichero binario se divide en bloques de 24 bits (3B).
+	- Cada bloque se codifica con una letra (tomando los bits de 6 en 6 según tabla).
+	- Se transmiten esas letras formando líneas de 72 caracteres.
+	- Si los bits no son múltiplos de 24, se añaden bits a 0 hasta formar un número entero de grupos de 6 bits y se añaden uno o dos "=" como relleno al final.
+	  ![[Pasted image 20241125144536.png]]
+- **quoted-printable:** Se emplea si la mayor parte del mensaje se puede codificar con ASCII.
+	- Los caracteres 29-127 se codifican en US-ASCII
+	- El resto se representan de forma "=XX" donde XX es el hex de ese carácter. (Una ñ: Una =F1)
+#### <mark style="background: #D2B3FFA6;">Caracteres extendidos en cabeceras</mark>
+Las cabeceras se transmiten en 7 bits. Podría ser necesario que en el asunto, From o To aparezcan caracteres especiales. Para solucionar eso, se usa el siguiente esquema:
+- Encoded-word= “=?”charset ”?” encoding “?” encoded-text “?=“
+- charset es el juego de caracteres; encoding: q=quoted-printable, b=Base64
+- Los espacios se sustituyen por “_”, los “_” por su codificación.
+## <mark style="background: #ADCCFFA6;">5. POP</mark>
+- Protocolo simple (buzón inbox únicamente en el servidor)
+- El servidor asigna un ID único a cada mensaje (opcional)
+- Se diseñó para operar en modo "descarga y borrar" (el cliente de correo descarga el mensaje y lo borra del servidor).
+- Se puede descargar un mensaje sin borrarlo pero da problemas de rendimiento al almacenar todo el correo en el mismo buzón.
+- El servidor no almacena información del estado de los mensajes.
+- Usa el puerto 110 (sin SSL) o el 995 (con SSL).
+### <mark style="background: #FFB86CA6;">Fases</mark>
+- **Autorización:** 
+  ![[Pasted image 20241125145413.png]]
+  USER/PASS
+  -ERR en caso de error
+- **Transacción:** 
+  ![[Pasted image 20241125145439.png]]
+  STAT: indica el número de emails y tamaño
+  LIST: numera los mensajes (sesión) y tamaño
+  RETR: descarga un mensaje concreto
+  NOOP: no hace nada
+  UIDL: muestra ID persistente
+  TOP: devuelve sólo cabeceras
+  - **Actualización:** 
+    ![[Pasted image 20241125145544.png]]
+	Se inicia al ejecutar el comando QUIT. Se  borran los mensajes marcados, y aunque puede dar error, se cierra la conexión sí o sí.
+## <mark style="background: #ADCCFFA6;">6. IMAP</mark>
