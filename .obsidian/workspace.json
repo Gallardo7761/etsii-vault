@@ -4,19 +4,21 @@
     "type": "split",
     "children": [
       {
-        "id": "56e813a421587f25",
+        "id": "2d0b9251619569b8",
         "type": "tabs",
         "children": [
           {
-            "id": "75fd2cd48c9b7660",
+            "id": "f159ed47981f3b40",
             "type": "leaf",
             "state": {
-              "type": "image",
+              "type": "markdown",
               "state": {
-                "file": "TERCERO/ATR1/images/Captura de pantalla de 2024-11-20 10-54-39.png"
+                "file": "TERCERO/SS/SS 24-25.md",
+                "mode": "source",
+                "source": false
               },
-              "icon": "lucide-image",
-              "title": "Captura de pantalla de 2024-11-20 10-54-39"
+              "icon": "lucide-file",
+              "title": "SS 24-25"
             }
           }
         ]
@@ -75,7 +77,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 300,
+    "collapsed": true
   },
   "right": {
     "id": "44cf06183e1c1c7d",
@@ -172,10 +175,14 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "75fd2cd48c9b7660",
+  "active": "f159ed47981f3b40",
   "lastOpenFiles": [
-    "Untitled.md",
+    "Pasted image 20241125141145.png",
+    "Pasted image 20241125141142.png",
+    "TERCERO/SPD/Teoría_2425.md",
+    "TERCERO/SS/SS 24-25.md",
     "TERCERO/ATR1/images/Captura de pantalla de 2024-11-20 10-54-39.png",
+    "Untitled.md",
     "TERCERO/ATR1/Resolución 1 Parcial ATR1.md",
     "TERCERO/IA/images/Pasted image 20241115112854.png",
     "TERCERO/IA/images/Pasted image 20241115110324.png",
@@ -186,14 +193,11 @@
     "conflict-files-obsidian-git.md",
     "TERCERO/IA/Teoría_2425.md",
     "TERCERO/SPD/P4_SPD.md",
-    "TERCERO/SS/SS 24-25.md",
     "TERCERO/SS/SS Lab.md",
-    "TERCERO/SPD/Teoría_2425.md",
     "TERCERO/SS/images/Pasted image 20241024113018.png",
     "TERCERO/SS/images/Pasted image 20241024090239.png",
     "TERCERO/SPD/images/Pasted image 20241022150214.png",
     "TERCERO/ATR1/images/Pasted image 20241020204947.png",
-    "TERCERO/ATR1/images/Pasted image 20241020204701.png",
     "SEGUNDO/ADDA/Teoría_2324.md",
     "TERCERO/IA/Apuntes Julia.md",
     "SEGUNDO/IISSI2/Teoría_2324.md",
