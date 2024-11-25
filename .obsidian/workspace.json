@@ -1,68 +1,39 @@
 {
   "main": {
-    "id": "f7721935e5d20590",
+    "id": "8d26a6fe9f964f6b",
     "type": "split",
     "children": [
       {
-        "id": "6c6215d94ce03eb8",
+        "id": "56e813a421587f25",
         "type": "tabs",
         "children": [
           {
-            "id": "edbad8689e45f41b",
+            "id": "75fd2cd48c9b7660",
             "type": "leaf",
             "state": {
-              "type": "markdown",
+              "type": "image",
               "state": {
-                "file": "TERCERO/ATR1/Teoría_2425.md",
-                "mode": "source",
-                "source": false
+                "file": "TERCERO/ATR1/images/Captura de pantalla de 2024-11-20 10-54-39.png"
               },
-              "icon": "lucide-file",
-              "title": "Teoría_2425"
-            }
-          },
-          {
-            "id": "f83bf10778aecbb8",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Resolución 1 Parcial ATR1.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "Resolución 1 Parcial ATR1"
-            }
-          },
-          {
-            "id": "9abf93d8c846c03e",
-            "type": "leaf",
-            "state": {
-              "type": "release-notes",
-              "state": {
-                "currentVersion": "1.7.7"
-              },
-              "icon": "lucide-file",
-              "title": "Release Notes 1.7.7"
+              "icon": "lucide-image",
+              "title": "Captura de pantalla de 2024-11-20 10-54-39"
             }
           }
-        ],
-        "currentTab": 2
+        ]
       }
     ],
     "direction": "vertical"
   },
   "left": {
-    "id": "d09413c6f30d285f",
+    "id": "a9100b68fb330cb9",
     "type": "split",
     "children": [
       {
-        "id": "ba4430d5ae58abf8",
+        "id": "e23565b29f0b0277",
         "type": "tabs",
         "children": [
           {
-            "id": "6e7ccc69dbda906e",
+            "id": "a4eac8e6613b153b",
             "type": "leaf",
             "state": {
               "type": "file-explorer",
@@ -74,7 +45,7 @@
             }
           },
           {
-            "id": "0bbf4011591a3efb",
+            "id": "dd5726e5114a7c4e",
             "type": "leaf",
             "state": {
               "type": "search",
@@ -91,7 +62,7 @@
             }
           },
           {
-            "id": "d976c48bbe3d0d08",
+            "id": "1cbe9729fd2cf604",
             "type": "leaf",
             "state": {
               "type": "bookmarks",
@@ -104,24 +75,23 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300,
-    "collapsed": true
+    "width": 300
   },
   "right": {
-    "id": "a41885959e7dd689",
+    "id": "44cf06183e1c1c7d",
     "type": "split",
     "children": [
       {
-        "id": "605a8f1c45f2bebb",
+        "id": "49cbf6da2f29f564",
         "type": "tabs",
         "children": [
           {
-            "id": "2dd43a0ec88feb61",
+            "id": "1e44a907904513ce",
             "type": "leaf",
             "state": {
               "type": "backlink",
               "state": {
-                "file": "TERCERO/IA/Teoría_2425.md",
+                "file": "TERCERO/SS/SS 24-25.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -131,25 +101,25 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Backlinks for Teoría_2425"
+              "title": "Backlinks for SS 24-25"
             }
           },
           {
-            "id": "6f328c1178a2408c",
+            "id": "1f08a0ec99cf4a21",
             "type": "leaf",
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "TERCERO/IA/Teoría_2425.md",
+                "file": "TERCERO/SS/SS 24-25.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "Outgoing links from Teoría_2425"
+              "title": "Outgoing links from SS 24-25"
             }
           },
           {
-            "id": "c8fb2a3ab51cfcb3",
+            "id": "2f9a57a1dc058b86",
             "type": "leaf",
             "state": {
               "type": "tag",
@@ -162,23 +132,33 @@
             }
           },
           {
-            "id": "f40ea1ff3f92e0f2",
+            "id": "32907795dd5fbf3f",
             "type": "leaf",
             "state": {
               "type": "outline",
               "state": {
-                "file": "TERCERO/IA/Teoría_2425.md"
+                "file": "TERCERO/SS/SS 24-25.md"
               },
               "icon": "lucide-list",
-              "title": "Outline of Teoría_2425"
+              "title": "Outline of SS 24-25"
+            }
+          },
+          {
+            "id": "b40a18c39aef8e17",
+            "type": "leaf",
+            "state": {
+              "type": "git-view",
+              "state": {},
+              "icon": "git-pull-request",
+              "title": "Source Control"
             }
           }
-        ]
+        ],
+        "currentTab": 4
       }
     ],
     "direction": "horizontal",
-    "width": 300,
-    "collapsed": true
+    "width": 367.5
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -192,19 +172,53 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "9abf93d8c846c03e",
+  "active": "75fd2cd48c9b7660",
   "lastOpenFiles": [
-    "Resolución 1 Parcial ATR1.md",
-    "TERCERO/ATR1/Teoría_2425.md",
     "Untitled.md",
-    "Captura de pantalla de 2024-11-20 10-54-39.png",
-    "TERCERO/SPD/Teoría_2425.md",
-    "TERCERO/IA/Teoría_2425.md",
-    "Pasted image 20241115112854.png",
-    "neurona.gif",
-    "Pasted image 20241115110324.png",
-    "Pasted image 20241115110309.png",
+    "TERCERO/ATR1/images/Captura de pantalla de 2024-11-20 10-54-39.png",
+    "TERCERO/ATR1/Resolución 1 Parcial ATR1.md",
+    "TERCERO/IA/images/Pasted image 20241115112854.png",
+    "TERCERO/IA/images/Pasted image 20241115110324.png",
+    "TERCERO/IA/images/Pasted image 20241115110309.png",
+    "TERCERO/ATR1/Teoría_2425.md",
+    "TERCERO/IA/images/neurona.gif",
     "TERCERO/ATR1/Ejercicios.md",
-    "TERCERO/IA/Apuntes Julia.md"
+    "conflict-files-obsidian-git.md",
+    "TERCERO/IA/Teoría_2425.md",
+    "TERCERO/SPD/P4_SPD.md",
+    "TERCERO/SS/SS 24-25.md",
+    "TERCERO/SS/SS Lab.md",
+    "TERCERO/SPD/Teoría_2425.md",
+    "TERCERO/SS/images/Pasted image 20241024113018.png",
+    "TERCERO/SS/images/Pasted image 20241024090239.png",
+    "TERCERO/SPD/images/Pasted image 20241022150214.png",
+    "TERCERO/ATR1/images/Pasted image 20241020204947.png",
+    "TERCERO/ATR1/images/Pasted image 20241020204701.png",
+    "SEGUNDO/ADDA/Teoría_2324.md",
+    "TERCERO/IA/Apuntes Julia.md",
+    "SEGUNDO/IISSI2/Teoría_2324.md",
+    "SEGUNDO/IISSI1/Teoría_2324.md",
+    "TERCERO/SS/images",
+    "TERCERO/SPD/images",
+    "TERCERO/IA/images",
+    "TERCERO/ATR1/images",
+    "TERCERO/ATR1/Welcome.md",
+    "SEGUNDO/ADDA/MemoriaPI4_SMT4497.docx",
+    "SEGUNDO/ADDA/PI4_SMT4497.zip",
+    "SEGUNDO/ADDA/MemoriaPI5_SMT4497.pdf",
+    "SEGUNDO/ADDA/ADDA 23-24.md",
+    "SEGUNDO/ADDA/MODELOS.md",
+    "SEGUNDO/ADDA/ADDA 15-05.md",
+    "SEGUNDO/ADDA/ADDA 15-03.md",
+    "SEGUNDO/ADDA/ADDA 13-03.md",
+    "SEGUNDO/AC/Teoría_2324.md",
+    "TERCERO/IA",
+    "TERCERO/SS",
+    "TERCERO/SPD",
+    "SEGUNDO/MD/Apuntes Sage.md",
+    "SEGUNDO/RC/Teoría_2324.md",
+    "SEGUNDO/RC/Untitled.md",
+    "SEGUNDO/TC/Teoría_2324.md",
+    "SEGUNDO/SO/Sin título.canvas"
   ]
 }
