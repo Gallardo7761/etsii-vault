@@ -410,3 +410,115 @@ $\max\limits_{x\in K}|φ(x)-f(x)|<\epsilon$
 $C_2(W,b):=\frac{1}{2|T|}\sum\limits_{x\in T}{||y(x)-a(x)||_2^2}$ 
 Encontrar la mejor red es encontrar la red con el **menor error posible**.
 ## <mark style="background: #ADCCFFA6;">3. Reconocimiento de dígitos</mark>
+
+# <mark style="background: #FFF3A3A6;">TEMA 9: Algoritmos de clustering</mark>
+Básicamente un algoritmo de clustering tiene como objetivo agrupar los datos de un dataset según la similaridad entre ellos, de forma que los que estén en un mismo grupo (cluster) sean más similares que los que no estén en dicho grupo.
+## <mark style="background: #ADCCFFA6;">1. Axiomatización del clustering</mark>
+
+**Distancias**
+Normalmente, para poder hablar de similaridad se suele acudir a algún tipo de distancia.
+Sea $X=\{1,\dots,n\}$ un conjunto de datos. Una función $d:X\times X\rightarrow \rm I\! R$ es una función distancia si:
+- $d(x_i,x_i)\geq 0~\forall~x_i\in X$
+- $d(x_i,x_j)>0\iff x_i\neq x_j~\forall~x_i,x_j\in X$
+- $d(x_i,x_j)=d(x_j,x_i)~\forall~x_i,x_j\in X$
+
+**k-Clustering**
+Un k-Clustering, $C=\{C_1,\dots,C_k\}$ de $X$ es una k-partición de $X$. $C_i\cap C_j=\emptyset$ para $i\neq j$ y $\cup^{k}_{i=1}{C_i}=X$ 
+
+### <mark style="background: #FFB86CA6;">Axiomas</mark>
+- **Invarianza por Escala:** Un algoritmo de clustering no debe dar resultados distintos si se aplica una escala al conjunto de puntos.
+- **Consistencia:** Un algoritmo no debe dar resultados distintos si las distancias dentro de cada cluster se reducen o si las distancias entre clusters aumentan.
+- **Riqueza:** La función de agrupación debe ser lo suficientemente flexible como para producir _cualquier_ partición arbitraria del conjunto de datos de entrada.
+## <mark style="background: #ADCCFFA6;">2. Clasificación de algoritmos de clustering</mark>
+Según la forma en que los clusters se relacionan entre si y con los objetos del dataset, podemos hacer una primera clasificación:
+- **Clustering Blando:** los puntos pertenecen a los clusters según un grado de pertenencia.
+- **Clustering Duro:** cada punto sólo pertenece a un solo cluster.
+Pero hay clasificaciones más finas como:
+- **Partición estricta:** cada punto pertenece exactamente a un cluster.
+- **Partición estricta con outliers:** puede haber puntos que no pertenezcan a ningún cluster (outliers).
+- **Clustering con superposiciones:** un punto puede pertenecer a más de un cluster.
+- **Clustering jerárquico:** los clusters se ordenan jerárquicamente de forma que los puntos de un cluster también están en el cluster padre.
+## <mark style="background: #ADCCFFA6;">3. Principales algoritmos</mark>
+### <mark style="background: #FFB86CA6;">K-medias (modelo de centroides)</mark>
+![[Sin título.png|300]]
+Donde colocar los $k$ centroides para dividir en $k$ bolsas. El algoritmo intenta minimizar la función potencial:
+$$
+\begin{equation}
+\sum_i\sum_j d(x_{ij},~c_i)^2
+\end{equation}
+$$
+Un pseudo-código para k-medias podría ser:
+```
+K-MEANS(D,K) [D: Dataset, K > 0]
+    C = {c1,...,ck} ⊆ D (cualesquiera)
+    Asignar Di = {P ϵ D: d(P,ci) < d(P,cj), j ≠ i}, i = 1...K
+    Mientras algún ci cambie:
+        Calcular ci = centroide(Di), i=1...K
+        Recalcular Di, i = 1...K 
+    Devolver {D1,...,DK}
+```
+K-medias es aceptable si se pueden dividir las bolsas mediante rectas, en cuanto no se pueda, empieza a fallar.
+### <mark style="background: #FFB86CA6;">DBSCAN (modelo de densidad discreto)</mark>
+![[Pasted image 20241127091731.png|300]]
+
+Se basa en densidades para calcular las bolsas, y marca como outliers aquellos puntos que no superan un umbral designado. El algoritmo recibe dos datos de entrada que determinan la densidad mínima:
+- $\epsilon$ que fija el radio de los entornos que se mirarán alrededor de los puntos
+- $MinPts$ que establece el número mínimo de puntos que debe haber en el entorno para que se considere que supera el umbral.
+Un posible pseudo-código:
+```
+DBSCAN(D, ε, MinPts) [D: Dataset; ε > 0; MinPts >0]
+    C = ∅
+    Para cada P ϵ D no visitado:
+        Marcar P como visitado 
+        N = E(P, ε) 
+        Si tamaño(N) < MinPts:
+            marcar P como OUTLIER 
+        si no:
+            C = C ⋃ {creaCluster(P, N, ε, MinPts)}
+    Devolver C 
+```
+Donde:
+```
+creaCluster(P, N, ε, MinPts) [P ϵ D; N entorno de P; ε > 0; MinPts > 0]
+    Cl = {P}
+    Para cada P' ϵ N:
+        Si P' no ha sido visitado:
+            marcar P' como visitado
+            N' = E(P', ε)
+            Si tamaño(N') ≥ MinPts:
+                N = N ⋃ N'
+        Si P' no está en ningún cluster:
+            Cl = Cl ⋃ {P'}
+    Devolver Cl
+```
+### <mark style="background: #FFB86CA6;">AGNES (modelo jerárquico)</mark>
+![[Pasted image 20241127091902.png|300]]
+Va construyendo una jerarquía creciente de clusters desde los más pequeños hasta el mayor cluster posible. Un posible pseudo-código:
+```
+AGNES(D,N) [D: Dataset, N > 0]
+    Cls = { {P} : P ϵ D} (un cluster unitario para cada P ϵ D)
+        Mientras |Cls| > N:
+            Sean C1, C2 en Cls: d(C1,C2) = min {d(Ci,Cj): Ci,Cj ϵ Cls}
+            C12 = C1 ⋃ C2
+            Cls = Cls - {C1,C2} ⋃ {C12}
+    Devolver Cls
+```
+El algoritmo va midiendo las distancias entre los propios clusters, llamadas Métodos de Conexión. Los más habituales son:
+1. **Conexión completa:** $d_{max}(C_1,C_2)=max\{d(x_1,x_2):x_1\in C_1,~x_2\in C_2\}$
+2. **Conexión simple:** $d_{min}(C_1,C_2)=min\{d(x_1,x_2):x_1\in C_1,~x_2\in C_2\}$
+3. **Conexión media:** $d_{mean}(C_1,C_2)=mean\{d(x_1,x_2):x_1\in C_1,~x_2\in C_2\}$
+4. **Conexión centroide:** $d_{cent}(C_1,C_2)=d(c_1,c_2),~donde~c_i=centroide(C_i)$
+## <mark style="background: #ADCCFFA6;">4. Métricas para clustering</mark>
+### <mark style="background: #FFB86CA6;">Medidas de calidad</mark>
+- **Validación interna:** no requieren información adicional, solo miden haciendo uso de mediciones que se pueden obtener de los mismos puntos originales del conjunto. Por ejemplo el potencial o el índice de Davies Bouldin son ejemplos de validaciones internas.
+  $$
+\begin{equation}
+I_{DB}=\frac{mean\{d(x,x'):x,x'\in c\}_{c\in C}}{mean\{d(x,x'):x\in c,x'\in c\}_{c\notin C}}
+\end{equation}
+  $$
+- **Validación externa:** se debe construir una matriz de confusión 2x2 que indique los falsos positivos y negativos y los 'true' positivos y negativos. Teniendo en cuenta esto, hay varias medidas que se pueden usar:
+	- Precisión: $Pr=\frac{T_P}{T_P+F_P}$
+	- Recall: $R=\frac{T_P}{T_P+F_N}$
+	- F-métrica: $F=\frac{Pr*R}{Pr+R}$
+	- Pureza: $U=\sum_i{p_i(\max_j{\frac{p_{ij}}{p_i}})}$  
+	
