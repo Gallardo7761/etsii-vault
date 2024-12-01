@@ -819,7 +819,7 @@ Las instrucciones en un bloque `BEGIN-END` están separadas por un delimitador d
 ## 12.1. Concepto de transacción
 Una transacción es una secuencia de operaciones DML que se comporta como una unidad lógica de trabajo. Los puntos de sincronismo (synchronization points) definen el estado de la transacción: `START TRANSACTION`, `COMMIT`, `ROLLBACK`.
 Las transacciones deben cumplir las características ACID (Atomicity Consistency Isolation Durability).
-- **Atomicity:** si se confirman (`COMMIT`), se ejecutan todas, si no                (`ROLLBACK`), no se ejecuta ninguna.
+- **Atomicity:** si se confirman (`COMMIT`), se ejecutan todas, si no (`ROLLBACK`), no se ejecuta ninguna.
 - **Consistency:** A partir de un estado consistente $S_0$ se deja la BDD en otro estado consistente $S_1$.
 - **Isolation:** se realiza como si fuera la única transacción.
 - **Durability:** Si se confirma, los cambios se hacen persistentes y si se cancela, el estado debe ser el inicial.
