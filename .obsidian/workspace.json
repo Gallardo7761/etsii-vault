@@ -18,8 +18,21 @@
               "icon": "lucide-image",
               "title": "Pasted image 20241125141142"
             }
+          },
+          {
+            "id": "a51c44701f5e6ac3",
+            "type": "leaf",
+            "state": {
+              "type": "image",
+              "state": {
+                "file": "TERCERO/IA/images/Pasted image 20241127091611.png"
+              },
+              "icon": "lucide-image",
+              "title": "Pasted image 20241127091611"
+            }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -174,25 +187,26 @@
   },
   "active": "a4eac8e6613b153b",
   "lastOpenFiles": [
-    "TERCERO/SS/SS Lab.md",
-    "TERCERO/SS/images/Pasted image 20241125145544.png",
-    "TERCERO/SS/images/Pasted image 20241125145439.png",
-    "TERCERO/SS/images/Pasted image 20241125145411.png",
-    "TERCERO/SS/images/Pasted image 20241125145409.png",
-    "TERCERO/SS/images/Pasted image 20241125144536.png",
-    "TERCERO/SS/images/Pasted image 20241125144533.png",
-    "TERCERO/SS/images/Pasted image 20241125143529.png",
-    "TERCERO/SS/images/Pasted image 20241125141145.png",
+    "TERCERO/IA/images/Sin título.png",
+    "TERCERO/IA/images/Pasted image 20241127091943.png",
+    "TERCERO/IA/images/Pasted image 20241127091902.png",
+    "TERCERO/IA/images/Pasted image 20241127091731.png",
+    "TERCERO/IA/images/Pasted image 20241127091611.png",
+    "conflict-files-obsidian-git.md",
     "TERCERO/SS/images/Pasted image 20241125141142.png",
+    "TERCERO/ATR1/images/Pasted image 20241125145544.png",
+    "TERCERO/ATR1/images/Pasted image 20241125145439.png",
+    "TERCERO/ATR1/images/Pasted image 20241125145413.png",
+    "TERCERO/ATR1/images/Pasted image 20241125145411.png",
+    "TERCERO/ATR1/images/Pasted image 20241125145409.png",
+    "TERCERO/SS/SS Lab.md",
     "SEGUNDO/IISSI1/Teoría_2324.md",
     "TERCERO/ATR1/Teoría_2425.md",
-    "TERCERO/SS/images/Pasted image 20241125145413.png",
     "TERCERO/SS/SS 24-25.md",
     "TERCERO/SPD/Teoría_2425.md",
     "Untitled.md",
     "TERCERO/ATR1/Resolución 1 Parcial ATR1.md",
     "TERCERO/ATR1/Ejercicios.md",
-    "conflict-files-obsidian-git.md",
     "TERCERO/IA/Teoría_2425.md",
     "TERCERO/SPD/P4_SPD.md",
     "SEGUNDO/ADDA/Teoría_2324.md",
