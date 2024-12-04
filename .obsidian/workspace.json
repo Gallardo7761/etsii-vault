@@ -4,11 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "2d0b9251619569b8",
+        "id": "de44eb2e1f7c877f",
         "type": "tabs",
         "children": [
           {
-            "id": "f159ed47981f3b40",
+            "id": "e1d369c3109e86c5",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -175,8 +175,12 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "f159ed47981f3b40",
+  "active": "b40a18c39aef8e17",
   "lastOpenFiles": [
+    "TERCERO/ATR1/Teoría_2425.md",
+    "Pasted image 20241127111215.png",
+    "Pasted image 20241127110759.png",
+    "TERCERO/IA/Teoría_2425.md",
     "Sin título.png",
     "Pasted image 20241127091943.png",
     "Pasted image 20241127091902.png",
@@ -185,17 +189,12 @@
     "TERCERO/ATR1/images/Captura de pantalla de 2024-11-20 10-54-39.png",
     "TERCERO/ATR1/images/Pasted image 20241125141142.png",
     "TERCERO/ATR1/images/Pasted image 20241125145544.png",
-    "TERCERO/ATR1/images/Pasted image 20241125145411.png",
-    "TERCERO/ATR1/images/Pasted image 20241125144536.png",
-    "TERCERO/ATR1/images/Pasted image 20241125143529.png",
-    "TERCERO/ATR1/Teoría_2425.md",
     "TERCERO/SS/SS 24-25.md",
     "TERCERO/SPD/Teoría_2425.md",
     "Untitled.md",
     "TERCERO/ATR1/Resolución 1 Parcial ATR1.md",
     "TERCERO/ATR1/Ejercicios.md",
     "conflict-files-obsidian-git.md",
-    "TERCERO/IA/Teoría_2425.md",
     "TERCERO/SPD/P4_SPD.md",
     "TERCERO/SS/SS Lab.md",
     "SEGUNDO/ADDA/Teoría_2324.md",
