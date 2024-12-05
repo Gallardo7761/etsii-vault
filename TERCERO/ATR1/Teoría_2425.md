@@ -489,3 +489,57 @@ Se guardan en cada mensaje y permiten señalar si se ha marcado para borrar, si 
 ![[Pasted image 20241127111215.png]]
 **UID fetch:** permite obtener determinados datos sobre determinados mensajes.
 **IDLE:** permite al cliente permanecer a la espera de actualizaciones del buzón.
+# <mark style="background: #FFF3A3A6;">TEMA 5: Servicio de transferencia de ficheros</mark>
+## <mark style="background: #ADCCFFA6;">1. TFTP</mark>
+Es un protocolo muy simple y **NO** fiable (usa UDP, puerto 69). Sin carpetas ni encriptación.
+### <mark style="background: #FFB86CA6;">Mensajes TFTP</mark>
+Códigos de operación:
+- 01: RRQ (Read Request): petición de lectura
+- 02: WRQ (Write Request): petición de escritura
+- 03: DATA
+- 04: ACK
+- 05: Mensaje de error
+Son de longitud variable según el opcode.
+![[Pasted image 20241204105459.png]]
+#### <mark style="background: #D2B3FFA6;">RRQ - WRQ</mark> 
+  ![[Pasted image 20241204105723.png]]
+- Primer mensaje que se envía al puerto del cliente para descargar un archivo.
+- Después de RRQ aparece un DATA o error.
+- Modo de transmisión: "netascii" u "octet".
+- N opciones con N valores
+- El formato de WRQ es el mismo que RRQ pero con opcode = 02
+- Después de WRQ aparece un ACK o error
+#### <mark style="background: #D2B3FFA6;">DATA - ACK</mark>
+![[Pasted image 20241204110546.png]]
+- Número de bloque: 1-65535 (garantiza el orden de los datos)
+- El formato de ACK es el mismo que el de DATA pero con opcode = 04 y sin bloques de datos.
+- El último bloque (del fichero) se reconoce porque mide menos de 512B.
+- **Problema:** con archivos largos, la pérdida de un mensaje significa la necesidad de retransmitir TODO el fichero, si antes se solicita.
+#### <mark style="background: #D2B3FFA6;">Error</mark>
+![[Pasted image 20241204111556.png]]
+- Código de error: causa del error
+	- 0 - No definido (ver cadena explicativa)
+	- 1 - File not found
+	- 2 - Access violation (no hay permiso r/w para acceder al fichero)
+	- 3 - Disk full
+	- 6 - File already exists
+## <mark style="background: #ADCCFFA6;">2. FTP</mark>
+![[Pasted image 20241204111952.png]]
+- Transferencia de ficheros entre hosts remotos.
+- Paradigma Cliente-Servidor, Comando-Respuesta.
+- Transferencia fiable (TCP; puertos 20 y 21).
+	- Usa dos conexiones:
+		- **Datos:** transferir los datos
+		- **Control:** permite al usuario moverse por el sistema de ficheros, descargar y subir archivos.
+- Los parámetros de conexión se negocian en el establecimiento:
+	- Puerto de datos
+	- Modo de conexión: activo/pasivo
+		- **Activo:** el servidor crea la conexión de datos.
+		- **Pasivo:** el servidor espera a que el cliente cree la conexión de datos.
+	- Modo de transferencia: ASCII/bin
+## <mark style="background: #ADCCFFA6;">3. Comandos</mark>
+- **USER:** username
+- **PASS:** password
+- **LIST** lista de archivos de un directorio
+- **RETR _filename_:** transfiere el archivo indicado
+- **STOR _filename_:** almacena en el servidor el archivo indicado
