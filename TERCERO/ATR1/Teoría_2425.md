@@ -460,6 +460,32 @@ Las cabeceras se transmiten en 7 bits. Podría ser necesario que en el asunto, F
   UIDL: muestra ID persistente
   TOP: devuelve sólo cabeceras
   - **Actualización:** 
-    ![[Pasted image 20241125145544.png]]
+	![[Pasted image 20241125145544.png]]
 	Se inicia al ejecutar el comando QUIT. Se  borran los mensajes marcados, y aunque puede dar error, se cierra la conexión sí o sí.
 ## <mark style="background: #ADCCFFA6;">6. IMAP</mark>
+- Permite crear varios buzones o carpetas (mailbox). Existe uno principal: INBOX.
+- Está diseñado para que los mensajes permanezcan en el servidor, permitiendo el acceso desde varios clientes. También guarda el estado de los mensajes.
+- Usa el puerto 143
+- Paradigma C-S
+- Filosofía comando-respuesta
+### <mark style="background: #FFB86CA6;">Funcionamiento</mark>
+- El cliente envía comandos precedidas de una etiqueta
+- El servidor responde con esta etiqueta junto con el estado (OK/NO/BAD)
+- Si existe información adicional, se responde como no etiquetada (etiqueta=\*)
+- A veces el cliente puede quedar a la espera de una respuesta asíncrona del servidor (IDLE)
+- Existen distintos estados de sesión:
+	- No autenticado
+	- Autenticado
+	- Seleccionado
+	- Cierre de sesión
+### <mark style="background: #FFB86CA6;">Flags</mark>
+Se guardan en cada mensaje y permiten señalar si se ha marcado para borrar, si es nuevo, si se ha leído, etc. Forman parte de la especificación del protocolo:
+- \Seen
+- \Answered
+- etc
+#### <mark style="background: #ABF7F7A6;">Ejemplo IMAP 1</mark>
+![[Pasted image 20241127110759.png]]
+#### <mark style="background: #ABF7F7A6;">Ejemplo IMAP 2</mark>
+![[Pasted image 20241127111215.png]]
+**UID fetch:** permite obtener determinados datos sobre determinados mensajes.
+**IDLE:** permite al cliente permanecer a la espera de actualizaciones del buzón.

@@ -521,4 +521,39 @@ I_{DB}=\frac{mean\{d(x,x'):x,x'\in c\}_{c\in C}}{mean\{d(x,x'):x\in c,x'\in c\}_
 	- Recall: $R=\frac{T_P}{T_P+F_N}$
 	- F-métrica: $F=\frac{Pr*R}{Pr+R}$
 	- Pureza: $U=\sum_i{p_i(\max_j{\frac{p_{ij}}{p_i}})}$  
-	
+# <mark style="background: #FFF3A3A6;">TEMA 10: Árboles de decisión</mark>
+Un árbol de decisión está formado por un conjunto de nodos de decisión (interiores) y de nodos-respuesta (hojas):
+- Un nodo de decisión se asocia a uno de los atributos y tiene 2 o más ramas hacia sus posibles valores.
+- Un nodo-respuesta está asociado a la clasificación que se quiere proporcionar, y devuelve la decisión respecto a la entrada.
+## <mark style="background: #ADCCFFA6;">1. ID3</mark>
+### <mark style="background: #FFB86CA6;">Entropía</mark>
+$$
+\begin{equation}
+E(S)=-P\log_2(P)-N\log_2(N)
+\end{equation}
+$$
+donde $P$, $N$ y $S$ son la proporción de ejemplos positivos y negativos y el conjunto de muestras respectivamente
+
+### <mark style="background: #FFB86CA6;">Aplicación de la entropía a ID3</mark>
+Se puede calcular la entropía asociada a cada atributo $X$ de la siguiente forma:
+$$
+\begin{equation}
+E(T,X)=\sum\limits_{c\in X}{p(c)E(T,D_c)}
+\end{equation}
+$$
+Y la ganancia (atributo que mejor responde) de información que aportaría dividir respecto a los valores de ese atributo viene dada por:
+$$
+\begin{equation}
+Gain(T,X)=E(T,D)-E(T,X)
+\end{equation}
+$$
+## <mark style="background: #ADCCFFA6;">2. Extensiones de ID3</mark>
+El algoritmo ID3 tiene algunos problemas:
+- Está bien definido para atributos con un rango finito de valores, pero lo está para atributos que tienen, por ejemplo, un rango continuo (infinito).
+- No siempre da el mejor árbol posible, ya que el algoritmo es voraz y optimiza cada caso por separado (mejor resultado local).
+- No se comporta bien con ejemplos para los que no se conoce algún valor de algún atributo.
+### <mark style="background: #FFB86CA6;">Tratamiento de información faltante</mark>
+La solución más directa es hacer uso de los ejemplos en los que el atributo que se está estudiando **SI** tiene un valor conocido.
+### <mark style="background: #FFB86CA6;">Tratamiento de atributos con datos continuos</mark>
+- Si el atributo depende de varias dimensiones, o no es un conjunto ordenado, se puede aplicar clusterización para poder saber en que clusters se puede dividir de forma eficiente y entonces usar como pregunta la pertenencia a un clúster u otro.
+- El otro caso, es más sencillo: se consideran $N$ preguntas siendo $N$ el número de ejemplos (y estos toman los valores $\{v_1,\dots v_n\}$).
