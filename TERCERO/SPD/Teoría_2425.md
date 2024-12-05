@@ -145,7 +145,7 @@ graph TD;
 7[Linkado y .exe nativo] --> 10[CPU]
 9[Ensamblador nativo] --> 10[CPU]
 ```
-# <mark style="background: #FFF3A3A6;">TEMA 3: Paralelismo a nivel de instrucciones (ILP)</mark>
+# <mark style="background: #FFF3A3A6;">TEMA 3: Instruction Level Parallelism (ILP)</mark>
 ## <mark style="background: #ADCCFFA6;">1. Técnicas de planificación dinámicas</mark>
 ### $t_{CPU}=N_{instr}\times CPI\times T_{CLK}$
 
@@ -212,8 +212,185 @@ Estas escriben en registros y memoria antes de abortarse y es un problema. Tambi
 - **Fase IS:** más compleja (bottleneck). Emite las $m$ instrucciones mientras haya RS libres. 
 - **Fase EX:** total UF > $m$ y doble puerto.
 - **Fase WB:** nº de CDBs y puertos del fichero de registros proporcional a $m$.
-# <mark style="background: #FFF3A3A6;">TEMA 4: Paralelismo a nivel de datos (DLP)</mark>
-### <mark style="background: #FFB86CA6;">Introducción</mark>
-- DLP sólo es útil para paralelismo de datos (vectores/matrices o código científico/multimedia). 
-- Es más correcto: **Arquitecturas SIMD (Single Instruction Multiple Data)** o de paralelismo de datos, o núcleos vectoriales.
-- Variante: **GP-GPU (General Purpose-Graphics Processor Unit)**.
+# <mark style="background: #FFF3A3A6;">TEMA 4: Data Level Parallelism (DLP)</mark>
+## <mark style="background: #ADCCFFA6;">1. Set de instrucciones SIMD</mark>
+Registro SIMD (MMX Intel, AVX AMD).
+![[Imagen de WhatsApp 2024-12-01 a las 17.20.40_e72cdcba.jpg|300]]
+![[Imagen de WhatsApp 2024-12-01 a las 17.20.58_65b04e33.jpg|300]]
+### <mark style="background: #FFB86CA6;">Instrucciones aritméticas</mark>
+Se añade un suffix que indica vectorización. Hay 4 tipos de suffix dependiendo de:
+![[Imagen de WhatsApp 2024-12-01 a las 17.43.54_e82058e0.jpg|400]]
+#### <mark style="background: #ABF7F7A6;">Ejemplo</mark>
+![[Imagen de WhatsApp 2024-12-01 a las 17.21.22_99f7757f.jpg|250]]
+```asm
+addps MM2, MM1, MM3
+addpd MM7, ...
+```
+### <mark style="background: #FFB86CA6;">Operaciones lógicas</mark>
+```asm
+andps  MM2, MM1, MMmask ---> MMmask = 0x7FFFFFFF, signo: 0 (+)
+orpd
+xorps  MMX, MMX, MMmask ---> MMmask = 0x80000000, cambia signo
+xnorps ...
+notpd  ...
+```
+### <mark style="background: #FFB86CA6;">Instrucciones de comparación (generan máscaras)</mark>
+`cmptgtss MMmask, MM2, MM4`
+![[Imagen de WhatsApp 2024-12-01 a las 17.21.42_81ca5180.jpg|250]]
+### <mark style="background: #FFB86CA6;">Instrucciones de acceso a memoria</mark>
+Movimientos de 128 bits (`ldps`, `stpd`). Conviene tener alineamiento: 128 bits (16B) $\rightarrow$ `Rx $ 16 = 0`.
+### <mark style="background: #FFB86CA6;">Instrucciones de "shuffle" de elementos</mark>
+```
+shufps MMfd, MMf, MMmask
+shufpd ...
+```
+La única instrucción de este tipo que es "útil" es: `shufps MM1, MM1, a` que es para replicar `a` en todos.
+#### <mark style="background: #ABF7F7A6;">Ejemplo: DAXPY</mark>
+![[Imagen de WhatsApp 2024-12-01 a las 17.22.01_a68c21f3.jpg|500]]
+#### <mark style="background: #ABF7F7A6;">Ejemplo: Sumatorio</mark>
+![[Imagen de WhatsApp 2024-12-01 a las 17.22.17_9d40634d.jpg|500]]
+<span style="color:red;">Truco: poner a '0' un registro: <code>xorpd MMS, MMS, MMS</code></span>
+## <mark style="background: #ADCCFFA6;">2 .Procesado condicional</mark>
+La vectorización es incompatible con las sentencias `if/else` hay que hacerlas desaparecer. Se usa la ejecución predicativa de forma: `[COND] INSTRUCCIÓN`
+1. Generar V's
+2. Generar F's
+3. Compactar con máscaras
+
+![[Pasted image 20241201180415.png|400]]
+![[Pasted image 20241201180451.png]]
+## <mark style="background: #ADCCFFA6;">3. Modelo del tejado (Roofline Model)</mark>
+$$ \begin{equation}
+GLFOPS=\frac{Nº~FLOPS}{10^9·t_{CPU}}=D_A·AB_{RAM}=\frac{Nº~FLOPS}{1~Byte}·\frac{1~GB}{1~s}
+\end {equation} $$
+$$ \begin{equation}
+\log{(GFLOPS)}=\log{(AB_{RAM})}+1·\log{(D_A)}\text{ queda de la forma: y=ax+b}
+\end {equation} $$
+![[Imagen de WhatsApp 2024-12-01 a las 17.23.41_327415e6.jpg|]]
+A tener en cuenta:
+- 2 UF
+- Núcleo vectorial AVX (256 bits = 8 x 32 float)
+- $\frac{2x8~FLOPS}{1~ciclo}·\frac{F~Gciclos}{1~s}·\text{12 cores en ||}=3GHz=16·3·12~GFLOPS~(techo)$
+
+Siendo la densidad aritmética ideal:
+$D_{A,ideal}=\frac{\text{GFLOPS techo}}{AB_{RAM}}=\frac{16·3·12}{48}=12$
+# <mark style="background: #FFF3A3A6;">TEMA 5: Thread Level Parallelism (TLP)</mark>
+### <mark style="background: #FFB86CA6;">Puntos débiles de un sistema multicore</mark>
+- Difícil analizar si una app es paralelizable.
+- Difícil de hacer DEBUG
+- Pensar en vectorial es difícil
+- Si el dato es remoto ("sale del computador") $\Rightarrow$ alta latencia (ms).
+## <mark style="background: #ADCCFFA6;">1. Taxonomía de Flynn. Taxonomía según la MP.</mark>
+Single/Multiple Instruction/Data flows:
+- SISD
+- SIMD
+- MISD
+- MIMD
+Si atendemos a cómo se organiza la memoria principal (MP):
+![[Imagen de WhatsApp 2024-12-02 a las 19.14.00_a8876db6.jpg|400]]
+- **UMA (Uniform Memory Access):** 
+	- Tiempo de acceso uniforme para toda dirección.
+	- También se llaman Multiprocesadores Simétricos  (SMP).
+	- Casi todos los multicore actuales son así.
+	- Hay cuello de botella en el acceso a memoria.
+- **NUMA (Non Uniform Memory Access):** 
+	- Tiempo de acceso no uniforme.
+	- Compatible con UMA.
+- **MPM (Message Passing Machine):**
+	- Espacio de direcciones distribuido.
+	- Cada CPU es un computador independiente.
+	- Escalabilidad fácil excepto en el ancho de banda de lectura (en memoria).
+	- Comunicación por mensajes (como el S.O.)
+<div class="nota"><h4>Escalabilidad</h4><p>Un concepto es escalable si al crecer <strong>p</strong> (nº CPUs), crece al menos tanto como <strong>p</strong>.</p></div>
+## <mark style="background: #ADCCFFA6;">2. Herramientas de programación: OpenMP</mark>
+- Espacio de direcciones compartido
+- Paralelismo "incremental" porque se van añadiendo directivas `#pragma omp ...`
+- Modelo de programación  SPMD (Single Program Multiple Data).
+  ![[Imagen de WhatsApp 2024-12-02 a las 19.20.38_10d0403a 1.jpg]]
+  Cada hilo lleva un `tid`, que lo identifica:
+  ![[Imagen de WhatsApp 2024-12-02 a las 19.21.18_1bf4e996.jpg|500]]  
+### <mark style="background: #FFB86CA6;">Puntos clave para el diseño de una app</mark>
+1. Buscar regiones paralelas (mucho DLP)
+2. Insertar directivas (`#pragma omp ...`) para especificar el reparto de tareas entre hilos
+3. Comunicación y sincronización entre hilos
+4. "Revolución": modificar DSA si no hay buen paralelismo
+### <mark style="background: #FFB86CA6;">Directivas de la librería OpenMP</mark>
+`omp_set_num_threads(nth);` -> establece el número de hilos a usar
+`omp_get_num_threads();` -> obtiene el número de hilos actual
+`omp_get_thread_num();` -> obtiene el `tid` del hilo en uso
+![[Imagen de WhatsApp 2024-12-02 a las 19.25.01_a3ba0084.jpg|400]]
+![[Imagen de WhatsApp 2024-12-02 a las 19.25.30_3a3bec91.jpg]]
+<div class="warn"><h4>Detalle</h4><p>Toda variable compartida puede dar lugar a problemas de coherencia en Memoria Caché.</p><img src="C:\Users\jomaa\ETSII_Vault\TERCERO\SPD\images\Imagen de WhatsApp 2024-12-02 a las 19.28.17_4c5ba582.jpg"/></div>
+### <mark style="background: #FFB86CA6;">Planificación de Tareas: SCHEDULE</mark>
+Hay diferentes formas de asignar iteraciones a hilos:
+- `schedule(static[,chunk])`: "chunk" iteraciones se asignan de manera estática a los hilos en _round-robin_.
+- `schedule(dynamic[,chunk])`: cada hilo toma "chunk" iteraciones cada vez que está sin trabajo.
+- `schedule(guided[,chunk])`: cada hilo toma progresivamente menos iteraciones (dinámicamente) hasta "chunk".
+
+![[Pasted image 20241202205510.png|400]]
+Hay algunas diferencias notables entre **static** y **dynamic**:
+- **Static:** menos coste / mejor localidad de datos
+- **Dynamic:** más coste / carga más equilibrada
+### <mark style="background: #FFB86CA6;">Reparto de tareas</mark>
+1. Directiva **`for`**: se pone dentro de una sección **`omp parallel`**. Reparte la ejecución de un bucle entre todos los hilos.
+2. Directiva **`sections`**: para definir "manualmente" trozos o secciones de una región paralela a repartir entre hilos en función de su `tid`.
+3. Directiva **`single`**: para definir un trozo de código que sólo lo debe ejecutar un hilo.
+### <mark style="background: #FFB86CA6;">Sincronización</mark>
+Los hilos se detienen hasta que alcancen la barrera (`#pragma omp barrier`).
+<div class="nota"><h4>NOTA</h4><p><code>#pragma parallel for</code> introduce una barrera de forma implícita</p></div>
+### <mark style="background: #FFB86CA6;">Secciones críticas y actualizaciones atómicas</mark>
+Si los hilos se comunican con variables compartidas, y estas se usan mal, se originan condiciones de carrera (data-race). Se intenta sincronizar para evitarlas, pero poco, ya que la sincronización es costosa. Para definir la sección crítica se usa la directiva `#pragma omp critical`.
+## <mark style="background: #ADCCFFA6;">3. Herramientas de programación: MPI</mark>
+Message Passing Interface o MPI, es una especificación para paso de mensajes. Algunas ventajas al usar MPI son:
+- Es estándar en HPC
+- Es portable
+- Funcionalidad (alrededor de 115 rutinas)
+Las principales implementaciones son OpenMPI, MPI-CH, LAMMPI.
+### <mark style="background: #FFB86CA6;">Modelo SPMD de programación</mark>
+Un único fichero de código, una copia del ejecutable en cada nodo (incluye bifurcaciones según el `PID`). También puede haber un **mpd daemon** que se ejecuta en cada nodo del cluster y espera envío de procesos a estos para levantarlos.
+### <mark style="background: #FFB86CA6;">Inicialización y terminación</mark>
+- Se incluye en el header `mpi.h`.
+- `int MPI_Init(int* argc, char*** argv)`
+	- debe ser la primera llamada (y sólo una vez)
+	- inicializa el entorno de ejecución
+	- arc y argv son del main
+- `int MPI_Finalize(void)`
+	- termina el entorno de ejecución de MPI
+	- debe ser la última rutina de MPI
+- `int MPI_Comm_size(MPI_COMM_WORLD, int* totTasks)`
+	- devuelve el número de procesos en el grupo (_comunicador_ MPI) en `totTasks`
+- `int MPI_Comm_rank(MPI_COMM_WORLD, int* task_id)`
+	- devuelve el rango (id) del proceso actual (de 0 a `totTasks`-1) en `task_id`.
+Aproximadamente todos los mensajes de MPI tienen:
+- **buff**: el puntero a enviar
+- **count**: el numero de unidades
+- **MPI_TYPE**: el tipo de variables
+- **source/dest**: ID de proceso donde llega o de donde viene
+- **tag**: etiqueta del mensaje
+- **comm**: ID del grupo de procesos (_comunicador_)
+- **status**: chequea si el mensaje fue correcto
+### <mark style="background: #FFB86CA6;">Mensajes simples: de uno a uno</mark>
+- `int MPI_Send(void* buf, int count, MPI_Datatype datatype, int dest, int tag, MPI_Comm comm)`
+	- envío básico **BLOQUEANTE**.
+	- la rutina retorna cuando el buffer de la app está libre
+	- existe `MPI_Isend` **NO BLOQUEANTE**
+- `int MPI_Recv(void* rbuf, int count, MPI_Datatype datatype, int source, int tag, MPI_Comm comm, MPI_Status* status)`
+	- recibe un mensaje (**BLOQUEANTE**)
+	- existe `MPI_Irecv` **NO BLOQUEANTE**
+<div class="warn"><h4>/!\ ATENCIÓN /!\</h4><p>Puede ocurrir un <strong>INTERBLOQUEO</strong> (deadlock) si se intenta hacer <code>MPI_Recv(...)</code> sin mandar un mensaje con <code>MPI_Send(...)</code></p></div>
+### <mark style="background: #FFB86CA6;">Comunicación colectiva</mark>
+Similar a OpenMP pero con más operaciones. Movimiento colectivo de datos. Hay varios tipos: 
+- **Broadcast:** desde un proceso al resto de procesos.
+  `int MPI_Bcast(void* buff, int count, MPI_Datatype datatype, int root, MPI_Comm comm)`
+  ![[Pasted image 20241202213404.png|400]]
+- **Scatter:** distribuye distintos mensajes de un proceso al resto. Un proceso **root** debe tener un buffer con `sendcnt*p` elementos. Lo habitual es: `sendcnt = recvcnt`.
+  `int MPI_Scatter(void* sendbuf, int sendcnt, MPI_Datatype sendtype, void* recvbuf, int recvcnt, MPI_Datatype recvtype, int root, MPI_Comm comm)`
+  ![[Pasted image 20241202213603.png|400]]
+  - **Gather:** recoge distintos mensajes de cada proceso en un único proceso destino. Es la contraria de `MPI_Scatter`.    ![[Pasted image 20241202214114.png|600]]
+- **Allgather:** concatena los datos de todos los procesos. Cada proceso realiza un broadcast uno-a-todos.
+  ![[Pasted image 20241202214247.png|400]]
+#### <mark style="background: #D2B3FFA6;">Esquema Scatter-Gather</mark>
+Se suele usar el esquema **Scatter-Gather**
+![[Pasted image 20241202214411.png]]
+### <mark style="background: #FFB86CA6;">Reducciones: MPI_Reduce</mark>
+`int MPI_Reduce(const void* sendbuf, void* recvbuf, int count, MPI_Datatype datatype, MPI_Op op, int root, MPI_Comm comm)`
+## <mark style="background: #ADCCFFA6;">4. Caracterización de aplicaciones</mark>

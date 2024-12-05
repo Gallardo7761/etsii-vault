@@ -2,7 +2,8 @@
   "theme": "moonstone",
   "accentColor": "#5f78f1",
   "enabledCssSnippets": [
-    "nota"
+    "nota",
+    "warning"
   ],
   "cssTheme": ""
 }

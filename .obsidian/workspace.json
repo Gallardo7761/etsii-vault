@@ -4,35 +4,53 @@
     "type": "split",
     "children": [
       {
-        "id": "423b3e21186921fd",
+        "id": "c0e94983c70f8454",
         "type": "tabs",
         "children": [
           {
-            "id": "4a1e2fed94753391",
+            "id": "44290f906d2f39dd",
             "type": "leaf",
             "state": {
-              "type": "image",
+              "type": "markdown",
               "state": {
-                "file": "TERCERO/SS/images/Pasted image 20241125141142.png"
+                "file": "TERCERO/SPD/Teoría_2425.md",
+                "mode": "source",
+                "source": false
               },
-              "icon": "lucide-image",
-              "title": "Pasted image 20241125141142"
+              "icon": "lucide-file",
+              "title": "Teoría_2425"
             }
           },
           {
-            "id": "a51c44701f5e6ac3",
+            "id": "b9dc483ed444f858",
             "type": "leaf",
             "state": {
-              "type": "image",
+              "type": "markdown",
               "state": {
-                "file": "TERCERO/IA/images/Pasted image 20241127091611.png"
+                "file": "TERCERO/SPD/Teoría_2425.md",
+                "mode": "source",
+                "source": false
               },
-              "icon": "lucide-image",
-              "title": "Pasted image 20241127091611"
+              "icon": "lucide-file",
+              "title": "Teoría_2425"
+            }
+          },
+          {
+            "id": "9c276221889aa33a",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "TERCERO/IA/Teoría_2425.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Teoría_2425"
             }
           }
         ],
-        "currentTab": 1
+        "currentTab": 2
       }
     ],
     "direction": "vertical"
@@ -88,7 +106,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 281.5110321044922
   },
   "right": {
     "id": "44cf06183e1c1c7d",
@@ -185,29 +203,28 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "a4eac8e6613b153b",
+  "active": "9c276221889aa33a",
   "lastOpenFiles": [
-    "TERCERO/IA/images/Sin título.png",
-    "TERCERO/IA/images/Pasted image 20241127091943.png",
-    "TERCERO/IA/images/Pasted image 20241127091902.png",
-    "TERCERO/IA/images/Pasted image 20241127091731.png",
-    "TERCERO/IA/images/Pasted image 20241127091611.png",
+    "Pasted image 20241202205510.png",
+    "TERCERO/SPD/Teoría_2425.md",
+    "Pasted image 20241202214411.png",
+    "Pasted image 20241202214354.png",
+    "Pasted image 20241202214247.png",
+    "Pasted image 20241202214242.png",
+    "Pasted image 20241202214114.png",
+    "Pasted image 20241202214112.png",
+    "Pasted image 20241202213603.png",
+    "Pasted image 20241202213354.png",
+    "Pasted image 20241202213404.png",
+    "TERCERO/IA/Teoría_2425.md",
     "conflict-files-obsidian-git.md",
-    "TERCERO/SS/images/Pasted image 20241125141142.png",
-    "TERCERO/ATR1/images/Pasted image 20241125145544.png",
-    "TERCERO/ATR1/images/Pasted image 20241125145439.png",
-    "TERCERO/ATR1/images/Pasted image 20241125145413.png",
-    "TERCERO/ATR1/images/Pasted image 20241125145411.png",
-    "TERCERO/ATR1/images/Pasted image 20241125145409.png",
     "TERCERO/SS/SS Lab.md",
     "SEGUNDO/IISSI1/Teoría_2324.md",
     "TERCERO/ATR1/Teoría_2425.md",
     "TERCERO/SS/SS 24-25.md",
-    "TERCERO/SPD/Teoría_2425.md",
     "Untitled.md",
     "TERCERO/ATR1/Resolución 1 Parcial ATR1.md",
     "TERCERO/ATR1/Ejercicios.md",
-    "TERCERO/IA/Teoría_2425.md",
     "TERCERO/SPD/P4_SPD.md",
     "SEGUNDO/ADDA/Teoría_2324.md",
     "TERCERO/IA/Apuntes Julia.md",
