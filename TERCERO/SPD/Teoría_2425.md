@@ -145,7 +145,129 @@ graph TD;
 7[Linkado y .exe nativo] --> 10[CPU]
 9[Ensamblador nativo] --> 10[CPU]
 ```
-# <mark style="background: #FFF3A3A6;">TEMA 3: Instruction Level Parallelism (ILP)</mark>
+# <mark style="background: #FFF3A3A6;">TEMA 2: ILP basado en planificación estática</mark>
+## <mark style="background: #ADCCFFA6;">1. Introducción</mark>
+Se realiza la **planificación** (o **scheduling**) para reordenar las instrucciones con el objetivo de evitar los bloqueos de datos. Teniendo en cuenta el concepto de dependencia, se puede modelar un programa como un grafo de dependencias reales (RAW), pero existe un **límite de CPI (data-flow-limit)**:
+- Sólo se ven las fases de ALU y EX/ME.
+- Las otras (ID, ID, WB) se realizan en paralelo.
+![[Pasted image 20241209181348.png]]
+## <mark style="background: #ADCCFFA6;">2. Desenrollado de bucles</mark>
+Los bucles suelen ocupar más del 90% del $t_{CPU}$. 
+```c
+double s, x[M], y[M]; int i;
+for(i = 0; i < M; i++)
+{
+	y[i] = x[i] * s;
+}
+```
+Si el bucle es paralelizable (iteraciones independientes) se puede "desenrollar":
+```c
+for(i = 0; i < M % 3; i++) // módulo para las iteraciones bajas (pequeñas)
+{
+	y[i] = x[i] * s;
+}
+
+for( ; i < M; i++)
+{
+	y[i] = x[i] * s;
+	y[i + 1] = x[i + 1] * s;
+	y[i + 2] = x[i + 2] * s;
+}
+```
+En bajo nivel (el segundo bucle) quedaría algo como:
+```riscv
+bucle:  LD F2, 0(R1)
+		MULTD F4, F2, F24 ; F24 contiene el valor de s
+		SD (R3)0, F4      ; se guarda en y[i]
+		LD F2, 8(R1)
+		MULTD F4, F2, F24
+		SD (R3)8, F4      ; se guarda en y[i + 1]
+		LD F2, 16(R1)
+		MULTD F4, F2, F24 ; se guarda en y[i + 2]
+		SD (R3)16, F4
+;------------------------------------------------------
+		ADDI R1, R1, 8*3
+		ADDI R3, R3, 8*3
+		SLTI R7, R1, fin_array_x
+		BNEZ R7, bucle
+```
+Donde por encima de la línea están las **instrucciones útiles** y por debajo las de **overhead**. En el bucle usamos renombrado de registros para evitar las dependencias **WAW** y **WAR**. Usamos la notacion prima ( $'$ ) por simplicidad:
+```riscv
+bucle:  LD F2, 0(R1)
+		MULTD F4, F2, F24 ; F24 contiene el valor de s
+		SD (R3)0, F4      ; se guarda en y[i]
+		
+		LD F2', 8(R1)
+		MULTD F4', F2', F24
+		SD (R3)8, F4'      ; se guarda en y[i + 1]
+		
+		LD F2'', 16(R1)
+		MULTD F4'', F2'', F24 ; se guarda en y[i + 2]
+		SD (R3)16, F4''
+;------------------------------------------------------
+		ADDI R1, R1, 8*3
+		ADDI R3, R3, 8*3
+		SLTI R7, R1, fin_array_x
+		BNEZ R7, bucle
+```
+Por último se entrelazan las instrucciones de las distintas iteraciones
+```riscv
+bucle:  LD F2, 0(R1)
+		LD F2', 8(R1)
+		LD F2'', 16(R1)
+		
+		MULTD F4, F2, F24 ; F24 contiene el valor de s
+		MULTD F4', F2', F24
+		MULTD F4'', F2'', F24 ; se guarda en y[i + 2]
+		
+		SD (R3)0, F4      ; se guarda en y[i]
+		SD (R3)8, F4'      ; se guarda en y[i + 1]
+		SD (R3)16, F4''
+;------------------------------------------------------
+		ADDI R1, R1, 8*3
+		ADDI R3, R3, 8*3
+		SLTI R7, R1, fin_array_x
+		BNEZ R7, bucle
+```
+<div class="warn"><h4>NOTA</h4><p>Al reducir el nº de instrucciones, el CPI no es buena medida de rendimiento. Lo que sí se puede usar es el <strong>ciclos por elemento del vector procesado</strong></p></div>
+#### <mark style="background: #D2B3FFA6;">Conclusiones</mark>
+- Se **reducen las instrucciones de overhead**
+- Se **reescribe el código** para hacerlo más rápido
+- Se aumenta la **planificación estática al reducir el % de saltos**.
+- Se necesitan **más registros** (en RISC hay).
+<div class="nota"><h4>Formas de escribir un sumatorio</h4><img src="C:\Users\jomaa\ETSII_Vault\TERCERO\SPD\images\arriba.png"/><img src="C:\Users\jomaa\ETSII_Vault\TERCERO\SPD\images\abajo.png"/></div>
+## <mark style="background: #ADCCFFA6;">3. Software Pipelining</mark>
+![[Pasted image 20241209194450.png]]
+<div class="nota"><h4>NOTA</h4><p>Si se usa el desenrollado, quedarían varias instrucciones por iteración.</p></div>
+## <mark style="background: #ADCCFFA6;">4. Instrucciones predicativas</mark>
+- **Simples:** se basa en la condición definida por un registro `Rcond`
+  `CMOVZ  Rd, Rf, Rcond`
+  `CMOVNZ Rd, Rf, Rcond`
+- **Universales:** toda instrucción puede llevar un predicado delante
+  `[Cond] Instr. (operandos)`
+  El único problema es que todas se decodifican o emiten ( y las falsas se abortan ).
+## <mark style="background: #ADCCFFA6;">5. Planificación de trazas</mark>
+Se reordena saltando entre bloques de la traza de ejecución. Se usa mucho en CPUs VLIW.
+![[Imagen de WhatsApp 2024-12-09 a las 19.56.10_a7e685e5.jpg|400]]
+## <mark style="background: #ADCCFFA6;">6. Procesadores VLIW</mark>
+**VLIW:** Very Long Instruction Word
+Instrucciones de 64, 128 ó 256 bits. No tiene técnicas dinámicas, se depende **masivamente** del compilador y su planificación estática.
+![[Imagen de WhatsApp 2024-12-09 a las 19.58.16_359536b7.jpg|600]]
+$CPI = 1 + CPI_{mem}+CPI_{control}$ 
+#### <mark style="background: #D2B3FFA6;">Ejemplo: TMS320C6713</mark>
+![[Imagen de WhatsApp 2024-12-09 a las 20.00.56_ae187147.jpg]]
+Eficiencia del IAXPY:
+$$
+\begin{equation}
+\text{\% de slots rellenos}=\frac{5+3}{(8\times 3)\text{ slots}}=\frac{8}{24}=33\%
+\end{equation}
+$$
+$$
+\begin{equation}
+\text{SWP + desenr. 2 iter.}=\frac{5\times 2 +3}{(8\times 3)\text{ slots}}=\frac{13}{24}
+\end{equation}
+$$
+# <mark style="background: #FFF3A3A6;">TEMA 3: ILP basado en planificación dinámica</mark>
 ## <mark style="background: #ADCCFFA6;">1. Técnicas de planificación dinámicas</mark>
 ### $t_{CPU}=N_{instr}\times CPI\times T_{CLK}$
 
@@ -394,3 +516,11 @@ Se suele usar el esquema **Scatter-Gather**
 ### <mark style="background: #FFB86CA6;">Reducciones: MPI_Reduce</mark>
 `int MPI_Reduce(const void* sendbuf, void* recvbuf, int count, MPI_Datatype datatype, MPI_Op op, int root, MPI_Comm comm)`
 ## <mark style="background: #ADCCFFA6;">4. Caracterización de aplicaciones</mark>
+Es difícil analizar si una app es paralelizable porque hay muchos factores que intervienen:
+- Cómo se escribe el algoritmo
+- Distribución de los datos
+- Sincronización eficiente
+- Ocultación de acceso a memoria, red, etc.
+  ![[Pasted image 20241209175932.png]]
+#### <mark style="background: #D2B3FFA6;">Esquema Broadcast-Scatter-Gather</mark>
+![[Pasted image 20241209180114.png]]
