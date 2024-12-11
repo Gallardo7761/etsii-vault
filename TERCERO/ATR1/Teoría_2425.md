@@ -543,3 +543,30 @@ Son de longitud variable según el opcode.
 - **LIST** lista de archivos de un directorio
 - **RETR _filename_:** transfiere el archivo indicado
 - **STOR _filename_:** almacena en el servidor el archivo indicado
+# <mark style="background: #FFF3A3A6;">TEMA 6: Control de la congestión</mark>
+Un problema de congestión es parecido a un **problema de control de flujo**, con la diferencia que en un problema de control de flujo, quienes "se dan cuenta" del problema son los extremos. Es decir, en un problema de control de flujo hay un host enviando más datos que los que el otro host puede procesar. En un **problema de congestión**, el problema es que hay varios hosts enviando más datos **en conjunto** que los que la red puede procesar.
+### <mark style="background: #FFB86CA6;">Coste de la congestión</mark>
+- El transmisor debe retransmitir los segmentos perdidos por desbordamiento de los routers.
+- Uso innecesario de ancho de banda por las retransmisiones.
+<div class="nota"><h2>NOTA</h2><p>Un problema de congestión <strong>LEVE</strong> es cuando llegan ACKs duplicados por pérdida de segmentos, ya que al menos llegan los mensajes de punto a punto. Un problema de congestión <strong>GRAVE</strong> es cuando el <i>timeout</i> expira ya que eso significa que el mensaje no está ni si quiera llegando al otro extremo.</p></div>
+### <mark style="background: #FFB86CA6;">AIMD (Additive Increment Multiplicative Decrement)</mark>
+- **Crecimiento aditivo:** se incrementa en 1 MSS hasta que hay problema de congestión
+- **Decremento multiplicativo:** se divide a la mitad tras detectar un problema de congestión
+### <mark style="background: #FFB86CA6;">Arranque lento</mark>
+- Tras detectar un problema grave de congestión, se reduce el nº de segmentos al valor inicial.
+- Crecimiento exponencial en cada RTT (normalmente $2^x$)
+![[Pasted image 20241211115747.png|200]]
+### <mark style="background: #FFB86CA6;">Recuperación rápida</mark>
+- Tras detectar un problema leve de congestión, se reduce el nº de segmentos a un valor mayor que el inicial.
+- **Evasión de la congestión:** crecimiento lineal del nº de segmentos para evitar problemas de congestión en un futuro cercano
+![[Pasted image 20241211115841.png|200]]
+## <mark style="background: #ADCCFFA6;">1. Dos formas de control de congestión</mark>
+![[Pasted image 20241211120536.png|400]]
+**\*El umbral (_threshold_) se establece al inicio de la conexión**. Los dos extremos en la comunicación deben ponerse de acuerdo para usar la misma implementación de TCP.
+### <mark style="background: #FFB86CA6;">TCP Tahoe</mark>
+- Arranque lento
+- AIMD
+### <mark style="background: #FFB86CA6;">TCP Reno</mark>
+- Arranque lento
+- AIMD
+- Recuperación rápida
