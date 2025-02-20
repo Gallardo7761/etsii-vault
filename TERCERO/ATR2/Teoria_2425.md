@@ -7,6 +7,7 @@ Establece las herramientas necesarias para **enrutar**, es decir, definir el cam
 Todo dispositivo en una red debe poseer una dirección IP para poder transmitir datos usando TCP/IP. Hay dos versiones de IP: IPv4 (32b) e IPv6 (128b). Las direcciones se pueden configurar de dos formas:
 - **Estática:** El usuario configura la IP en el host suministrada por el administrador de la red.
 - **Dinámica:** Se asigna automáticamente una IP al host mediante DHCP.
+La dirección IPv4  **NO ES LO MISMO** que la configuración IPv4. Para decir que un equipo tiene una configuración IPv4 correcta debe tener como mínimo dirección IP y máscara de red. Adicionalmente se suele especificar la dirección IP del gateway/puerta de enlace/router frontera.
 ## <mark style="background: #ADCCFFA6;">2. Configuración dinámica de direcciones</mark>
 ### <mark style="background: #FFB86CA6;">DHCP</mark>
 Hay varias formas de asignación dinámica de direcciones IP:
@@ -45,3 +46,8 @@ Es usado por hosts y routers para comunicar información a nivel de red (informe
 | 5    | 0      | Redireccionamiento      |
 | 8    | 0      | Petición de eco (ping)  |
 | 11   | 0      | TTL excedido            |
+## <mark style="background: #ADCCFFA6;">4. Traducción de direcciones</mark>
+Hay dos alternativas:
+- **Dinámica:** El router NAT asignará de forma temporal las IPs públicas cuando haya necesidad de "saltar" a internet.
+	- El router tiene un rango de IPs asignables y además una tabla para guardar dichas asignaciones de IPs.
+- **Estática:** Se configuran las asignaciones de forma permanente por el administrador de la red.

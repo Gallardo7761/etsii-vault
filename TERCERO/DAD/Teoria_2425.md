@@ -81,3 +81,76 @@ Recursos virtualizados alojados en el centro de datos del proveedor. Para el usu
 - **Disponibilidad de los servidores**
 - **Acceso a los sistemas de forma remota**
 - **Posibilidad de ver los datos por muchas personas**
+# <mark style="background: #FFF3A3A6;">TEMA 2: Modelos y arquitecturas</mark>
+## <mark style="background: #ADCCFFA6;">1. Introducción</mark>
+- Cómo interaccionan los módulos
+- Qué roles ejercen los procesos involucrados
+- Cuál es su correspondencia con nodos físicos
+- "Topología" de la aplicación distribuida
+### <mark style="background: #FFB86CA6;">Patrones más conocidos</mark>
+Las arquitecturas más frecuentes en SSDD son:
+- Cliente/Servidor
+- P2P
+- Editor/Subscriptor
+- Arquitectura de varios niveles
+## <mark style="background: #ADCCFFA6;">2. Arquitectura Cliente/Servidor</mark>
+Un equipo llamado servidor, realiza ciertas tareas denominadas **servicios**, como pueden ser ofrecer archivos, ejecutar comandos, enrutar datos a una impresora, etc. El cliente es el equipo que **solicita los servicios**. 
+### <mark style="background: #FFB86CA6;">Desventajas</mark>
+El servidor, a medida que se necesita escalabilidad, puede transformarse en un cuello de botella y por tanto convirtiéndose el servidor en un punto crítico de fallo. 
+### <mark style="background: #FFB86CA6;">Características varias</mark>
+El servidor ofrece una colección de servicios  que el cliente debe conocer. Normalmente se realizan peticiones específicas al servidor: recurso, operación, etc.
+### <mark style="background: #FFB86CA6;">Reparto de funcionalidad</mark>
+Respecto al "grosor" (cantidad de trabajo que realiza) del cliente:
+- **Ligeros (Thin/Lean/Slim Client):** 
+	- Menor coste de operación y mantenimiento
+	- Mejor seguridad
+- **Pesados (Thick/Fat/Rich Client):**
+	- Mayor autonomía a cambio de gastar más recursos locales
+	- Mejor escalabilidad: el cliente gasta menos recursos de red y servidor
+	- Más ágil en respuesta al usuario
+### <mark style="background: #FFB86CA6;">Conexiones</mark>
+En el caso de usar esquema con conexión:
+- 1 conexión por cada petición: 1 operación C-S
+- Más sencillo pero mayor sobrecarga (9 mensajes TCP por petición)
+Como solución: varias peticiones usan una misma conexión
+- Más complejo pero menor sobrecarga
+- 1 cliente 1 conexión
+### <mark style="background: #FFB86CA6;">Estados</mark>
+- **Ventajas de servicios con estado**
+	- Mensajes de petición más cortos
+	- Mejor rendimiento (pero información en memoria)
+	- Favorece optimización del servicio con predicciones
+- **Ventajas de servicio sin estado**
+	- Más tolerante a fallos
+	- Peticiones autocontenidas
+	- Reduce el nº de mensajes
+	- Más económicos para el servidor (menos uso de memoria)
+- **Servicio sin estado (stateless) de la propuesta REST**
+	- El estado que se almacena lo hace el cliente y lo envía al servidor (ej: HTTP+cookies)
+## <mark style="background: #ADCCFFA6;">2. Arquitectura Publisher/Subscriber</mark>
+Es un sistema de eventos distribuidos:
+- Un subscriptor S (subscriber) muestra interés por eventos y se subscribe a ciertos eventos. 
+- Un editor P (publisher) genera un evento y se lo envía a subscriptores interesados en el mismo.
+- Operaciones:
+	- Subscribir \[alta/baja\] (S$\rightarrow$)
+	- Publicar (P$\rightarrow$)
+	- Notificar ($\rightarrow$S)
+### <mark style="background: #FFB86CA6;">Características</mark>
+- Paradigma asíncrono y desacoplado espacialmente
+- Editores y subscriptores no se conocen entre sí (a diferencia de C-S)
+- En algunos casos también desacoplado temporalmente
+- Normalmente es _push_ (subscriptor recibe notificaciones), y como alternativa está el _pull_ subscriptor pregunta si hay mensajes, pero no es nada escalable.
+## <mark style="background: #ADCCFFA6;">3. Arquitectura P2P</mark>
+- **Desestructurados:**
+	- Ubicación de recursos impredecible
+	- Cada nodo posee recursos
+	- Corresponden a sistemas con nodos más autónomos
+- **Estructurados:** 
+	- Ubicación de recursos predecibles y dependiente de la topología
+	- Generalmente definida por función hash distribuida para buscar la máquina que posee el recurso
+	- Corresponden a sistemas con nodos más cooperativos
+# <mark style="background: #FFF3A3A6;">TEMA 3: Procesos locales</mark>
+## <mark style="background: #ADCCFFA6;">1. Sockets</mark>
+Un **socket** es un método para comunicar programas entre sí mediante el paradigma C-S. Un socket también es una dirección en internet tipo IP:puerto.
+## <mark style="background: #ADCCFFA6;">2. Servlets</mark>
+Programa Java que se ejecuta en un servidor Web y construye o sirve páginas web. De esta forma se pueden construir páginas dinámicas, basadas en diferentes fuentes variables.
