@@ -154,3 +154,65 @@ Es un sistema de eventos distribuidos:
 Un **socket** es un método para comunicar programas entre sí mediante el paradigma C-S. Un socket también es una dirección en internet tipo IP:puerto.
 ## <mark style="background: #ADCCFFA6;">2. Servlets</mark>
 Programa Java que se ejecuta en un servidor Web y construye o sirve páginas web. De esta forma se pueden construir páginas dinámicas, basadas en diferentes fuentes variables.
+# <mark style="background: #FFF3A3A6;">TEMA 4: Diseño de servidores y escalabilidad</mark>
+## <mark style="background: #ADCCFFA6;">1. Problema de los servidores de apps tradicionales</mark>
+- Un thread controla una tarea
+- Los threads esperan a que finalice la tarea que está ejecutando mientras que los demás están en queue
+- No escalable
+- Muchos threads probablemente
+- Sistema de concurrencia muy complejo
+## <mark style="background: #ADCCFFA6;">2. Vert.X</mark>
+- Framework políglota de propósito general sobre la JVM.
+- APIs asíncronas, event-driven, non-blocking.
+- MUY escalable
+![[Pasted image 20250227131516.png|450]]
+<small>Ejemplo verticle</small>
+
+Con Vert.X se puede hacer:
+- TCP/SSL server
+- HTTP/S server
+- Websockets
+- Acceso distribuido al EB (Event Bus)
+- Intercambio de Maps/Sets
+- Logging
+## <mark style="background: #ADCCFFA6;">3. Arquitectura</mark>
+### <mark style="background: #FFB86CA6;">Estructura</mark>
+- Vert.X Core
+- Verticle
+- Event bus
+- Messages
+- Handlers
+- Modules
+### <mark style="background: #FFB86CA6;">Vert.X Core</mark>
+- Cada verticle una instancia de Vert.X
+- Cada instancia de Vert.X en una instancia propia de la JVM
+- Un event loop que sirve conexiones de manera asíncrona
+- La mayor parte del trabajo real se lleva a cabo en un pool de threads en segundo plano
+- Se emplean todos los cores disponibles como threads en segundo plano
+### <mark style="background: #FFB86CA6;">Verticle</mark>
+- Cada Verticle está aislado con diferentes class loaders
+- Un Verticle nunca es ejecutado por más de un thread concurrentemente
+- No existen deadlocks, dependencias, etc. El desarrollo se hace pensando en single thread.
+#### <mark style="background: #D2B3FFA6;">Standard Verticles</mark>
+Se ejecutan en el mismo thread que el event loop. 
+#### <mark style="background: #D2B3FFA6;">Worker Verticles</mark>
+Están diseñados para tareas bloqueantes. Se ejecutan en un thread distinto que **SÍ** se puede bloquear.
+#### <mark style="background: #D2B3FFA6;">Multithread Worker Verticles</mark>
+Se ejecutan de manera concurrente en varios threads (no se suele usar).
+### <mark style="background: #FFB86CA6;">Event Bus</mark>
+- Pilar central de la estructura Vert.X
+- Permite que se comuniquen los Verticles
+- No depende del lenguaje
+- Independiente del equipo en el que se ejecute
+- Válido para C y S
+El event bus soporta varios mecanismos de comunicación:
+- Publish/Subscribe
+- P2P
+- Request/Response
+### <mark style="background: #FFB86CA6;">Messages</mark>
+- **Addressing:** se envian a una direccion. String con el nombre del verticle + destinatario.
+- **Handlers:** reciben los mensajes. Se deben registrar con una dirección y pueden registrarse con varias.
+- **Publish/Subscribe:** los mensajes se publican a una dirección. Todos los handlers subscritos recibirán el mensaje
+- **P2P y Req/Res:** envío de mensajes a un único handler. El receptor puede responder.
+### <mark style="background: #FFB86CA6;">Modules</mark>
+Mongo DB, Redis, MySQL, SMTP, JDBC, Jersey, Promises, Guice, Spring, Vertigo, Metrics, Facebook, Yoke, Stomp, NoDyn, GCM, SocketIO, Sessions, Via, RxJava

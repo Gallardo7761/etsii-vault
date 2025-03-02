@@ -114,8 +114,57 @@ int main()
 </div>
 
 ## <mark style="background: #ADCCFFA6;">2. Intel 8051</mark>
+![[Pasted image 20250220110642.png|500]]
+![[Pasted image 20250220110558.png|400]]
+![[Pasted image 20250220110616.png]]
+### <mark style="background: #FFB86CA6;">Características</mark>
+- Punteros de datos y de pila de distinto tamaño que PC (Program Counter) o IP (Instruction Pointer) porque es Harvard.
+- Complejidad de mapa de memoria.
+- Juego de instrucciones limitado.
+- La pila está en memoria de datos interna y limitada a 256B por ser el SP de 8b.
+- Instrucciones de acceso memoria-memoria sin pasar por un acc.
+- Acumuladores accesibles por dir. directo.
+- Necesario acceder a memoria de código para datos constantes -> `movc`.
+### <mark style="background: #FFB86CA6;">Mapa de memoria</mark>
+![[Pasted image 20250220114954.png]]
+Asignación memoria variables:
+- DATA: 128B bajos en RAM interna
+- BDATA: memoria direccionable  bit
+- IDATA: 128B direccionamiento indirecto
+- PDATA: memoria por bancos
+- XDATA: memoria datos externa
+- CODE: memoria de código
+**Ejemplos:**
+```C
+code unsigned char var1;
 
+bdata char var2;
+sbit var2bit2 = var2^2;
+var2bit2 = 1;
+```
 ## <mark style="background: #ADCCFFA6;">3. Cortex M</mark>
+### <mark style="background: #FFB86CA6;">Introducción</mark>
+- Arquitectura ARM (Advanced RISC Machines)
+- Empezó en 1983 de parte de Acorn Computers Ltd.
+- Originalmente para PCs (arquitectura Von Neumann)
+- RISC -> instrucciones de 4B. Los más recientes traen un conjunto de instrucciones de 16 bits adicional, llamado **Thumb**.
+### <mark style="background: #FFB86CA6;">Buses</mark>
+#### <mark style="background: #D2B3FFA6;">Tipos de buses</mark>
+- **AHB (Advanced High performance Bus):** memoria, periféricos rápidos...
+- **APB (Advanced Peripheral Bus):** periféricos generales
+- **PPB (Private Peripheral Bus):** acceso al debugger e interrupciones
+![[Pasted image 20250227115420.png|600]]
+#### <mark style="background: #D2B3FFA6;">Buses internos</mark>
+- **Buses CORE:**
+	- **Icode bus AHB:** acceso a la memoria de código (ROM, Flash...) alineados de 32 en 32 bits (al usar instrucciones de 16  bits se toman instrucciones de 2 en 2).
+	- **Dcode bus AHB:** acceso a datos almacenados en memoria de código sin alineamiento.
+	- **System bus AHB:** acceso R/W a la zona de memoria SRAM (interna, externa, extendida), periféricos y controladores rápidos (DMA)
+	- **Internal PPB:** debugger, interrupciones, etc
+### <mark style="background: #FFB86CA6;">Mapa de memoria</mark>
+![[Pasted image 20250227120032.png|500]]
+
+### <mark style="background: #FFB86CA6;">Registros</mark>
+### <mark style="background: #FFB86CA6;">Set de instrucciones</mark>
 
 ## <mark style="background: #ADCCFFA6;">4. Manipulación de bits</mark>
 

@@ -1,4 +1,4 @@
-# <mark style="background: #FFF3A3A6;">TEMA 1: Nivel de Red</mark>
+# <mark style="background: #FFF3A3A6;">TEMA 1: Nivel de Red (DHCP-NA(P)T-ICMP)</mark>
 El protocolo IP no ofrece un servicio orientado a la conexión (es no fiable). Emplea el servicio de entrega de R_PDU empleado por el nivel de enlace (utiliza servicio de su nivel inferior), permitiendo intercambiar información entre hosts o routers y dispositivos que implementen como mucho N.E.D.
 
 Establece las herramientas necesarias para **enrutar**, es decir, definir el camino a seguir por los datos de extremo a extremo.
@@ -51,3 +51,28 @@ Hay dos alternativas:
 - **Dinámica:** El router NAT asignará de forma temporal las IPs públicas cuando haya necesidad de "saltar" a internet.
 	- El router tiene un rango de IPs asignables y además una tabla para guardar dichas asignaciones de IPs.
 - **Estática:** Se configuran las asignaciones de forma permanente por el administrador de la red.
+# <mark style="background: #FFF3A3A6;">TEMA 2: Nivel de Red (Routing)</mark>
+## <mark style="background: #ADCCFFA6;">1. Introducción</mark>
+Para que el datagrama se entregue con éxito se debe cumplir:
+- El prefijo de dirección destino debe corresponder a una sola red
+- Los routers y hosts que tienen un prefijo de red común deben ser capaz de intercambiar datos sin ayuda de un router
+- Cada red (a nivel 2) debe estar conectada al menos con otra red mediante un router
+Un nodo (router o host) tiene que tener una tabla de enrutamiento. Suele tener los campos **Red**, **Próximo Salto**, **Interfaz**.
+![[Pasted image 20250225091113.png]]
+En Windows, la **Métrica** es el "coste" que tiene esa ruta si se escoge. Se puede valorar en términos de velocidad, TTL o _delay_ temporal.
+## <mark style="background: #ADCCFFA6;">2. Reenvío / Enrutamiento</mark>
+Hay varios pasos en el reenvío:
+1. Validar cabecera
+2. Procesar opciones
+3. Analizar destino
+4. Buscar destino en la tabla de enrutamiento
+5. Decrementar TTL
+6. Fragmentar
+7. Calcular checksum
+8. Reenviar al PS
+9. Enviar ICMP
+## <mark style="background: #ADCCFFA6;">3. Información global</mark>
+## <mark style="background: #ADCCFFA6;">4. Información descentralizada</mark>
+## <mark style="background: #ADCCFFA6;">5. Enrutamiento estático</mark>
+## <mark style="background: #ADCCFFA6;">6. Enrutamiento dinámico</mark>
+## <mark style="background: #ADCCFFA6;">7. RIP</mark>
