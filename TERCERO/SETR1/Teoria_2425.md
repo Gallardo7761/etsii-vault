@@ -164,9 +164,150 @@ var2bit2 = 1;
 ![[Pasted image 20250227120032.png|500]]
 
 ### <mark style="background: #FFB86CA6;">Registros</mark>
+![[Pasted image 20250306113133.png]]
+- **R0-R12:** propósito general
+	- R0-R7: cualquier instrucción
+	- R8-R12: no siempre, por ejemplo para instrucciones Thumb (16b)
+- **R13:** Stack Pointer. Hay dos SP, el MSP (Main Stack Pointer) para el modo privilegiado y el PSP (Process Stack Pointer) para el modo no privilegiado.
+- **R14:** Link Register. Almacena la dirección de retorno de subrutina.
+- **R15:** Program Counter.
+- **PSR:** Program Status Register. Internamente 3 registros.
+  ![[Pasted image 20250306113416.png]]
+	- APSR: flags de la última ejecución
+	- IPSR: código de la interrupción en ejecución
+	- EPSR: información de la instrucción en ejecución
 ### <mark style="background: #FFB86CA6;">Set de instrucciones</mark>
-
+![[Pasted image 20250306113057.png]]
+#### <mark style="background: #D2B3FFA6;">Instrucciones Thumb y Thumb-2</mark>
+- Las instrucciones en los Cortex ocupan 32b.
+- Se necesitan 4B por instrucción.
+- Un mismo programa ocupa 4 veces más para un Cortex que para un procesador de 8b (ATMEGA, etc)
+- Actualmente soportan el juego de instrucciones Thumb-2 (combinan instrucciones de 32b y 16b), pero implica un descenso en el rendimiento al añadir latencia de descodificación de instrucciones.
 ## <mark style="background: #ADCCFFA6;">4. Manipulación de bits</mark>
+- **El método clásico:** Para cambiar un bit de un registro de (por ejemplo) 8 bits, se debe leer, aplicar máscara y escribir el valor modificado. En conclusión: RMW (Read-Modify-Write).
+- **El problema:** Si una vez leído el registro, se interrumpe la tarea por otra que modifica otro bit del registro, al escribir el dato de antes, el nuevo bit se machaca.
+### <mark style="background: #FFB86CA6;">Métodos de manipulación de bits específicos en μC</mark>
+En C tradicional se suelen usar máscaras y campos de bit en structs. En principio, si la unidad mínima direccionable es el byte, los campos de bit implican la necesidad de realizar máscaras para el acceso a los datos sin modificar el resto.
+```C
+struct mybitfields
+{
+	unsigned short a : 4;
+	unsigned short b : 5;
+	unsigned short c : 7;
+} test;
 
+int main(void)
+{
+	test.a = 2;
+	test.b = 31;
+	test.c = 0;
+}
+```
+Esto depende mucho del **compilador y del μC** ya que puede hacerse tradicionalmente (RMW) o en un sólo paso si se admite el direccionamiento a bit.
+#### <mark style="background: #D2B3FFA6;">1. Mapa de memoria direccionable bit</mark>
+Hay algunas instrucciones que direccionan a nivel de bit.
+![[Pasted image 20250306121610.png]]
+#### <mark style="background: #D2B3FFA6;">2. Instrucción compleja que realiza RMW de una vez</mark>
+Por ejemplo las instrucciones:
+```asm
+BRSET dir, mascara, etiqueta
+BSET  dir, mascara, etiqueta
+BCLR  dir, mascara
+BIC   r0, r1, #1 // Pone a 0 en r1 los bits que diga en #X
+```
+#### <mark style="background: #D2B3FFA6;">3. Direccionamiento de bit dentro de un byte</mark>
+```asm
+BCF dirf, numbit (PIC)
+SBI 0x18, 4 (ATMEGA)
+```
+#### <mark style="background: #D2B3FFA6;">4. Crear una zona de memoria en la que cada posición de 32 bits está asociada a un bit de otra zona de memoria: bit banding</mark>
+![[Captura desde 2025-03-06 12-24-34.png]]
+El tamaño máximo de SRAM son 512MB - 32MB ya que estos se usan para apuntar a los bits de la zona de memoria de bit banding.
+
+| bitX     | DATO     | 0x4242028C     |
+| -------- | -------- | -------------- |
+| **bit3** | **DATO** | **0x42420288** |
+| **bit2** | **DATO** | **0x42420284** |
+| **bit1** | **DATO** | **0x42420280** |
 ## <mark style="background: #ADCCFFA6;">5. Interrupciones</mark>
+#### <mark style="background: #D2B3FFA6;">Aclaraciones</mark>
+Según el origen:
+- Hay interrupciones internas al procesador que se producen por algún dispositivo propio dentro del μC.
+- Hay interrupciones externas que se activan mediante un pin externo (por nivel o por flanco).
+Según el uso:
+- Hay interrupciones debidas a fallos (excepciones).
+- Hay interrupciones software (como saltos a subrutinas privilegiados).
+- Hay interrupciones de gestión de periféricos (las normales).
+Posibilidad de enmascarar:
+- Interrupciones enmascarables
+- Interrupciones no enmascarables (NMI).
+### <mark style="background: #FFB86CA6;">Tipos de excepciones</mark>
+- **Reset:** tras encendido o aplicar un '0' a la señal reset del CPU. Cuando se produce el CPU para la ejecución independientemente de la instrucción que estuviese ejecutando. Cuando reset se desactiva, se ejecuta la ISR de reset, reiniciando el procesador.
+- **HardFault:** se dispara cuando hay un error en el tratamiento de una interrupción/excepción. Ej: ISR no definida
+- **MemManage:** ocurre cuando el MPU falla o hay accesos a zonas de memoria reservada.
+- **BusFault:** ocurre cuando una transacción en un bus falla o hay un error de E/S. Ej: no existe el periférico en puerto X.
+- **UsageFault:** se produce cuando hay un fallo al ejecutar una instrucción
+	- Instrucción no definida
+	- Acceso desalineado ilegal
+	- Estado inválido durante ejecución (por ej. dividir por 0)
+	- Error en la finalización de una ISR
+### <mark style="background: #FFB86CA6;">Tipos de interrupciones software</mark>
+- **SVCall:** supervisor call. Se dispara por la instrucción SVC. La usa el SO para asegurarse de que sus instrucciones no se interrumpan y ejecutar bloques de código de forma atómica.
+- **PendSV:** permite acceso privilegiado a memoria y registros.
+### <mark style="background: #FFB86CA6;">Manejadores de Interrupciones/Excepciones</mark>
+Las rutinas que las manejan se clasifican en:
+- **Interrupt Service Routines (ISR):** manejan las interrupciones de los periféricos
+- **Fault Handlers:** manejan las excepciones en caso de error
+- **System Hanlders:** manejan las interrupciones del SO: PendSV, SVCall, SysTick
+### <mark style="background: #FFB86CA6;">Gestión de periféricos</mark>
+- A cada fuente de int se le asocia un trozo de código: ISR
+- Las ISR en μC pequeños suelen no anidarse
+- El concepto de anidamiento implica:
+	- Niveles de prioridad
+	- Un dispostivo hardware controlador de interrupciones
+- Para saber en que sitio esta la ISR: tabla de vectores de interrupcion
+![[Pasted image 20250313114416.png]]
+### <mark style="background: #FFB86CA6;">NVIC: Nested Vector Interrupt Controller</mark>
+- Integrado en el núcleo del Cortex
+- Permite asignar niveles de prioridad
+- Las interrupciones más prioritarias interrumpen a las de menos prioridad: interrupciones anidadas
+- Permite configurar **150 interrupciones** con **16 niveles de prioridad**
+- Diseñado para minimizar la latencia
+- Permite cambiar la tabla de vectores de 
+- PPB (Private Programming Bus): para configurar por software
+- Tiene múltiples conexiones con el Core:
+	1. Interrumpir al core y enviarle codigo de interrupcion
+	2. Conexion E/S para escribir su configuracion
+	3. Lineas de excepciones
+### <mark style="background: #FFB86CA6;">Registros Cortex M4</mark>
+```C
+register int nombrereg _asm("r13");
+__set_BASEPRI(10);
+```
+![[Pasted image 20250313115415.png]]
+### <mark style="background: #FFB86CA6;">Máscaras del Cortex M3/M4</mark>
+- PRIMASK: registro de 1 bit que permite excepciones NMI y hard fault y ninguna más.
+- FAULTMASK: registro de 1 bit que permite excepciones NMI y ninguna más.
+- BASEPRI: registro de 9 bits que define el nivel de prioridad de las máscaras. Cuando se activa, deshabilita las interrupciones >= que su valor (cuanto mas grande el numero, menor prioridad). Por defecto es 0.
+### <mark style="background: #FFB86CA6;">Estado de las interrupciones dentro del controlador</mark>
+1. Inactive: no se ha producido y no está pendiente
+2. Pending: a la espera de ser atendida
+3. Active: se está atendiendo por el CPU y no ha sido completada todavía
+4. Active and pending: está siendo atendida por el procesador y se ha vuelto a pedir, por lo que se tiene que ejecutar de nuevo cuando se complete.
 
+<hr>
+
+### <mark style="background: #FFB86CA6;">Registros del NVIC</mark>
+<h3 style="color:red;">MASCARAS</h3>
+- NVIC_ISER (Interrupt Set Enable Register): si se pone a uno, habilita interrupciones.
+- NVIC_ICER (Interrupt Clear Enable Register): si se pone a uno, deshabilita interrupciones.
+<h3 style="color:red;">FLAGS</h3>
+- NVIC_ISPR: marca interrupcion como pendiente
+- NVIC_ICPR: resetea la flag de pendiente
+- NVIC_IPRx: prioridad de la interrupcion (8 bits para cada interrupcion, 4 interrupciones en un registro de 32 bits)
+- NVIC_IABR: activo si una interrupcion está siendo atendida
+![[Pasted image 20250313122633.png]]
+<div class="nota">
+<h3>Si el BASEPRI del Core está a 0, se usa el nivel de prioridad del NVIC. Sin embargo si está > 0 el del Core, las interrupciones que lleguen al Core desde el NVIC con menos prioridad no se atenderán</h3>
+<h3>La prioridad principal sirve para ver que interrupción puede o no interrumpir a otra. Sin embargo, la subprioridad sirve para que en caso de que lleguen "a la vez" se pueda decidir cual va primero. </h3>
+</div>

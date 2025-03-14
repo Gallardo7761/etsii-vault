@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "TERCERO/PI/Teoria_2425.md",
+                "file": "TERCERO/ATR2/Teoria_2425.md",
                 "mode": "source",
                 "source": false
               },
@@ -78,7 +78,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 300,
+    "collapsed": true
   },
   "right": {
     "id": "44cf06183e1c1c7d",
@@ -161,7 +162,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 367.5
+    "width": 367.5,
+    "collapsed": true
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -177,22 +179,24 @@
   },
   "active": "fbdb92a309be8088",
   "lastOpenFiles": [
-    "TERCERO/DAD/Teoria_2425.md",
-    "Pasted image 20250227131516.png",
+    "Pasted image 20250314122451.png",
+    "Pasted image 20250314121916.png",
+    "Pasted image 20250314121904.png",
+    "Pasted image 20250314115857.png",
+    "Pasted image 20250314115632.png",
+    "Pasted image 20250314115427.png",
+    "Pasted image 20250314114314.png",
+    "Pasted image 20250314114257.png",
     "TERCERO/SETR1/Teoria_2425.md",
-    "Pasted image 20250227120032.png",
-    "Pasted image 20250227115420.png",
-    "Untitled.md",
+    "Pasted image 20250313122633.png",
+    "Pasted image 20250313115415.png",
+    "Pasted image 20250313114416.png",
     "TERCERO/PI/Teoria_2425.md",
-    "Pasted image 20250225113929.png",
-    "Pasted image 20250225113139.png",
-    "Pasted image 20250225112945.png",
-    "Pasted image 20250225111938.png",
-    "Pasted image 20250225111801.png",
-    "Pasted image 20250225111612.png",
-    "Pasted image 20250225110824.png",
-    "TERCERO/ATR1/Teoría_2425.md",
     "TERCERO/ATR2/Teoria_2425.md",
+    "SEGUNDO/AC/Teoría_2324.md",
+    "TERCERO/DAD/Teoria_2425.md",
+    "Untitled.md",
+    "TERCERO/ATR1/Teoría_2425.md",
     "SEGUNDO/RC/Teoría_2324.md",
     "conflict-files-obsidian-git.md",
     "TERCERO/DAD/images",
@@ -221,7 +225,6 @@
     "TERCERO/ATR1/images",
     "TERCERO/ATR1/Welcome.md",
     "SEGUNDO/ADDA/ADDA 23-24.md",
-    "SEGUNDO/ADDA/MODELOS.md",
     "SEGUNDO/SO/Sin título.canvas"
   ]
 }

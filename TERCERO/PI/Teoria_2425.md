@@ -109,3 +109,17 @@ Por ejemplo para la escritura E/S:
 - Este bus tiene una arquitectura maestro-esclavo. Es posible que haya más de un maestro pero **SÓLO** un maestro a la vez.
 - Es síncrono, el maestro proporciona CLK.
 - Tiene resistencias de pull-up a $V_{CC}$ .
+# <mark style="background: #FFF3A3A6;">TEMA 3: Teclados</mark>
+## <mark style="background: #ADCCFFA6;">1. Fundamentos físicos</mark>
+
+![[Pasted image 20250311105624.png]]
+![[Pasted image 20250311110117.png]]
+Las teclas están "mapeadas" a unos códigos llamados Scan:
+
+![[Pasted image 20250311110853.png]]
+
+![[Pasted image 20250311111634.png]]
+## <mark style="background: #ADCCFFA6;">2. Estructura y funcionamiento</mark>
+
+![[Pasted image 20250311111721.png]]
+![[Pasted image 20250311112420.png]]
