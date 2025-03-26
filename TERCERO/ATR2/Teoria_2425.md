@@ -137,7 +137,7 @@ Hay dos formas de conectar dispositivos de forma inalámbrica
 ![[Pasted image 20250314115427.png]]
 - Las estaciones base conectan dispositivos de forma cableada.
 - Transferencia: dispositivo cambia de estación base que provee la conexión a la red cableada.
-# UN PUNTO DE ACCESO NO TIENE IP, ES DE NIVEL 2
+## UN PUNTO DE ACCESO NO TIENE IP, ES DE NIVEL 2
 
 ![[Pasted image 20250314115632.png]]
 **Inundación:** Tabla vacía. El equipo X transmite a la estación A.
@@ -172,3 +172,56 @@ Código único asignado a cada usuario. Todos los usuarios comparten la misma fr
 - **Señal codificada:** datos originales x secuencia de chip
 - **Decodificación:** producto escalar entre la señal codificada y la secuencia de chip
 ![[Pasted image 20250314122451.png]]
+## <mark style="background: #ADCCFFA6;">6. LAN Inalámbrica IEEE 802.11</mark>
+![[Pasted image 20250321110514.png]]
+La arquitectura de LAN 802.11 es básicamente:
+![[Pasted image 20250321110756.png]]
+- Host inalámbrico comunica con la estación base (Punto de Acceso, AP). Conjunto de servicios básico BSS (modo infraestructura: hosts, AP; modo ad hoc: hosts).
+### <mark style="background: #FFB86CA6;">Escaneo activo/pasivo</mark>
+- **Escaneo pasivo:** 
+  1. Los AP envían tramas baliza
+  2. Host envía petición de asociación al AP seleccionado
+  3. Se recibe en el Host una respuesta de asociación desde el AP
+  4. IP, Netmask, RF, DNS.
+     
+    ![[Pasted image 20250321111135.png]]
+- **Escaneo activo:**
+  1. Broadcast con una trama de sondeo desde el Host.
+  2. Respuesta a la trama de sondeo enviadas desde los AP.
+  3. Host envía petición de asociación al AP seleccionado.
+  4. Se recibe en el Host una respuesta de asociación desde el AP.
+     ![[Pasted image 20250321111817.png]]
+### <mark style="background: #FFB86CA6;">Emisión/Recepción</mark>
+![[Pasted image 20250321112719.png]]
+- **Emisor:** 
+  1. Si tras un tiempo **DIFS** está el canal libre, se transmite la trama entera. 
+  2. Si está ocupado el canal, inicia un tiempo aleatorio de espera. El contador va bajando mientras el canal se queda libre. Intentará transmitir cuando el contador expire. 
+  3. Si no ACK, incrementa el contador y vuelve a 2.
+- **Receptor:**
+  Si trama recibida OK: devuelve ACK después de **SIFS**
+#### <mark style="background: #D2B3FFA6;">IDEA: para evitar las colisiones</mark>
+Permitir al emisor "reservar" el canal en lugar de acceder aleatoriamente evitando colisiones con tramas largas. 
+- El emisor transmite primero pequeños paquetes de solicitud de transmisión (RTS) usando CSMA (los RTS pueden colisionar pero son cortos).
+- El AP responde preparado para enviar (CTS). 
+- Cuando el resto de Hosts reciben el CTS, aplazan sus transmisiones y el Host emisor actual transmite su trama.
+![[Pasted image 20250321113321.png]]
+### <mark style="background: #FFB86CA6;">Trama 802.11</mark>
+![[Pasted image 20250321113414.png]]
+- **Dirección 1:** MAC Rx
+- **Dirección 2:** MAC Tx
+- **Dirección 3:** MAC de la interfaz del router a la que el AP está conectado
+- **Dirección 4:** sólo en modo ad-hoc
+- **CRC:** control de errores
+![[Pasted image 20250321113739.png]]
+![[Pasted image 20250321113941.png]]
+## <mark style="background: #ADCCFFA6;">7. Movilidad</mark>
+### <mark style="background: #FFB86CA6;">Definiciones</mark>
+**Dirección permanente:** permanece constante (ej. 128.119.40.186)
+**Care-of-address (COA):** dirección en la red visitada (ej. 79.129.13.2)
+**Red ajena (visited network):** red en la que reside actualmente el dispositivo (ej. 79.129.13.0/24)
+**Corresponsal:** host que quiere comunicarse
+**Agente ajeno (foreign agent):** entidad en la red ajena que se encarga de funciones de movilidad.
+### <mark style="background: #FFB86CA6;">Enrutamiento indirecto</mark>
+![[Pasted image 20250321115758.png]]
+### <mark style="background: #FFB86CA6;">Enrutamiento directo</mark>
+![[Pasted image 20250321115951.png]]

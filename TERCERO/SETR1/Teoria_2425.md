@@ -311,3 +311,33 @@ __set_BASEPRI(10);
 <h3>Si el BASEPRI del Core está a 0, se usa el nivel de prioridad del NVIC. Sin embargo si está > 0 el del Core, las interrupciones que lleguen al Core desde el NVIC con menos prioridad no se atenderán</h3>
 <h3>La prioridad principal sirve para ver que interrupción puede o no interrumpir a otra. Sin embargo, la subprioridad sirve para que en caso de que lleguen "a la vez" se pueda decidir cual va primero. </h3>
 </div>
+### <mark style="background: #FFB86CA6;">Anidamiento y cambio en caliente</mark>
+#### <mark style="background: #D2B3FFA6;">Anidamiento</mark>
+  ![[Pasted image 20250320110820.png]]
+#### <mark style="background: #D2B3FFA6;">Cambio en caliente (Tail Chaining)</mark>
+  ![[Pasted image 20250320110905.png]]
+  El **tail chaining** tarda 6 ciclos en producirse.
+### <mark style="background: #FFB86CA6;">Late-Arrival Interrupt</mark>
+Se produce al lanzarse una interrupción de alta prioridad mientras se está cambiando de contexto debido a una interrupción de baja prioridad. El contexto se guarda con normalidad, y se ejecuta la de alta prioridad, y cuando termine la de baja prioridad y se restaura el contexto.
+![[Pasted image 20250320111330.png]]
+### <mark style="background: #FFB86CA6;">Interrupciones Externas (mediante GPIO)</mark>
+Mediante un controlador de interrupciones externas, pueden haber máximo 16 pines con interrupción externa, ya que multiplexa los pines a las líneas de interrupción.
+![[Pasted image 20250320112207.png]]
+La estructura del controlador es:
+![[Pasted image 20250320112323.png]]
+El generador de pulso, es parecido a las interrupciones, pero solamente manda un pulso a un periférico interno.
+## <mark style="background: #ADCCFFA6;">6. Modos de arranque del STM32F407</mark>
+![[Pasted image 20250320113146.png]]
+# <mark style="background: #FFF3A3A6;">TEMA 4: Dispositivos integrados en los μC</mark>
+## <mark style="background: #ADCCFFA6;">1. Puertos E/S</mark>
+### <mark style="background: #FFB86CA6;">Fundamento de un puerto GPIO</mark>
+![[Pasted image 20250320114112.png]]
+Un **puerto de salida** es un registro en el que se almacena el valor de un pin externo y permanece hasta que se vuelva a cambiar.
+Un **puerto de entrada** es un buffer conectado a un pin cuyo estado se consulta en un determinado momento, y puede cambiar entre consulta y consulta.
+#### Push-Pull
+Se en el registro de dirección de dato se pone un '1' es modo salida y en el pin hay un 1 o un 0 depende del biestable de datos. Sin embargo, si hay un '0', los transistores están en HI y se lee desde el pin (pin en modo entrada). **No se pueden conectar dos salidas push-pull**.
+![[Pasted image 20250320120951.png]]
+
+## <mark style="background: #ADCCFFA6;">2. Timers</mark>
+## <mark style="background: #ADCCFFA6;">3. Conversores A/D y DAC</mark>
+## <mark style="background: #ADCCFFA6;">4. CLK y alimentación</mark>

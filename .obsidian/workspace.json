@@ -4,11 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "b4016cfda59535b1",
+        "id": "f83007af095dc297",
         "type": "tabs",
         "children": [
           {
-            "id": "fbdb92a309be8088",
+            "id": "a5daa8ea8214becf",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -162,8 +162,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 367.5,
-    "collapsed": true
+    "width": 367.5
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -177,27 +176,28 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "fbdb92a309be8088",
+  "active": "a5daa8ea8214becf",
   "lastOpenFiles": [
-    "Pasted image 20250314122451.png",
-    "Pasted image 20250314121916.png",
-    "Pasted image 20250314121904.png",
-    "Pasted image 20250314115857.png",
-    "Pasted image 20250314115632.png",
-    "Pasted image 20250314115427.png",
-    "Pasted image 20250314114314.png",
-    "Pasted image 20250314114257.png",
-    "TERCERO/SETR1/Teoria_2425.md",
-    "Pasted image 20250313122633.png",
-    "Pasted image 20250313115415.png",
-    "Pasted image 20250313114416.png",
-    "TERCERO/PI/Teoria_2425.md",
+    "TERCERO/ATR2/Pasted image 20250225091113.png",
     "TERCERO/ATR2/Teoria_2425.md",
-    "SEGUNDO/AC/Teoría_2324.md",
-    "TERCERO/DAD/Teoria_2425.md",
+    "Pasted image 20250306121610.png",
+    "Pasted image 20250306113133.png",
+    "Pasted image 20250306113057.png",
+    "Pasted image 20250227131516.png",
+    "Pasted image 20250227120032.png",
+    "Pasted image 20250227115420.png",
+    "Pasted image 20250225113929.png",
+    "Pasted image 20250225113139.png",
+    "Pasted image 20250225111938.png",
+    "Pasted image 20250225111612.png",
     "Untitled.md",
-    "TERCERO/ATR1/Teoría_2425.md",
+    "Untitled 1.md",
+    "TERCERO/SETR1/Teoria_2425.md",
     "SEGUNDO/RC/Teoría_2324.md",
+    "SEGUNDO/AC/Teoría_2324.md",
+    "TERCERO/PI/Teoria_2425.md",
+    "TERCERO/DAD/Teoria_2425.md",
+    "TERCERO/ATR1/Teoría_2425.md",
     "conflict-files-obsidian-git.md",
     "TERCERO/DAD/images",
     "TERCERO/DAD/Presentación 24-25.md",
@@ -224,7 +224,6 @@
     "TERCERO/IA/images",
     "TERCERO/ATR1/images",
     "TERCERO/ATR1/Welcome.md",
-    "SEGUNDO/ADDA/ADDA 23-24.md",
     "SEGUNDO/SO/Sin título.canvas"
   ]
 }
