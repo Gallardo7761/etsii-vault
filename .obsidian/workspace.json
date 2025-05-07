@@ -4,21 +4,19 @@
     "type": "split",
     "children": [
       {
-        "id": "f83007af095dc297",
+        "id": "b9c406a5814f7d5d",
         "type": "tabs",
         "children": [
           {
-            "id": "a5daa8ea8214becf",
+            "id": "6078b13932265b8a",
             "type": "leaf",
             "state": {
-              "type": "markdown",
+              "type": "image",
               "state": {
-                "file": "TERCERO/IA/Teoría_2425.md",
-                "mode": "source",
-                "source": false
+                "file": "TERCERO/PI/Pasted image 20250507203728.png"
               },
-              "icon": "lucide-file",
-              "title": "Teoría_2425"
+              "icon": "lucide-image",
+              "title": "Pasted image 20250507203728"
             }
           }
         ]
@@ -175,26 +173,29 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "a5daa8ea8214becf",
+  "active": "a4eac8e6613b153b",
   "lastOpenFiles": [
-    "TERCERO/DAD/Teoria_2425.md",
-    "TERCERO/ATR2/Teoria_2425.md",
-    "TERCERO/PI/Teoria_2425.md",
+    "TERCERO/PI/Pasted image 20250507203726.png",
+    "TERCERO/PI/Pasted image 20250507203712.png",
+    "TERCERO/SETR1/Pasted image 20250424120431.png",
+    "TERCERO/SETR1/Pasted image 20250424115519.png",
+    "TERCERO/SETR1/Pasted image 20250424113241.png",
+    "TERCERO/SETR1/Pasted image 20250424110658.png",
+    "TERCERO/SETR1/Pasted image 20250424110125.png",
+    "TERCERO/SETR1/Pasted image 20250424105658.png",
+    "TERCERO/ATR2/Pasted image 20250321115951.png",
+    "TERCERO/ATR2/Pasted image 20250321115758.png",
+    "TERCERO/ATR2/Pasted image 20250321113941.png",
     "TERCERO/SETR1/Teoria_2425.md",
-    "Pasted image 20250424120431.png",
-    "Pasted image 20250424115519.png",
-    "Pasted image 20250424113241.png",
-    "Pasted image 20250424110658.png",
-    "Pasted image 20250424110125.png",
-    "Pasted image 20250424105658.png",
-    "TERCERO/ATR2/Pasted image 20250225091113.png",
-    "Pasted image 20250306121610.png",
-    "Pasted image 20250306113133.png",
-    "Pasted image 20250306113057.png",
+    "TERCERO/PI/Teoria_2425.md",
+    "TERCERO/PI/Presentación 24-25.md",
+    "TERCERO/PI",
+    "TERCERO/ATR2/Teoria_2425.md",
+    "SEGUNDO/AC/Teoría_2324.md",
     "Untitled.md",
     "Untitled 1.md",
     "SEGUNDO/RC/Teoría_2324.md",
-    "SEGUNDO/AC/Teoría_2324.md",
+    "TERCERO/DAD/Teoria_2425.md",
     "TERCERO/ATR1/Teoría_2425.md",
     "conflict-files-obsidian-git.md",
     "TERCERO/DAD/images",
@@ -202,10 +203,8 @@
     "TERCERO/ATR2",
     "Untitled",
     "TERCERO/DAD",
-    "TERCERO/PI/Presentación 24-25.md",
     "TERCERO/SETR1/Presentación 24-25.md",
     "TERCERO/SETR1",
-    "TERCERO/PI",
     "TERCERO/IA/Teoría_2425.md",
     "TERCERO/SPD/Teoría_2425.md",
     "TERCERO/SS/SS 24-25.md",
