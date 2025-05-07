@@ -339,5 +339,80 @@ Se en el registro de dirección de dato se pone un '1' es modo salida y en el pi
 ![[Pasted image 20250320120951.png]]
 
 ## <mark style="background: #ADCCFFA6;">2. Timers</mark>
+### <mark style="background: #FFB86CA6;">Basado en comparadores</mark>
+"Despertador". Salida comparada.
+- Sin recarga automática
+- Con recarga automática
+- PWM
+### <mark style="background: #FFB86CA6;">Captura de eventos</mark>
+"Cronómetro".
+### <mark style="background: #FFB86CA6;">Acumuladores de pulso</mark>
+- Externo
+- Del CLK interno
 ## <mark style="background: #ADCCFFA6;">3. Conversores A/D y DAC</mark>
 ## <mark style="background: #ADCCFFA6;">4. CLK y alimentación</mark>
+
+# <mark style="background: #FFF3A3A6;">TEMA 5: Conexiones serie en los μC</mark>
+## <mark style="background: #ADCCFFA6;">1. Introducción</mark>
+Hay que distinguir entre: 
+1. interface serie y interface paralelo
+2. comunicaciones síncronas y asíncronas
+## <mark style="background: #ADCCFFA6;">2. Puertos Serie Síncronos</mark>
+Hay dos mecanismos que habilitan el dato en los puertos serie:
+- **Flanco:** dato presente válido en flanco up/down
+- **Nivel:** dato presente válido en nivel high/low
+### <mark style="background: #FFB86CA6;">Serial Peripheral Interface (SPI)</mark>
+- MISO: Master In Slave Out
+- MOSI: Master Out Slave In
+- SCK: reloj
+- SS: Slave Select
+<div class="nota">
+<h1>NOTA</h1>
+<h3>Tanto para leer como escribir SE ESCRIBE EN EL MASTER tanto para los dos R/W</h3>
+</div>
+Hay 4 posibilidades para configurar la forma de la señal de reloj:
+![[Pasted image 20250424105658.png]]
+Para leer, se usa la configuración open-drain para poder conectar las lineas MISO/MOSI entre sí. 
+![[Pasted image 20250424110125.png]]
+- Se hace la AND entre el dato que ponga el master y el del esclavo. **Si el master quiere leer del esclavo tendrá que escribir 0xFF**.
+#### <mark style="background: #D2B3FFA6;">Selección multi esclavo</mark>
+![[Pasted image 20250424110658.png]]
+**Para seleccionar un sólo esclavo, se pone como primer dato la dirección.** La forma correcta para hacer esto es: 
+1. Enviar la direccion
+2. Esperar un delay
+3. R/W
+### <mark style="background: #FFB86CA6;">Inter Integrated Circuit (I²C)</mark>
+![[Pasted image 20250424113241.png]]
+1. **Condición de START:** el master mantiene SCL en alto y baja la linea de dato
+2. **Frame de dirección:** 
+   - 7b para direccion
+   - 1b para R/W
+   - bit a bit el dato en la linea desde el master y si el slave lo pone a 0: ACK, si lo pone a 1: NACK (and cableada).
+3. **Frame de dato:** 
+   - El master sigue poniendo pulsos
+   - Se pueden leer en rafaga (N direcciones consecutivas desde la inicial)
+   - Si es R, el ACK/NACK lo pone el master
+4. **Condición de STOP:**
+   - El master pone a 1 la linea de datos cuando el CLK esta a 1.
+## <mark style="background: #ADCCFFA6;">3. USB</mark>
+### <mark style="background: #FFB86CA6;">Tipo de transferencias y protocolo</mark>
+Cada EP se puede configurar para realizar las transferencias:
+- **control:** peticiones estándar USB
+- **interrupción:** envío confiable de datos en tiempo acotado
+- **bulk:** envío confiable de datos sin garantía de latencia
+- **isócronas:** datos en tiempo real
+	![[Pasted image 20250424115519.png]]
+### <mark style="background: #FFB86CA6;">Transacciones</mark>
+![[Pasted image 20250424120431.png]]
+DATA0/DATA1: lectura
+NAK: no ACK - buffer vacío
+STALL: colgado y necesita reset
+
+### <mark style="background: #FFB86CA6;">Descriptores</mark>
+Principales (importantes para el examen):
+- Dispositivo
+- Configuración
+- Interface
+- Endpoint
+
+# 3300 VS 3333 en CLK: ruido frecuencia 1KHz por ruido porque los 23 datos anteriores se transfieren bien pero el ultimo da fallo al estar los tiempos tan apurados, 3333 se escucha mejor
