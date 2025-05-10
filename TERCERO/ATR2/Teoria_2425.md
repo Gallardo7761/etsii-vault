@@ -225,3 +225,278 @@ Permitir al emisor "reservar" el canal en lugar de acceder aleatoriamente evitan
 ![[Pasted image 20250321115758.png]]
 ### <mark style="background: #FFB86CA6;">Enrutamiento directo</mark>
 ![[Pasted image 20250321115951.png]]
+# <mark style="background: #FFF3A3A6;">TEMA 4: Transmisión de Datos</mark>
+## <mark style="background: #ADCCFFA6;">1. Introducción</mark>
+**Datos:** entidades que contienen información
+- Digitales: datos binarios (0's y 1's)
+- Analógicos: datos en forma de ondas variables con el tiempo (por ejemplo onda sonora de la voz a través del teléfono)
+**Señales:** representaciones eléctricas/electromagnéticas de los datos
+**Señalización:** proceso de conversión de datos en señales físicas adecuadas al medio
+- Digital: codificación
+- Analógica: modulación
+**Transmisión:** proceso de comunicación de datos mediante propagación y procesado de señales
+- Digital: ondas cuadradas discretas, por ejemplo redes de computadores
+- Analógica: datos analógicos transmitidos de forma analógica, por ejemplo TV/radio
+### <mark style="background: #FFB86CA6;">Datos convertidos A/D</mark>
+- **Módem (modulador/demodulador):** se utiliza cuando los datos digitales se envían como transmisión analógica
+- **Códec (codificador/decodificador):** se utiliza cuando se envían datos analógicos a través de señales de transmisión digital
+### <mark style="background: #FFB86CA6;">Ventajas de la transmisión digital</mark>
+- **Menos errores:** más fácil detectarlos y corregirlos porque son binarios. Una onda cuadrada débil se puede propagar fácilmente en forma perfecta.
+- **Velocidades de transmisión más altas:** por ejemplo fibra óptica.
+- **Más eficiente:** es posible enviar más datos digitales a través de un circuito dado, el circuito puede ser "encapsulado".
+- **Más seguro:** más fácil cifrar un _bit stream_.
+- **Más simple para VVD (voz, vídeo y datos):** se pueden mezclar más fácilmente (binarios).
+## <mark style="background: #ADCCFFA6;">2. Configuración de circuitos</mark>
+### <mark style="background: #FFB86CA6;">Punto a punto</mark>
+![[Pasted image 20250510201725.png]]
+Se usa cuando los hosts generan suficientes datos como para llenar la capacidad del circuito. Cada host tiene su propio circuito para llegar al otro host en la red (caro).
+### <mark style="background: #FFB86CA6;">Multipunto</mark>
+![[Pasted image 20250510201911.png]]
+Se usa cuando cada host no tiene que usar el circuito continuamente. Es mas barato, ya que no hay tantos cables y es más fácil de cablear. Solo un host puede usar el circuito a la vez.
+## <mark style="background: #ADCCFFA6;">3. Flujo de datos</mark>
+### <mark style="background: #FFB86CA6;">Simplex</mark>
+Los datos van nen una sola dirección (radio y TV por cable).
+### <mark style="background: #FFB86CA6;">Half-duplex</mark>
+Los datos fluyen en ambos sentidos pero solo en uno a la vez (walkie talkies).
+### <mark style="background: #FFB86CA6;">Full-duplex</mark>
+Los datos fluyen en ambos sentidos a la misma vez.
+## <mark style="background: #ADCCFFA6;">4. Modos de transmisión</mark>
+### <mark style="background: #FFB86CA6;">Transmisión serie</mark>
+![[Pasted image 20250510205021.png|400]]
+Se puede usar a distancias más largas ya que los bits permanecen en orden.
+$$
+\begin{equation}
+V_b=\frac{1}{T_b}
+\end{equation}
+$$
+### <mark style="background: #FFB86CA6;">Transmisión en paralelo</mark>
+![[Pasted image 20250510205203.png|400]]
+Se utiliza para distancias cortas ya que los bits en paralelo tienden a dispersarse.
+$$
+\begin{equation}
+nV_b=\frac{1}{T_b}, \text{n  número de líneas}
+\end{equation}
+$$
+<div class="nota">
+<h3>Tipo de sincronización</h3>
+<ul>
+<li><strong>Heterosincronizada:</strong> El reloj es único y está en el Tx. También es posible situar el reloj en el Rx. Esta estructura no se da con frecuencia.</li>
+<li><strong>Autosincronizada:</strong> Única línea por la que se envían datos y CLK. El reloj tiene que estar en el Tx. Para conseguir esto, se recurre a algo llamado <strong>CÓDIGO DE LÍNEA</strong></li>
+</ul>
+</div>
+## <mark style="background: #ADCCFFA6;">5. Técnicas de señalización</mark>
+Define cómo los niveles de voltaje se corresponden con valores binarios. Hay varios ejemplos: unipolar, bipolar, RTZ, NRZ, Manchester. También describe con qué frecuencia el transmisor puede transmitir datos.
+### <mark style="background: #FFB86CA6;">Manchester</mark>
+Utilizado en Ethernet. Define un valor de bit por una transición de medio bit, es decir, pasar de alto a bajo es un 0 y pasar de bajo a alto es un 1.
+- **Bifase:** siempre hay una transición a mitad del bit que recupera el CLK y los datos. Usado en IEEE 802.3
+- **Bifase diferencial:** la transición en la mitad del bit es solo para sincronizar. Usado en IEEE 802.5.
+### <mark style="background: #FFB86CA6;">NRZ-L (Non Return to Zero-Level)</mark>
+- Niveles de tensión distintos para 0 y 1
+- Nivel de tensión constante mientras dure el bit (no retorna a 0)
+- Frecuentemente, tensión negativa para un valor y positiva para el otro
+### <mark style="background: #FFB86CA6;">NRZ-I (Non Return to Zero-Inverted)</mark>
+- Los datos se codifican mediante presencia o ausencia de una transición de la señal al principio del intervalo
+- Nivel de tensión constante durante cada bit
+- Es **codificación diferencial** ya que se representan los datos por cambios. Es más fácil detectar flancos. Arrastra errores por la polaridad.
+## <mark style="background: #ADCCFFA6;">6. Transmisión serie asíncrona</mark>
+- CLK en Rx y Tx independientes
+- La información se divide en grupos de bits llamados caracteres. Cara caracter está compuesto de 5 u 8 bits + unos bits de cabecera y cola que permiten corregir desviaciones temporales en el Rx respecto al Tx.
+- Para una transmisión:
+	1. Bit de Start ('0')
+	2. Datos de uno en uno de LSB a MSB
+	3. Bit de Stop ('1')
+# <mark style="background: #FFF3A3A6;">TEMA 5: Medios de transmisión</mark>
+Para seleccionar un tipo de medio u otro se suele tener en cuenta:
+- **Ancho de banda:** cuanto más, más rápida la transmisión
+- **Dificultades en la transmisión:** por ejemplo atenuación de señal
+- **Interferencias**
+- **Número de receptores:** a más Rx más atenuación
+## <mark style="background: #ADCCFFA6;">1. Medios guiados</mark>
+### <mark style="background: #FFB86CA6;">Par trenzado UTP VS STP VS S-FTP</mark>
+- UTP: par trenzado normal
+- FTP: par trenzado apantallado con un "papel de aluminio"
+- S-FTP: par trenzado apantallado y envuelto en una malla
+  ![[Pasted image 20250510221130.png|500]]
+  ![[Pasted image 20250510221146.png|500]]
+### <mark style="background: #FFB86CA6;">Coaxial</mark>
+![[Pasted image 20250510221309.png]]
+Alambre de cobre formado por núcleo y malla. Buen ancho de banda y buena inmunidad al ruido. 50$\Omega$ digital, 75$\Omega$ analógico.
+- Mayor ancho de banda que el UTP
+- Menor atenuación
+- Ideal para señales analógicas como TV
+### <mark style="background: #FFB86CA6;">Fibra óptica</mark>
+![[Pasted image 20250510221553.png|500]]
+Se basa en la reflexión total interna para transmitir la luz. Pueden usarse LED o Láser. Hay una relación entre la longitud de onda, el tipo de fibra y la velocidad de transmisión.
+## <mark style="background: #ADCCFFA6;">2. Medios no guiados</mark>
+### <mark style="background: #FFB86CA6;">Radio</mark>
+- Omnidireccional
+- Un Tx varios Rx
+- Bandas: LF, MF, HF, VHF
+- Fáciles de generar
+- Largas distancias
+- Atraviesan paredes
+- Absorbidas por la lluvia
+- Interferencias posibles por equipos eléctricos
+#### <mark style="background: #D2B3FFA6;">Factores que afectan a la transmisión en <i>line of sight</i></mark>
+- Pérdida en el espacio libre por distancia
+- Absorción atmosférica: vapor de agua (22GHz) y oxígeno (60GHz)
+- Trayectorias múltiples
+- Refracción
+### <mark style="background: #FFB86CA6;">Microondas</mark>
+![[Pasted image 20250510222011.png|500]]
+![[Pasted image 20250510222038.png|500]]
+- Frecuencias muy altas de 3GHz a 100GHz
+- Longitud de onda muy pequeña
+- Antenas parabólicas
+- Rx y Tx en _line of sight_
+- A 100m de altura se alcanzan 80Km sin repetidores
+- Rebotan en los metales (radar)
+### <mark style="background: #FFB86CA6;">Satélites</mark>
+![[Pasted image 20250510222503.png|700]]
+
+| Banda | Frecuencia | Uso                       |
+| ----- | ---------- | ------------------------- |
+| L     | 1 GHz      | Antenas omnidireccionales |
+| S     | 2 GHz      | NASA                      |
+| C     | 6/4 GHz    | Comercial, teléfono       |
+| X     | 8/7 GHz    | Militar, Gobierno         |
+| Ku    | 14/12 GHz  |                           |
+| Ka    | 30/20 GHz  | Intersatélite             |
+| V     | 40 GHz     |                           |
+| Q     | 60 GHz     |                           |
+#### <mark style="background: #D2B3FFA6;">Ventajas</mark>
+- Comunicación sin cables
+- Gran cobertura
+- Disponibilidad de banda ancha
+- Instalación rápida de una red
+- Bajo coste añadir otro Rx
+- Servicio total proporcionado por el satélite en sí
+# <mark style="background: #FFF3A3A6;">TEMA 6: Alteraciones en las transmisiones</mark>
+## <mark style="background: #ADCCFFA6;">1. Atenuación</mark>
+- La potencia de la señal decae con la distancia
+- Depende del medio
+- Se suele medir en **dB/m**
+- La potencia debe ser suficiente fuerte para ser detectada y lo suficientemente más grande que el ruido para recibirse sin error
+- **Se usan amplificadores/repetidores**
+- **Es mayor a más frecuencia**
+### <mark style="background: #FFB86CA6;">Ganancia y atenuación</mark>
+#### dB = Indica la relación entre dos valores de P, V o I
+La ganancia expresada en dB sería:
+- Relación de potencias: $G(dB)=10\times\log_{10}{\frac{P_2}{P_1}}$
+- Relación de tensiones: $G(dB)=20\times\log_{10}{\frac{V_2}{V_1}}$ ya que $P=V^2/R$ y el cuadrado multiplica fuera
+- Relación de intensidades: $G(dB)=10\times\log_{10}{\frac{I_2}{I_1}}$
+#### dBm = unidad de medida absoluta que mide potencia respecto a 1mW
+$$
+\begin{equation}
+P(dBm)=10\times\log_{10}{\frac{P(mW)}{1mW}}
+\end{equation}
+$$
+Esto es muy util si hay atenuaciones y amplificaciones (ganancias) sucesivas:
+$$
+\begin{equation}
+P_2(dBm)=P_1(dBm)+\sum_i{G_i(dB)}-\sum_j{A_j(dB)}\rightarrow\text{G, A: Ganancia, Atenuación}
+\end{equation}
+$$
+#### Pérdida en medios no guiados
+$$
+\begin{equation}
+L=10\times\log(4\pi/\lambda)^2~~~\text{(dB)}
+\end{equation}
+$$
+## <mark style="background: #ADCCFFA6;">2. Desvanecimiento</mark>
+Desaparece la señal de forma transitoria. En teoría se puede restablecer en el Rx con control automático de ganancia, a menos que sea muy pequeña. Es causado por condiciones atmosféricas.
+## <mark style="background: #ADCCFFA6;">3. Distorsión armónica</mark>
+- Ocurre sólo en medios guiados
+- **La velocidad de propagación varía con la frecuencia**
+- Particularmente crítico en datos digitales a velocidades altas
+## <mark style="background: #ADCCFFA6;">4. Ruido</mark>
+Son señales no deseadas que se superponen con la señal que se quiere transmitir a lo largo del proceso de transmisión.
+#### <mark style="background: #FFB86CA6;">Ruido térmico</mark>
+Se debe al calor, aparece en todos los dispositivos electrónicos
+$$
+\begin{equation}
+N_0=k\times{T}~~~\text{(W/Hz)}
+\end{equation}
+$$
+$$
+\begin{equation}
+k=1,38\times10^{-23}~\text{J/ºK (constante de Boltzmann)}
+\end{equation}
+$$
+$$
+\begin{equation}
+T\equiv\text{temperatura en Kelvin}
+\end{equation}
+$$
+### <mark style="background: #FFB86CA6;">Ruido magnético natural</mark>
+- **Atmosférico:** producido por perturbaciones en la atmósfera. El rayo es la fuente más visible de este tipo de ruido. Se propagan como las ondas de radio. Es importante hasta los 20KHz y en TV (500MHz).
+- **Espacial:** 
+	- Solar: erupciones solares
+	- Cósmico: rayos cósmicos
+### <mark style="background: #FFB86CA6;">Ruido magnético artificial</mark>
+- Arrancar y parar motores
+- Vibraciones mecánicas -> eléctricas
+- Fluorescentes
+- Diafonía
+- Conmutación de circuitos
+### <mark style="background: #FFB86CA6;">Ruido de rebote en los cables</mark>
+![[Pasted image 20250510224703.png]]
+$$
+\begin{equation}
+V_{TOTAL}=V_++V_-
+\end{equation}
+$$
+$$
+\begin{equation}
+\rho\equiv\text{coeficiente de reflexión}=\frac{V_-}{V_+}
+\end{equation}
+$$
+### <mark style="background: #FFB86CA6;">Ruido por diferencia en GNDs</mark>
+![[Pasted image 20250510224952.png|500]]
+Se produce cuando hay diferencias de tension en la GND del Tx y Rx. Es un problema importante. Puede producir problemas graves.
+### <mark style="background: #FFB86CA6;">Ruido de intermodulación</mark>
+Superposición de señales al multiplexar varias en un canal
+### <mark style="background: #FFB86CA6;">Ruido de cuantización</mark>
+![[Pasted image 20250510225115.png]]
+Ocurre al digitalizar. Son los "trozos sobrantes" de la señal digital respecto a la analógica.
+### <mark style="background: #FFB86CA6;">Ruido AWGN</mark>
+$$
+\begin{equation}
+p(z)=\frac{1}{\sqrt{2\pi\sigma}}e^{-(z-\mu)^2/2\sigma^2}
+\end{equation}
+$$
+ADITIVO + BLANCO + GAUSSIANO = AWGN
+## <mark style="background: #ADCCFFA6;">5. Fórmulas</mark>
+### <mark style="background: #FFB86CA6;">Nyquist (capacidad del canal)</mark>
+Canales ideales, libres de ruidos. Si cada forma de onda transmite un bit, tenemos $C=2B\text{ bps}$. Se mejora usando señales multinivel
+$$
+\begin{equation}
+C=2B\times\log_2{M}~~~\text{(bps)}
+\end{equation}
+$$
+### <mark style="background: #FFB86CA6;">Shannon (capacidad del canal)</mark>
+Considera el ruido del canal. Relaciona la capacidad y la relación señal/ruido (SNR).
+$$
+\begin{equation}
+SNR=\frac{\text{Potencia señal (S)}}{\text{Potencia ruido (N)}}
+\end{equation}
+$$
+$$
+\begin{equation}
+SNR_{dB}=10\log_{10}{\frac{\text{Potencia señal}}{\text{Potencia ruido}}}~~~\text{(dB)}
+\end{equation}
+$$
+$$
+\begin{equation}
+C=B\log_2{(1+SNR)}~~~\text{(bps)}
+\end{equation}
+$$
+### <mark style="background: #FFB86CA6;">BER (Bit Error Rate)</mark>
+$$
+\begin{equation}
+BER=\frac{\text{nº de bits erroneos}}{\text{nº de bits transmitidos}}
+\end{equation}
+$$
+### NOTAS
+- Si SNR es grande la comunicación es buena (mas señal que ruido)
+- Si es pequeño, mala o imposible

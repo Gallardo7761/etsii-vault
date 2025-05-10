@@ -4,19 +4,21 @@
     "type": "split",
     "children": [
       {
-        "id": "b9c406a5814f7d5d",
+        "id": "af7b9ed910c8130c",
         "type": "tabs",
         "children": [
           {
-            "id": "6078b13932265b8a",
+            "id": "586fa53a61c93a2c",
             "type": "leaf",
             "state": {
-              "type": "image",
+              "type": "markdown",
               "state": {
-                "file": "TERCERO/PI/Pasted image 20250507203728.png"
+                "file": "TERCERO/ATR2/Teoria_2425.md",
+                "mode": "source",
+                "source": false
               },
-              "icon": "lucide-image",
-              "title": "Pasted image 20250507203728"
+              "icon": "lucide-file",
+              "title": "Teoria_2425"
             }
           }
         ]
@@ -173,26 +175,26 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "a4eac8e6613b153b",
+  "active": "586fa53a61c93a2c",
   "lastOpenFiles": [
-    "TERCERO/PI/Pasted image 20250507203726.png",
-    "TERCERO/PI/Pasted image 20250507203712.png",
-    "TERCERO/SETR1/Pasted image 20250424120431.png",
-    "TERCERO/SETR1/Pasted image 20250424115519.png",
-    "TERCERO/SETR1/Pasted image 20250424113241.png",
-    "TERCERO/SETR1/Pasted image 20250424110658.png",
-    "TERCERO/SETR1/Pasted image 20250424110125.png",
-    "TERCERO/SETR1/Pasted image 20250424105658.png",
-    "TERCERO/ATR2/Pasted image 20250321115951.png",
-    "TERCERO/ATR2/Pasted image 20250321115758.png",
-    "TERCERO/ATR2/Pasted image 20250321113941.png",
+    "TERCERO/ATR2/Pasted image 20250510225115.png",
+    "TERCERO/ATR2/Teoria_2425.md",
+    "TERCERO/ATR2/Pasted image 20250510225113.png",
+    "TERCERO/ATR2/Pasted image 20250510224952.png",
+    "TERCERO/ATR2/Pasted image 20250510224703.png",
+    "TERCERO/ATR2/Pasted image 20250510221130.png",
+    "TERCERO/ATR2/Pasted image 20250510222503.png",
+    "TERCERO/ATR2/Pasted image 20250510222038.png",
+    "TERCERO/ATR2/Pasted image 20250510222011.png",
+    "TERCERO/ATR2/Pasted image 20250510221553.png",
+    "TERCERO/ATR2/Pasted image 20250510221309.png",
+    "Untitled.md",
+    "TERCERO/IA/Teoría_2425.md",
     "TERCERO/SETR1/Teoria_2425.md",
     "TERCERO/PI/Teoria_2425.md",
     "TERCERO/PI/Presentación 24-25.md",
     "TERCERO/PI",
-    "TERCERO/ATR2/Teoria_2425.md",
     "SEGUNDO/AC/Teoría_2324.md",
-    "Untitled.md",
     "Untitled 1.md",
     "SEGUNDO/RC/Teoría_2324.md",
     "TERCERO/DAD/Teoria_2425.md",
@@ -205,7 +207,6 @@
     "TERCERO/DAD",
     "TERCERO/SETR1/Presentación 24-25.md",
     "TERCERO/SETR1",
-    "TERCERO/IA/Teoría_2425.md",
     "TERCERO/SPD/Teoría_2425.md",
     "TERCERO/SS/SS 24-25.md",
     "TERCERO/ATR1/Resolución 1 Parcial ATR1.md",
