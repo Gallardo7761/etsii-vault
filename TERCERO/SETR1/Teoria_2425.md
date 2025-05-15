@@ -415,4 +415,109 @@ Principales (importantes para el examen):
 - Interface
 - Endpoint
 
-# 3300 VS 3333 en CLK: ruido frecuencia 1KHz por ruido porque los 23 datos anteriores se transfieren bien pero el ultimo da fallo al estar los tiempos tan apurados, 3333 se escucha mejor
+#### 3300 VS 3333 en CLK: ruido frecuencia 1KHz por ruido porque los 23 datos anteriores se transfieren bien pero el ultimo da fallo al estar los tiempos tan apurados, 3333 se escucha mejor
+
+# <mark style="background: #FFF3A3A6;">TEMA 6: Tolerancia a fallos</mark>
+Los mecanismos de tolerancia a fallos integrados en los μC suelen ser bastante simples. Los problemas que pueden detectar, y en algún caso, resolver.
+- Fallos de alimentación
+- Errores de código: _stack overflow_ (WDT)
+- Errores hardware: conexión externa interrumpida (WDT)
+- Corrupción memoria (WDT)
+- Fallo reloj (monitor de CLK)
+Los principales mecanismos son:
+- Watch Dog Timer (WDT) (Reset)
+- Monitores de reloj (Reset)
+- Instrucción no implementada (sin return)
+- Memoria no implementada (Int/Reset)
+## <mark style="background: #ADCCFFA6;">1. Reset encendido y fallos alimentación</mark>
+La línea RST se conecta a un circuito RC para que la línea de RST se retenga hasta que $V_{CC}$ alcanza el mínimo valor de tensión para que el μC opere correctamente. 
+![[Pasted image 20250515114753.png]]
+La solución del circuito RC en la línea de RST tiene a su vez dos fallos:
+- Los fallos momentáneos de alimentación
+- Momento de apagado
+![[Pasted image 20250515115243.png]]
+### <mark style="background: #FFB86CA6;">Solución: monitores de reset y alimentación</mark>
+![[Pasted image 20250515115411.png]]a
+## <mark style="background: #ADCCFFA6;">2. Watch Dog Timer</mark>
+En los μC es un mecanismo que mezcla software con un elemento hardware para detectar fallos:
+- Se basa en que el código en los SE es siempre cíclico y periódico
+- Si se tiene bien caracterizado ese tiempo de repetición (Tr) podemos decir que si en alguna ocasión se supera es porque el sistema se ha colgado
+- El WDT se programa para que produzca un Reset cada cierto tiempo Twdt > Tr
+La clave está en limpiar en el código el WDT en varios puntos, para que nunca llegue a Reset. Si el código deja de operar como debe, no se limpiará y habrá un Reset. El Twdt tiene que estar ajustado, ya que si es muy corto, habrá resets innecesarios, y si es muy largo, se desperdicia tiempo colgado.
+
+En el STM32, se usa un IWDT (Independent Clock WDT) para que si se cuelga el CLK del sistema, pueda dar un Reset. Y también se usa un WDWT (Window WDT), que marca una ventana temporal en la que se puede limpiar el timer, fuera de esa ventana no.
+# <mark style="background: #FFF3A3A6;">TEMA 7: FreeRTOS</mark>
+## <mark style="background: #ADCCFFA6;">1. Introducción</mark>
+![[Pasted image 20250515104540.png]]
+- **Tiempo real blando:** Se busca que el tiempo medio de respuesta sea menor que un tiempo predefinido.
+- **Tiempo real duro:** Se busca cumplir los plazos de respuesta estrictamento.
+### <mark style="background: #FFB86CA6;">Planificación manual para tiempo real</mark>
+![[Pasted image 20250515104751.png]]
+![[Pasted image 20250515104812.png]]
+Este método es más complejo que los RTOS, los cuáles están más en uso hoy en día.
+![[Pasted image 20250515104852.png]]
+### <mark style="background: #FFB86CA6;">Qué es una tarea</mark>
+Pieza de código ejecutable considerada un bloque básico en los STR, normalmente es un punto de entrada más el resto de funciones y recursos necesarios para su ejecución. Un programa tiene una o varias tareas.
+## <mark style="background: #ADCCFFA6;">2. Programación sistemas tiempo real</mark>
+### <mark style="background: #FFB86CA6;">1. Secuencial (bucle scan)</mark>
+Se ejecutan todas las tareas hasta el final antes de iniciar la siguiente. Se comparte información mediante variables globales. Latencia relativamente grande.ç
+![[Pasted image 20250515105326.png|200]]
+### <mark style="background: #FFB86CA6;">2. Primer/segundo plano</mark>
+Se usan interrupciones para disminuir la latencia de las tareas. Aparecen las zonas críticas, en las que hay que deshabilitar las interrupciones para evitar condiciones de carrera.
+![[Pasted image 20250515105628.png|400]]
+### <mark style="background: #FFB86CA6;">3. Sistema operativo tiempo real</mark>
+**Sistema Operativo:** colección de llamadas al sistema que proveen un conjunto básico de servicios para interactuar con el hardware.
+**Sistema Operativo Tiempo Real:** un SO que además proporciona mecanismos para permitir la programación de tareas en tiempo real. Suelen tener:
+- Soporte para ejecución concurrente (colas FIFO, semáforos)
+- **Planificador**
+- Gestión dinámica de memoria
+- Modular, para ahorrar recursos si algún módulo no se usa y se quiere quitar
+- Acceso a hardware a bajo nivel
+#### <mark style="background: #D2B3FFA6;">El planificador</mark>
+Decide que tarea hay que ejecutar. Hay dos tipos:
+- **Cooperativo:** las tareas llaman al planificador cuando terminan su ejecución o cuando consideran que llevan usando demasiado tiempo la CPU.
+- **Expropiativo:** el planificador se ejecuta automáticamente de forma periódica (tick) y hay una interrupción periódica que ejecuta el planificador.
+#### <mark style="background: #D2B3FFA6;">Planificación apropiativa</mark>
+El planificador, a parte de ejecutarse periódicamente por la interrupción guiada por los _ticks_,
+se ejecuta cada vez que una tarea realiza una llamada del sistema.
+#### <mark style="background: #D2B3FFA6;">Planificación basada en prioridades</mark>
+- **Prioridades fijas:** 
+	- Rate Monotonic (RM): mayor prioridad a las tareas con periodo más corto
+	- Deadline Monotonic (DM): mayor prioridad a las tareas con plazo de ejecución más corto
+- **Prioridades dinámicas:** 
+	- Earliest Deadline First (EDF): se planifica la tarea cuyo plazo está más cercano a expirar.
+## <mark style="background: #ADCCFFA6;">3. FreeRTOS. CMSIS-RTOS API</mark>
+Hay dos tipos: proporcionados por el fabricante y gratuitos, y los desarrollados para varios microcontroladores (como FreeRTOS).
+### <mark style="background: #FFB86CA6;">Estilo notación FreeRTOS</mark>
+Antiguamente se precedía el nombre de variables con el tipo (cVariable para char, fVariable para float, etc).
+### <mark style="background: #FFB86CA6;">Configuración de FreeRTOS</mark>
+Algunos parámetros:
+- USE_PREEMPTION: 1 RTOS expropiativo, 0 RTOS cooperativo
+- MAX_PRIORITIES: nº de prioridades a usar
+- TICK_RATE_HZ: frecuencia del tick
+- MINIMAL_STACK_SIZE: minima RAM asignada a tarea
+- TOTAL_HEAP_SIZE: RAM que puede usar el FreeRTOS
+### <mark style="background: #FFB86CA6;">Semáforos</mark>
+Cuando hay compartición de recursos hay tres mecanismos:
+- Suspender interrupciones y planificador (`taskENTER_CRITICAL`, `taskEXIT_CRITICAL`)
+- Suspender el planificador (`vTaskSuspendAll(osKernelLock)`, `vTaskResumeAll`)
+- Utilizar semáforos
+#### <mark style="background: #D2B3FFA6;">Interbloqueos</mark>
+Dos tareas y dos recursos, una adquiere uno y la otra el otro, pero las dos necesitan ambos para seguir y cada una se queda esperando al otro infinitamente. Se puede evitar:
+- Semáforos con un _timeout_, de esta forma no se espera infinitamente el semáforo.
+- Pidiendo los semáforos en el mismo orden siempre, haciendo que si no se obtiene el primero, no se pide el segundo
+- Haciendo que una sola función reentrante sea la que pide los recursos siempre en el mismo orden
+#### <mark style="background: #D2B3FFA6;">Inversión de prioridades</mark>
+![[Pasted image 20250515113438.png]]
+Se puede producir inversión de prioridades por culpa de los semáforos si lo tiene una tarea de baja prioridad, bloqueando una de alta prioridad. Para solucionar esto, se usan **mutex** que son semáforos binarios con **herencia de prioridades**.
+<div class="nota">
+<h1>DEF</h1>
+<span><strong>Herencia de prioridades:</strong> La tarea de baja prioridad (LP) hereda mientras tiene el semáforo la prioridad de la de tarea de alta prioridad (HP)</span>
+</div>
+### <mark style="background: #FFB86CA6;">Colas</mark>
+![[Pasted image 20250515113537.png]]
+### <mark style="background: #FFB86CA6;">Control de tiempo</mark>
+#### <mark style="background: #D2B3FFA6;">No periódico</mark>
+![[Pasted image 20250515113807.png]]
+#### <mark style="background: #D2B3FFA6;">Periódico</mark>
+![[Pasted image 20250515113822.png]]
