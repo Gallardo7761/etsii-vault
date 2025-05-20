@@ -284,6 +284,14 @@ $$
 <li><strong>Autosincronizada:</strong> Única línea por la que se envían datos y CLK. El reloj tiene que estar en el Tx. Para conseguir esto, se recurre a algo llamado <strong>CÓDIGO DE LÍNEA</strong></li>
 </ul>
 </div>
+$$
+\begin{equation}
+\frac{T}{2}>(T'-T)\times{L}
+\end{equation}
+$$
+T' = CLK - retraso
+T = CLK + retraso
+L = longitud de la trama
 ## <mark style="background: #ADCCFFA6;">5. Técnicas de señalización</mark>
 Define cómo los niveles de voltaje se corresponden con valores binarios. Hay varios ejemplos: unipolar, bipolar, RTZ, NRZ, Manchester. También describe con qué frecuencia el transmisor puede transmitir datos.
 ### <mark style="background: #FFB86CA6;">Manchester</mark>
@@ -500,3 +508,11 @@ $$
 ### NOTAS
 - Si SNR es grande la comunicación es buena (mas señal que ruido)
 - Si es pequeño, mala o imposible
+
+# <mark style="background: #FFF3A3A6;">TEMA 7: Digitalización, modulación, multiplexión</mark>
+## <mark style="background: #ADCCFFA6;">1. Muestreo de una señal</mark>
+$$
+\begin{equation}
+f_{MUESTREO}\geq2\times{f_{MÁX.}}
+\end{equation}
+$$

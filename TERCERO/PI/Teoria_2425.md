@@ -255,3 +255,29 @@ $$
 T_{R/W}=T_{ACCESO}+T_{Tx}+T_{DRIVER}=\text{latencia}+T_{BUSQUEDA}+\frac{1}{v_{Tx} (B/s)}+T_{DRIVER}
 \end{equation}
 $$
+
+# <mark style="background: #FFF3A3A6;">TEMA 8: Hardware de vídeo</mark>
+## <mark style="background: #ADCCFFA6;">1. Fundamentos físicos</mark>
+### <mark style="background: #FFB86CA6;">Monitor CRT</mark>
+![[Pasted image 20250520105622.png]]
+La frecuencia de refresco horizontal (48KHz) sirve para "rellenar" el monitor horizontalmente, mientras que la vertical (100Hz) sirve para retornar el refresco a la primera línea.
+### <mark style="background: #FFB86CA6;">Monitor LCD</mark>
+![[Pasted image 20250520110041.png]]
+Varias capas de cristal líquido en varias orientaciones. Los rayos que atraviesan: píxel encendido. Los rayos que no atraviesan: píxel apagado.
+- **Iluminación transmisiva:** fuente propia (LCD)
+- **Iluminación reflexiva:** fuente externa (pantallas de relojes, calculadoras, etc)
+La imagen se forma mediante una matriz de células LCD.
+- **Matriz pasiva:** LCD clásico.
+	- Disposición en forma de enrejado
+	- La luz se genera globalmente y la matriz la modifica
+- **Matriz activa:** TFT (Thin Film Transistor). Matriz de transistores fotoemisores (FET). Cada célula tiene luz propia. Mejor resolución y contraste.
+![[Pasted image 20250520110439.png]]
+# <mark style="background: #FFF3A3A6;">TEMA 9: Hardware de audio</mark>
+Normalmente tarjeta de audio de 16 bits. Para la síntesis se necesita un generador. Normalmente un sintetizador FM (Frequency Modulation) y una Wave Table. La reproducción la realiza el DSP. Desde el punto de vista de los estándares:- 
+- **Estándares HW**:
+	- **Sound Blaster:** de Creative Labs. Primer estándar de audio digital. **Se realiza la reproducción y síntesis por HW**. 
+- **Estándares SW**:
+	- **DirectSound:** estándar software de sonido de Microsoft.
+		- **DirectX:** sobre todo para juegos. Introduce DS3D (DirectSound 3D) para audio 3D.
+	- **A3D:** Aureal & NASA. Permite añadir a DirectSound acceleración HW. 
+	- **EAX:** Creative Labs. Similar a A3D pero menos prestaciones.
