@@ -1,14 +1,14 @@
 {
   "main": {
-    "id": "8d26a6fe9f964f6b",
+    "id": "8d970dd3c20747ae",
     "type": "split",
     "children": [
       {
-        "id": "e000b54db04ae812",
+        "id": "c1665f3e6c79f1d6",
         "type": "tabs",
         "children": [
           {
-            "id": "3eee65efd232b15f",
+            "id": "6810a5fd0edb5c2b",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -27,15 +27,15 @@
     "direction": "vertical"
   },
   "left": {
-    "id": "a9100b68fb330cb9",
+    "id": "9e6928e11c58750b",
     "type": "split",
     "children": [
       {
-        "id": "e23565b29f0b0277",
+        "id": "733bc56d59e3955c",
         "type": "tabs",
         "children": [
           {
-            "id": "a4eac8e6613b153b",
+            "id": "fc5a3261425cb48f",
             "type": "leaf",
             "state": {
               "type": "file-explorer",
@@ -48,7 +48,7 @@
             }
           },
           {
-            "id": "dd5726e5114a7c4e",
+            "id": "84db7289900a8572",
             "type": "leaf",
             "state": {
               "type": "search",
@@ -65,7 +65,7 @@
             }
           },
           {
-            "id": "1cbe9729fd2cf604",
+            "id": "d3dacda2f6aaed11",
             "type": "leaf",
             "state": {
               "type": "bookmarks",
@@ -78,24 +78,23 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300,
-    "collapsed": true
+    "width": 300
   },
   "right": {
-    "id": "44cf06183e1c1c7d",
+    "id": "3ad564d399e497ab",
     "type": "split",
     "children": [
       {
-        "id": "49cbf6da2f29f564",
+        "id": "9e4a50018aa44e45",
         "type": "tabs",
         "children": [
           {
-            "id": "1e44a907904513ce",
+            "id": "921191bb2f3548ba",
             "type": "leaf",
             "state": {
               "type": "backlink",
               "state": {
-                "file": "TERCERO/SS/SS 24-25.md",
+                "file": "TERCERO/PI/Teoria_2425.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -105,64 +104,58 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Backlinks for SS 24-25"
+              "title": "Backlinks for Teoria_2425"
             }
           },
           {
-            "id": "1f08a0ec99cf4a21",
+            "id": "efab66ce7de1707a",
             "type": "leaf",
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "TERCERO/SS/SS 24-25.md",
+                "file": "TERCERO/PI/Teoria_2425.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "Outgoing links from SS 24-25"
+              "title": "Outgoing links from Teoria_2425"
             }
           },
           {
-            "id": "2f9a57a1dc058b86",
+            "id": "cb5ed92f866e3a79",
             "type": "leaf",
             "state": {
               "type": "tag",
               "state": {
                 "sortOrder": "frequency",
-                "useHierarchy": true
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
               },
               "icon": "lucide-tags",
               "title": "Tags"
             }
           },
           {
-            "id": "32907795dd5fbf3f",
+            "id": "44cc2f6905834ea9",
             "type": "leaf",
             "state": {
               "type": "outline",
               "state": {
-                "file": "TERCERO/SS/SS 24-25.md"
+                "file": "TERCERO/PI/Teoria_2425.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of SS 24-25"
-            }
-          },
-          {
-            "id": "b40a18c39aef8e17",
-            "type": "leaf",
-            "state": {
-              "type": "git-view",
-              "state": {},
-              "icon": "git-pull-request",
-              "title": "Source Control"
+              "title": "Outline of Teoria_2425"
             }
           }
-        ],
-        "currentTab": 4
+        ]
       }
     ],
     "direction": "horizontal",
-    "width": 367.5,
+    "width": 300,
     "collapsed": true
   },
   "left-ribbon": {
@@ -177,53 +170,9 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "3eee65efd232b15f",
+  "active": "6810a5fd0edb5c2b",
   "lastOpenFiles": [
-    "TERCERO/PI/Teoria_2425.md",
-    "Pasted image 20250520110439.png",
-    "Pasted image 20250520110041.png",
-    "Pasted image 20250520105622.png",
-    "TERCERO/ATR2/Teoria_2425.md",
     "TERCERO/SETR1/Teoria_2425.md",
-    "Pasted image 20250515120558.png",
-    "Pasted image 20250515115411.png",
-    "Pasted image 20250515115243.png",
-    "Pasted image 20250515114753.png",
-    "Pasted image 20250515113822.png",
-    "Pasted image 20250515113807.png",
-    "Pasted image 20250515113537.png",
-    "TERCERO/IA/Teoría_2425.md",
-    "TERCERO/DAD/Teoria_2425.md",
-    "Untitled.md",
-    "Untitled 1.md",
-    "SEGUNDO/RC/Teoría_2324.md",
-    "SEGUNDO/AC/Teoría_2324.md",
-    "TERCERO/ATR1/Teoría_2425.md",
-    "conflict-files-obsidian-git.md",
-    "TERCERO/DAD/images",
-    "TERCERO/DAD/Presentación 24-25.md",
-    "TERCERO/ATR2",
-    "Untitled",
-    "TERCERO/DAD",
-    "TERCERO/PI/Presentación 24-25.md",
-    "TERCERO/SETR1/Presentación 24-25.md",
-    "TERCERO/SETR1",
-    "TERCERO/PI",
-    "TERCERO/SPD/Teoría_2425.md",
-    "TERCERO/SS/SS 24-25.md",
-    "TERCERO/ATR1/Resolución 1 Parcial ATR1.md",
-    "TERCERO/ATR1/Ejercicios.md",
-    "TERCERO/SPD/P4_SPD.md",
-    "TERCERO/SS/SS Lab.md",
-    "SEGUNDO/ADDA/Teoría_2324.md",
-    "TERCERO/IA/Apuntes Julia.md",
-    "SEGUNDO/IISSI2/Teoría_2324.md",
-    "SEGUNDO/IISSI1/Teoría_2324.md",
-    "TERCERO/SS/images",
-    "TERCERO/SPD/images",
-    "TERCERO/IA/images",
-    "TERCERO/ATR1/images",
-    "TERCERO/ATR1/Welcome.md",
-    "SEGUNDO/SO/Sin título.canvas"
+    "EXAMEN.md"
   ]
 }

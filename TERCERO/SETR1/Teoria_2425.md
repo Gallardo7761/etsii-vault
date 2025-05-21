@@ -44,7 +44,7 @@ Los sistemas de propósito general se pueden diferenciar de los sistemas empotra
 - En grandes cantidades son muy baratos
 - Multitud de formatos para satisfacer la industria
 ## <mark style="background: #ADCCFFA6;">3. Sistemas tiempo real</mark>
-
+0
 ![[Pasted image 20250206122521.png]]
 ### <mark style="background: #FFB86CA6;">Sistema Tiempo Real</mark>
 Sistema informático en el que la corrección del resultado depende tanto de su validez lógica como del instante en que se produce.
