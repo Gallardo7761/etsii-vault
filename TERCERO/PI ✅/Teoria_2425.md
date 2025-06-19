@@ -137,29 +137,33 @@ La interfaz usada para comunicar el disco duro y unidades ópticas con el PC se 
 #### UDMA == Ultra-ATA
 
 - **ATA-1:** Originalmente basada en el bus ISA.
-	- 40/44 pines
 	- M-S
-	- PIO y DMA
-	- Traducción de CHS (Cylinder, Head, Sector) y LBA (Logical Block Address) que admiten hasta 136,9GB pero limitado por la BIOS a 8,4GB (CHS + INT13h)
-- **ATA-2:** Amplía a unidades de almacenamiento en general, no sólo discos.
+	- Programmable I/O y Direct Memory Access
+	- Traducción de CHS y LBA admiten hasta 136,9GB pero limitado por BIOS a 8,4GB
+- **ATA-2:** 
 	- PIO y DMA más rápidos
 	- Gestión de energía
-	- Dispositivos extraíbles
-	- Soporte PCMCIA (PC Card, una especie de tarjeta de expansión de memoria)
-	- Se usa LBA de 28 bits (se empieza a soportar 137GB máx) pero la BIOS todavía podría limitar a 8,4GB.
-- **ATA-3:** Revisiones menores.
+	- Dispositivos extraíbles. Soporte PCMCIA (PC Card, una especie de tarjeta de expansión de memoria).
+- **ATA-3:** 
 	- S.M.A.R.T para auto análisis e informes del estado de la unidad.
 	- LBA obligatorio
 	- Seguridad con contraseña
-- **ATA/ATAPI-4:** Hace que las anteriores unidades de almacenamiento y las unidades CD-ROM, CD-RW, disquete, zip, cinta, etc se puedan conectar bajo una interfaz común.
+- **ATA/ATAPI-4:** 
+	- Interfaz comun para CD-ROM, CD-RW, disquete, zip, cinta, etc
 	- Agrega transferencia UDMA/33 (33MB/s)
-- **ATA/ATAPI-5:** Duplica la velocidad de UDMA/33 (66MB/s).
+- **ATA/ATAPI-5:** 
+	- Duplica la velocidad de UDMA/33 (66MB/s).
 	- Cables de 80 hilos
-- **ATA/ATAPI-6:** Reduce tiempos de configuración y aumenta la velocidad de reloj, por lo que esta especificación aumenta la velocidad de transferencia de Ultra-ATA a 100MB/s
+- **ATA/ATAPI-6:** 
+	- Reduce tiempos de configuración y aumenta la velocidad de reloj,
+	- Aumenta la velocidad de transferencia de UDMA a 100MB/s
 	- CHS se vuelve obsoleto
 	- LBA se extendió de 228 a 248 admitiendo discos de hasta 144.12PB.
-- **ATA/ATAPI-7:** Transferencias UDMA de 133MB/s. Incluye SATA 1.0 como parte del estándar ATA-7
-- **ATA/ATAPI-8:** Agrega las versiones SATA 2.x y 3.x.
+- **ATA/ATAPI-7:** 
+	- Transferencias UDMA de 133MB/s. 
+	- SATA 1.0 como parte del estándar ATA-7
+- **ATA/ATAPI-8:** 
+	- Agrega las versiones SATA 2.x y 3.x.
 	- Reemplaza funciones largas de R/W
 	- Comando TRIM para SSD, para informar al SO que bloques no están en uso para borrarse y prepararse para W en el futuro.
 ### <mark style="background: #FFB86CA6;">Limitaciones de BIOS</mark>

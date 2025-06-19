@@ -4,16 +4,16 @@
     "type": "split",
     "children": [
       {
-        "id": "c1665f3e6c79f1d6",
+        "id": "fa86efc3d94cc61f",
         "type": "tabs",
         "children": [
           {
-            "id": "6810a5fd0edb5c2b",
+            "id": "dc15afcb080885a2",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "TERCERO/PI/Teoria_2425.md",
+                "file": "TERCERO/PI ✅/Teoria_2425.md",
                 "mode": "source",
                 "source": false
               },
@@ -94,7 +94,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "TERCERO/PI/Teoria_2425.md",
+                "file": "TERCERO/SETR1/EXAMEN.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -104,7 +104,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Backlinks for Teoria_2425"
+              "title": "Backlinks for EXAMEN"
             }
           },
           {
@@ -113,12 +113,12 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "TERCERO/PI/Teoria_2425.md",
+                "file": "TERCERO/SETR1/EXAMEN.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "Outgoing links from Teoria_2425"
+              "title": "Outgoing links from EXAMEN"
             }
           },
           {
@@ -142,13 +142,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "TERCERO/PI/Teoria_2425.md",
+                "file": "TERCERO/SETR1/EXAMEN.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of Teoria_2425"
+              "title": "Outline of EXAMEN"
             }
           }
         ]
@@ -170,9 +170,53 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "6810a5fd0edb5c2b",
+  "active": "fc5a3261425cb48f",
   "lastOpenFiles": [
+    "TERCERO/TG",
+    "PRIMERO/FP ✅",
+    "PRIMERO/EDC ✅",
+    "PRIMERO/CED ✅",
+    "PRIMERO/E ✅",
+    "PRIMERO/ALN ✅",
+    "PRIMERO/IMD ✅",
+    "PRIMERO/CIN ✅",
+    "PRIMERO/AE",
+    "PRIMERO/FFI",
+    "PRIMERO",
+    "Untitled.md",
+    "TERCERO/PI ✅/Teoria_2425.md",
+    "TERCERO/ATR2/Teoria_2425.md",
     "TERCERO/SETR1/Teoria_2425.md",
-    "EXAMEN.md"
+    "SEGUNDO/RC ✅/Teoría_2324.md",
+    "TERCERO/SETR1/EXAMEN.md",
+    "TERCERO/SETR1/Presentación 24-25.md",
+    "TERCERO/PI ✅/EXAMEN PI.md",
+    "TERCERO/SS ✅/SS 24-25.md",
+    "TERCERO/SS ✅/SS Lab.md",
+    "TERCERO/SPD/Teoría_2425.md",
+    "TERCERO/SPD/P4_SPD.md",
+    "TERCERO/IA ✅/Apuntes Julia.md",
+    "TERCERO/IA ✅/Teoría_2425.md",
+    "TERCERO/DAD ✅/Teoria_2425.md",
+    "TERCERO/ATR1 ✅/Teoría_2425.md",
+    "TERCERO/ATR1 ✅/Resolución 1 Parcial ATR1.md",
+    "SEGUNDO/TC ✅/Teoría_2324.md",
+    "SEGUNDO/SO ✅/Teoría_2324.md",
+    "SEGUNDO/MD ✅/Apuntes Sage.md",
+    "SEGUNDO/IISSI2 ✅/Teoría_2324.md",
+    "SEGUNDO/IISSI1 ✅/Teoría_2324.md",
+    "SEGUNDO/DSD ✅/Teoría_2324.md",
+    "SEGUNDO/AC/Teoría_2324.md",
+    "SEGUNDO/ADDA ✅/Teoría_2324.md",
+    "SEGUNDO/ADDA ✅/images/Pasted image 20231106183346.png",
+    "SEGUNDO/ADDA ✅/images/Pasted image 20231009184410.png",
+    "TERCERO/SETR1/images/Screenshot_2025-05-20-22-44-15-771_com.myscript.nebo.png",
+    "TERCERO/SETR1/images/Screenshot_2025-05-21-00-40-48-110_com.myscript.nebo.png",
+    "TERCERO/SETR1/images/Screenshot_2025-05-20-23-17-28-779_com.myscript.nebo.png",
+    "TERCERO/SETR1/images/Screenshot_2025-05-20-22-54-00-843_com.myscript.nebo.png",
+    "TERCERO/SETR1/images/Screenshot_2025-05-20-22-47-13-012_com.myscript.nebo.png",
+    "TERCERO/SETR1/images/Screenshot_2025-05-20-22-46-01-773_com.myscript.nebo.png",
+    "TERCERO/SETR1/images/Pasted image 20250521015758.png",
+    "TERCERO/SETR1/images/Pasted image 20250521015738.png"
   ]
 }

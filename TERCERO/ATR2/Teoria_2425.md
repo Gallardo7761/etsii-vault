@@ -408,7 +408,7 @@ $$
 #### Pérdida en medios no guiados
 $$
 \begin{equation}
-L=10\times\log(4\pi/\lambda)^2~~~\text{(dB)}
+L=10\times\log(4\pi d/\lambda)^2~~~\text{(dB)}
 \end{equation}
 $$
 ## <mark style="background: #ADCCFFA6;">2. Desvanecimiento</mark>
