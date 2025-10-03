@@ -4,21 +4,21 @@
     "type": "split",
     "children": [
       {
-        "id": "fa86efc3d94cc61f",
+        "id": "f529bcc516060bd1",
         "type": "tabs",
         "children": [
           {
-            "id": "dc15afcb080885a2",
+            "id": "77e11ebaf654ab31",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "TERCERO/PI ✅/Teoria_2425.md",
+                "file": "TERCERO/SETR1/EXAMEN.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Teoria_2425"
+              "title": "EXAMEN"
             }
           }
         ]
@@ -160,6 +160,7 @@
   },
   "left-ribbon": {
     "hiddenItems": {
+      "bases:Create new base": false,
       "switcher:Open quick switcher": false,
       "graph:Open graph view": false,
       "canvas:Create new canvas": false,
@@ -170,33 +171,32 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "fc5a3261425cb48f",
+  "active": "77e11ebaf654ab31",
   "lastOpenFiles": [
-    "TERCERO/TG",
-    "PRIMERO/FP ✅",
-    "PRIMERO/EDC ✅",
-    "PRIMERO/CED ✅",
-    "PRIMERO/E ✅",
-    "PRIMERO/ALN ✅",
-    "PRIMERO/IMD ✅",
-    "PRIMERO/CIN ✅",
+    "TERCERO/SETR1/Teoria_2425.md",
+    "TERCERO/SPD/Teoría_2425.md",
+    "TERCERO/SPD/P4_SPD.md",
     "PRIMERO/AE",
     "PRIMERO/FFI",
     "PRIMERO",
-    "Untitled.md",
+    "TERCERO/TG",
+    "TERCERO/IA ✅/Teoría_2425.md",
+    "TERCERO/IA ✅/Apuntes Julia.md",
     "TERCERO/PI ✅/Teoria_2425.md",
-    "TERCERO/ATR2/Teoria_2425.md",
-    "TERCERO/SETR1/Teoria_2425.md",
+    "CUARTO/SSII",
+    "CUARTO/LDH",
+    "CUARTO/PGPI",
+    "CUARTO/SETR2",
+    "CUARTO/C",
+    "CUARTO",
+    "Untitled.md",
+    "TERCERO/ATR2 ✅/Teoria_2425.md",
     "SEGUNDO/RC ✅/Teoría_2324.md",
     "TERCERO/SETR1/EXAMEN.md",
     "TERCERO/SETR1/Presentación 24-25.md",
     "TERCERO/PI ✅/EXAMEN PI.md",
     "TERCERO/SS ✅/SS 24-25.md",
     "TERCERO/SS ✅/SS Lab.md",
-    "TERCERO/SPD/Teoría_2425.md",
-    "TERCERO/SPD/P4_SPD.md",
-    "TERCERO/IA ✅/Apuntes Julia.md",
-    "TERCERO/IA ✅/Teoría_2425.md",
     "TERCERO/DAD ✅/Teoria_2425.md",
     "TERCERO/ATR1 ✅/Teoría_2425.md",
     "TERCERO/ATR1 ✅/Resolución 1 Parcial ATR1.md",
