@@ -1,9 +1,9 @@
 {
   "theme": "moonstone",
-  "accentColor": "#5f78f1",
+  "accentColor": "#865ff1",
   "enabledCssSnippets": [
     "nota",
     "warning"
   ],
-  "cssTheme": ""
+  "cssTheme": "Adwaita"
 }
