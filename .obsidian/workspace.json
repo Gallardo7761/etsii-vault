@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "CUARTO/SSII/Teoria_2526.md",
+                "file": "CUARTO/AII/Teoria_2526.md",
                 "mode": "source",
                 "source": false
               },
@@ -78,7 +78,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 300,
+    "collapsed": true
   },
   "right": {
     "id": "3ad564d399e497ab",
@@ -166,39 +167,46 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 300,
+    "collapsed": true
   },
   "left-ribbon": {
     "hiddenItems": {
-      "table-editor-obsidian:Advanced Tables Toolbar": false,
-      "obsidian-git:Open Git source control": false,
       "bases:Create new base": false,
       "switcher:Open quick switcher": false,
       "graph:Open graph view": false,
       "canvas:Create new canvas": false,
       "daily-notes:Open today's daily note": false,
       "templates:Insert template": false,
-      "command-palette:Open command palette": false
+      "command-palette:Open command palette": false,
+      "table-editor-obsidian:Advanced Tables Toolbar": false,
+      "obsidian-git:Open Git source control": false
     }
   },
-  "active": "fc5a3261425cb48f",
+  "active": "f76c0dfd568461ec",
   "lastOpenFiles": [
-    "CUARTO/SETR2/Teoria_2526.md",
+    "Pasted image 20260217115003.png",
+    "CUARTO/PHAE/Teoria_2526.md",
+    "Pasted image 20260210134109.png",
+    "Pasted image 20260210131013.png",
+    "Pasted image 20260210130956.png",
+    "Pasted image 20260210125017.png",
+    "CUARTO/AII/Teoria_2526.md",
+    "Pasted image 20260205135941.png",
+    "Pasted image 20260205135914.png",
+    "Pasted image 20260129132034.png",
+    "Pasted image 20260129130447.png",
+    "Pasted image 20260129125719.png",
+    "Pasted image 20260129125503.png",
+    "CUARTO/AII/Presentacion.md",
+    "CUARTO/PHAE",
     "CUARTO/SSII/Teoria_2526.md",
+    "CUARTO/AII",
+    "CUARTO/SETR2/Teoria_2526.md",
     "Untitled 1.md",
     "Untitled.md",
     "CUARTO/LDH/Teoria_2526.md",
-    "CUARTO/LDH/images/Pasted image 20251009170238.png",
-    "CUARTO/LDH/images/Pasted image 20251009171446.png",
     "CUARTO/LDH/images",
-    "CUARTO/LDH/images/Pasted image 20251009171435.png",
-    "CUARTO/LDH/images/Pasted image 20251009171228.png",
-    "CUARTO/LDH/images/Pasted image 20251009170726.png",
-    "CUARTO/LDH/images/Pasted image 20251009184115.png",
-    "CUARTO/LDH/images/Pasted image 20251009173436.png",
-    "CUARTO/LDH/images/Pasted image 20251009173344.png",
-    "CUARTO/LDH/images/Pasted image 20251009171614.png",
-    "CUARTO/LDH/images/Pasted image 20251009171540.png",
     "SEGUNDO/DSD/Teoría_2324.md",
     "CUARTO/SSII",
     "CUARTO/LDH",
@@ -216,18 +224,12 @@
     "TERCERO/SPD/Teoría_2425.md",
     "TERCERO/SPD/P4_SPD.md",
     "PRIMERO/AE",
-    "PRIMERO/FFI",
-    "PRIMERO",
     "TERCERO/IA/Teoría_2425.md",
     "TERCERO/IA/Apuntes Julia.md",
     "TERCERO/PI/Teoria_2425.md",
     "TERCERO/ATR2/Teoria_2425.md",
     "SEGUNDO/RC/Teoría_2324.md",
     "TERCERO/SETR1/Presentación 24-25.md",
-    "TERCERO/PI/EXAMEN PI.md",
-    "TERCERO/SS/SS 24-25.md",
-    "TERCERO/SS/SS Lab.md",
-    "TERCERO/ATR1/Teoría_2425.md",
-    "TERCERO/ATR1/Resolución 1 Parcial ATR1.md"
+    "TERCERO/PI/EXAMEN PI.md"
   ]
 }
