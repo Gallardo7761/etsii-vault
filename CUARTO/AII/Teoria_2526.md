@@ -56,3 +56,117 @@ El voto de cada link es **proporcional** a la importancia de la **página fuente
 - Los IR están recibiendo cada día más **personalización**. 
 - Los IR **localizan contenido relevante** para el usuario, que debería ser capaz de evaluar dicha relevancia.
 - Los RS **diferencian contenido relevante** para el usuario, que no tiene conocimiento para evaluar la relevancia.
+# <mark style="background: #FFF3A3A6;">Recuperación de información booleana</mark>
+## <mark style="background: #ADCCFFA6;">1. Introducción</mark>
+Usar un modelo booleano significa que la información necesita ser traducido a operadores booleanos.
+**Colección:** conjunto de documentos.
+**Objetivo:** recuperar documentos con información relevante para las necesidades del usuario y que lo ayuda a completar una tarea.
+### <mark style="background: #FFB86CA6;">Precisión y cobertura</mark>
+**Precisión:** fracción de los documentos recuperados que son relevantes.
+**Cobertura:** fracción de los documentos relevantes que se recuperan.
+![[Pasted image 20260224110141.png|500]]
+### <mark style="background: #FFB86CA6;">Matriz de incidencia término-documento</mark>
+
+|               | Antony and Cleopatra | Julius Caesar | The Tempest | Hamlet | Othello | Macbeth |
+| ------------- | -------------------- | ------------- | ----------- | ------ | ------- | ------- |
+| **Antony**    | 1                    | 1             | 0           | 0      | 0       | 1       |
+| **Brutus**    | 1                    | 1             | 0           | 1      | 0       | 0       |
+| **Caesar**    | 1                    | 1             | 0           | 1      | 1       | 1       |
+| **Calpurnia** | 0                    | 1             | 0           | 0      | 0       | 0       |
+| **Cleopatra** | 1                    | 0             | 0           | 0      | 0       | 0       |
+| **mercy**     | 1                    | 0             | 1           | 1      | 1       | 1       |
+| **worser**    | 1                    | 0             | 1           | 1      | 1       | 0       |
+Tenemos un vector booleano par cada término. 
+#### <mark style="background: #D2B3FFA6;">Para colecciones más grandes...</mark>
+Con $N = 1\times 10^6$ de documentos de ~$1000$ palabras (6GB de datos considerando cada palabra 6B). Suponemos $M = 500\times 10^3$ términos distintos. La matriz sería de $N\times M$.
+## <mark style="background: #ADCCFFA6;">2. Índice invertido</mark>
+Para cada término $t$, debemos almacenar una lista de documentos que contengan $t$. Como lista asociada a $t$ se suele usar una **lista enlazada**.
+### <mark style="background: #FFB86CA6;">Construcción del índice</mark>
+1. **Tokenizar:** "limpiar" el documento para quedarnos con _tokens_ que no son más que palabras o términos libres de signos de puntuación.
+2. **Módulos lingüísticos:** los hay más complejos y más simples (_stemmer_). Un ejemplo podría ser poner todo en minúsculas, quitar plurales, etc.
+3. **Indexar:** se añaden nodos (**docID**) a la lista enlazada asociada a $t$ que serían los documentos donde aparece $t$. Los pasos para indexar son:
+	1. Tokenizar.
+	2. Ordenar.
+	3. Construir el diccionario de términos: lista enlazada de postings.
+### <mark style="background: #FFB86CA6;">Haciendo queries</mark>
+Si queremos un documento en el que salgan **Brutus** y **Caesar** (Brutus AND Caesar), el algoritmo pone un puntero al inicio de las dos listas enlazadas, si coinciden los **docID** se añaden los dos y se incrementan los punteros, y si no, se incrementa el más pequeño.
+![[Pasted image 20260224112101.png|300]]
+#### <mark style="background: #D2B3FFA6;">Optimización de queries</mark>
+Si se necesita hacer la AND entre varios términos, se empieza con el que tenga la lista enlazada de postings más pequeña. En caso de las OR, se estima el tamaño sumando las frecuecias de los documentos.
+### <mark style="background: #FFB86CA6;">Qué no puede hacer la RI booleana</mark>
+- No se pueden buscar frases. Ej: Universidad de Sevilla.
+- Proximidad: PALABRA1 cerca de PALABRA2
+- Zonas: (autor = JKR) AND (text contains Harry Potter)
+## <mark style="background: #ADCCFFA6;">3. Mejora del algoritmo merge pointers</mark>
+Se pueden usar punteros de salto.
+![[Pasted image 20260224113246.png|400]]
+La idea es poder avanzar varios postings si uno de los dos punteros es muy pequeño en comparación al otro. Hay que balancear, si ponemos muchos punteros de salto podemos saltar muchas veces pero habría demasiadas comparaciones. Si ponemos pocos hay menos comparación pero los saltos son menos exitosos debido a la distancia entre postings. Una heurística común para postings de longitud $L$ es $\sqrt(L)$.
+## <mark style="background: #ADCCFFA6;">4. Estructuras de datos para índices invertidos</mark>
+### <mark style="background: #FFB86CA6;">Tablas hash</mark>
+Cada término se hashea. La búsqueda es más rápida que en un árbol ($O(1)$), pero:
+- No hay forma de encontrar variantes (judgement/judgment).
+- No se puede buscar prefijos
+- Si el vocabulario crece, necesitamos **rehashear todo**.
+### <mark style="background: #FFB86CA6;">B-Trees</mark>
+Cada vértice tiene un número de hijos en el intervalo $[a,b]~~a,b\in N$. Resuelven el problema de buscar por prefijo. Es más lento $O(log~M)$ al buscar y además hay que rebalancear el árbol.
+# <mark style="background: #FFF3A3A6;">Recuperación de información vectorial</mark>
+## <mark style="background: #ADCCFFA6;">1. Introducción</mark>
+Es un buen sistema para usuarios expertos que sepan usar operadores lógicos para formar expresiones complejas en sus queries. El modelo ranked/vectorial tiene varias ventajas:
+- El sistema devuelve unos resultados ordenados respecto a la query hecha.
+- Se suelen hacer las queries en formato de texto libre **PERO NO ES OBLIGATORIO**.
+## <mark style="background: #ADCCFFA6;">2. Estableciendo el ranking</mark>
+Necesitamos aplicar una puntuación a los documentos en función de cuanto se parezca a la query del usuario. Hay varias formas de asignar puntuación.
+### <mark style="background: #FFB86CA6;">1. Coeficiente de Jaccard</mark>
+Es una medida comúnmente usada de intersección de dos conjuntos $A$ y $B$.
+$$
+jaccard(A,B)=|A\cap B|~~/~~|A\cup B|
+$$
+$$
+jaccard(A,A) = 1
+$$
+$$
+jaccard(A,B)=0~~if~~A\cap B =0
+$$
+#### <mark style="background: #D2B3FFA6;">Problemas</mark>
+- No tiene en cuenta la frecuencia del término en el documento.
+- Términos **raros** son más informativos que los comunes, y tampoco los tiene en cuenta. 
+- Necesitamos normalizar.
+### <mark style="background: #FFB86CA6;">2. Modelo bolsa de palabras</mark>
+No tiene en cuenta el orden. _John is quicker than Mary_ y _Mary is quicker than John_ tendrían los mismos vectores.
+## <mark style="background: #ADCCFFA6;">3. Frecuencias</mark>
+### <mark style="background: #FFB86CA6;">Frecuencia del término tf</mark>
+La frecuencia del término $tf_{t,d}$ de un término $t$ en un documento $d$ está definida por el número de veces que $t$ aparece en $d$.
+
+Se suaviza con el logaritmo:
+$$
+w_{t,d}=
+\begin{cases}
+    1+\log{tf_{t,d}}~,~~~~\text{si}~~ tf_{t,d} > 0 \\
+    0,~~~~\text{e.o.c}
+\end{cases}
+$$
+
+### <mark style="background: #FFB86CA6;">Frecuencia del documento df</mark>
+La frecuencia del documento del término $t$, $df_t$ es el número de documentos que contienen a $t$. Es una medida inversa de la "informatividad" de $t$ (cuanto más pequeña mejor). $df_t \leq N$. Definimos la **frecuencia inversa del documento** de $t$ como:
+$$
+idf_t=\log{(\frac{N}{df_t})}
+$$
+#### <mark style="background: #D2B3FFA6;">Efecto del idf en el ranking</mark>
+No tiene efecto en el ranking, es el mismo para todas las palabras.
+### <mark style="background: #FFB86CA6;">Peso tf-idf</mark>
+$$
+W_{t,d}=(1+\log{tf_{t,d}})\times\log{(\frac{N}{df_t})}
+$$
+### <mark style="background: #FFB86CA6;">Puntuación</mark>
+$$
+Score(d,q)=\sum_{t\in q\cap  d} tf_{t,d}\times idf_t
+$$
+## <mark style="background: #ADCCFFA6;">4. Documentos y queries como vectores</mark>
+Tenemos un espacio vectorial |V|-dimensional. Son vectores muy dispersos con muchos 0's. Los términos son los ejes del espacio y los documentos son puntos o vectores en este espacio.
+
+Hacemos lo mismo con las queries, representarlas como vectores en el espacio.
+### <mark style="background: #FFB86CA6;">Formalizando la proximidad entre vectores en el espacio</mark>
+#### <mark style="background: #D2B3FFA6;">Distancia Euclídea</mark> 
+No es buena idea puesto que si dos vectores se superponen (porque son el mismo documento) pero tienen distinto módulo va a salir que hay distancia de un documento consigo mismo.
+#### <mark style="background: #D2B3FFA6;">Mejor: usar el ángulo</mark>
+Para usar el ángulo tenemos que normalizar los vectores volviéndolos unitarios y entonces podemos comparar la proximidad mediante el ángulo entre ellos.
