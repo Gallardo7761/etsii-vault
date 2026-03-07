@@ -170,3 +170,162 @@ Hacemos lo mismo con las queries, representarlas como vectores en el espacio.
 No es buena idea puesto que si dos vectores se superponen (porque son el mismo documento) pero tienen distinto módulo va a salir que hay distancia de un documento consigo mismo.
 #### <mark style="background: #D2B3FFA6;">Mejor: usar el ángulo</mark>
 Para usar el ángulo tenemos que normalizar los vectores volviéndolos unitarios y entonces podemos comparar la proximidad mediante el ángulo entre ellos.
+# <mark style="background: #FFF3A3A6;">Whoosh</mark>
+## <mark style="background: #ADCCFFA6;">1. Introducción</mark>
+Whoosh sólo funciona con caracteres unicode. El workflow es el mismo siempre:
+1. Crear un schema con los tipos de los datos que tendrá el índice
+   - Con `stored=True` en los tipos, se indica los campos que se almacenarán. Solamente los campos que estén almacenados se mostrarán en `print` o similares.
+1. Crear el indexador
+2. Crear el writer
+3. Añadir documentos al writer (y commit)
+### <mark style="background: #FFB86CA6;">Ejemplo de búsqueda</mark>
+```python
+with ix.searcher() as searcher:
+	query = QueryParser("content", ix.schema).parse("hola") # contenido a buscar
+	results = searcher.search(query)
+	results[0]
+```
+## <mark style="background: #ADCCFFA6;">2. Diseño del schema</mark>
+### <mark style="background: #FFB86CA6;">Tipos</mark>
+- **`TEXT`**: por defecto almacena la posición de cada término indexado por si hay que buscar por frases. Si no hace falta buscar por frases, mejor pasarle `phrase=False`.
+- **`KEYWORD`**: para keywords separadas por `,` se usa `KEYWORD`. Se puede especificar si está separado por comas con `commas=True` (por defecto está separado por `' '`). También se puede usar  `lowercase=True` para convertirlo a minúsculas automáticamente. Por último, `scorable=True` es por si el campo se usará para buscar.
+- **`ID`**: se indexan sin dividirse en términos. No vale para el ranking. Se usa para la url, el path, la fecha, etc. Por defecto tienen `stored=False`.
+- **`STORED`**: se almacena pero ni se indexa ni se puede buscar en él. Se suele usar para información que se mostrará solamente.
+- **`NUMERIC`**: para números
+- **`DATETIME`**: para fechas
+- **`BOOLEAN`**: para booleanos. Permite buscar por `'yes'`, `'no'`, `'true'`, `'false'`, `1`, `0`, `'t'` o `'f'`.
+### <mark style="background: #FFB86CA6;">Creando un schema</mark>
+```python
+schema = Schema(from_addr=ID(stored=True),
+                to_addr=ID(stored=True),
+                subject=TEXT(stored=True),
+                body=TEXT(analyzer=StemmingAnalyzer()),
+                tags=KEYWORD)
+```
+### <mark style="background: #FFB86CA6;">Modificando el schema después de indexar</mark>
+```python
+writer = ix.writer()
+writer.add_field("fieldname", fields.TEXT(stored=True))
+writer.remove_field("content")
+writer.commit()
+```
+Con `optimize=True` en el commit, se hace el borrado físico de los datos eliminados con `.remove_field()`.
+### <mark style="background: #FFB86CA6;">Campos dinámicos</mark>
+Son campos cuyos valores se capturarán mediante regex. Se crean así:
+```python
+schema.add("*_d", fields.DATETIME(stored=True), glob=True)
+```
+### <mark style="background: #FFB86CA6;">Dando pesos a los campos para el ranking</mark>
+Con el atributo `field_boost` podemos darle más valor a un campo que a otro para la búsqueda rankeada.
+## <mark style="background: #ADCCFFA6;">3. Indexando documentos</mark>
+Para crear un índice usamos:
+```python
+ix = index.create_in("indexdir", schema)
+```
+Y para buscar en uno ya creado:
+```python
+ix = index.open_dir("indexdir")
+```
+Para añadir documentos al índice ya creado, se crea un writer y se añaden documentos. 
+```python
+writer.add_document(title=u"Title to be indexed", _stored_title=u"Stored title")
+```
+En realidad, un índice creado por `filedb` es un contenedor de varios subíndices llamados segmentos. Para borrar documentos se puede borrar de varias formas:
+ ```python 
+delete_by_term(fieldname, termtext)
+delete_by_query(query)
+ ```
+ Para actualizar documentos es obligatorio que haya un campo `unique=True`, **aunque esto no hace que no se pueda repetir (no tiene que ver con las KEY de BBDD relacionales)**. La función para actualizar:
+ ```python 
+ writer.update_document(path=u"/a", content="Replacement for the first document")
+ ```
+## <mark style="background: #ADCCFFA6;">4. Buscando en el índice</mark>
+Se usa un objeto Searcher para buscar:
+```python 
+qp = QueryParser("content", schema=myindex.schema)
+q = qp.parse(u"hello world")
+
+with myindex.searcher() as s:
+    results = s.search(q)
+```
+Se le puede poner `limit` a la query para que de mas de los 10 resultados rankeados por defecto que devuelve. Con `limit=None` devuelve todos.
+### <mark style="background: #FFB86CA6;">Objeto Results</mark>
+Es una lista de dicts. Tiene varias funciones para ver el número de resultados sin rankear o rankeados.
+```python 
+found = results.scored_length()
+if results.has_exact_length():
+    print("Scored", found, "of exactly", len(results), "documents")
+else:
+    low = results.estimated_min_length()
+    high = results.estimated_length()
+
+    print("Scored", found, "of between", low, "and", high, "documents")
+```
+### <mark style="background: #FFB86CA6;">Algoritmos de ranking</mark>
+```python
+with myindex.searcher(weighting=scoring.TF_IDF()) as s:
+	...
+```
+### <mark style="background: #FFB86CA6;">Filtrando</mark>
+```python
+with myindex.searcher() as s:
+    qp = qparser.QueryParser("content", myindex.schema)
+    user_q = qp.parse(query_string)
+
+    # Only show documents in the "rendering" chapter
+    allow_q = query.Term("chapter", "rendering")
+    # Don't show any documents where the "tag" field contains "todo"
+    restrict_q = query.Term("tag", "todo")
+
+    results = s.search(user_q, filter=allow_q, mask=restrict_q)
+```
+## <mark style="background: #ADCCFFA6;">5. Parseando queries</mark>
+- En las queries se pueden usar operadores como `AND` o `OR`. Por defecto es `AND`, pero si queremos que sean `OR` sin ponerlos, se puede hacer así:
+```python
+parser = qparser.QueryParser(fieldname, schema=myindex.schema,
+                             group=qparser.OrGroup)
+```
+- Para buscar en varios campos:
+```python
+mparser = MultifieldParser(["title", "content"], schema=myschema)
+```
+- Para buscar frases se debe poner la query entre `""`. 
+- También se puede usar `~X` para ver si una palabra está `X` palabras después  (`whoosh library~5`). 
+- Si no se pone `campo:valor` buscará siempre en el campo por defecto. 
+- Para términos inexactos se usan patrones que usan `?` para un sólo caracter y `*` para varios (**se aplican solo a palabras no a frases**). 
+- Para rangos, se usa `TO`. Se pueden usar también para fechas (formato por defecto: YYYYMMDD). 
+  ```
+  date:[20050101 TO 20090715]
+  [0000 TO 0025}
+  {prefix TO suffix}
+  [0025 TO]
+  {TO suffix}
+  ```
+  - Se puede especificar el peso de la palabra independientemente del campo en el que aparezca con `^X` donde `X` es el peso.
+## <mark style="background: #ADCCFFA6;">6. Otros formatos de fecha</mark>
+Con el `DateParserPlugin` (que se añade al QueryParser con `.add_plugin(DateParserPlugin())`) se puede buscar por varias cosas:
+```
+20050912
+2005 sept 12th
+june 23 1978
+23 mar 2005
+july 1985
+sep 12
+today
+yesterday
+tomorrow
+now
+next friday
+last tuesday
+5am
+10:25:54
+23:12
+8 PM
+4:46 am oct 31 2010
+last tuesday to today
+today to next friday
+jan 2005 to feb 2008
+-1 week to now
+now to +2h
+-1y6mo to +2 yrs 23d
+```

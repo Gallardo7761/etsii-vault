@@ -44,7 +44,7 @@
                 "autoReveal": false
               },
               "icon": "lucide-folder-closed",
-              "title": "Files"
+              "title": "Explorador de archivos"
             }
           },
           {
@@ -78,8 +78,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300,
-    "collapsed": true
+    "width": 300
   },
   "right": {
     "id": "3ad564d399e497ab",
@@ -172,32 +171,31 @@
   },
   "left-ribbon": {
     "hiddenItems": {
-      "bases:Create new base": false,
-      "switcher:Open quick switcher": false,
-      "graph:Open graph view": false,
-      "canvas:Create new canvas": false,
-      "daily-notes:Open today's daily note": false,
-      "templates:Insert template": false,
-      "command-palette:Open command palette": false,
+      "switcher:Abrir selector rápido": false,
+      "graph:Abrir vista gráfica": false,
+      "canvas:Crear nuevo lienzo": false,
+      "daily-notes:Abrir la nota de hoy": false,
+      "templates:Insertar plantilla": false,
+      "command-palette:Abrir paleta de comandos": false,
+      "bases:Crear nueva base": false,
       "table-editor-obsidian:Advanced Tables Toolbar": false,
       "obsidian-git:Open Git source control": false
     }
   },
   "active": "f76c0dfd568461ec",
   "lastOpenFiles": [
+    "CUARTO/PHAE/Teoria_2526.md",
+    "CUARTO/AII/Teoria_2526.md",
     "Pasted image 20260224113246.png",
     "Pasted image 20260224112101.png",
     "Pasted image 20260224110141.png",
     "Pasted image 20260217115003.png",
-    "CUARTO/PHAE/Teoria_2526.md",
     "Pasted image 20260210134109.png",
     "Pasted image 20260210131013.png",
     "Pasted image 20260210130956.png",
     "Pasted image 20260210125017.png",
-    "CUARTO/AII/Teoria_2526.md",
     "Pasted image 20260205135941.png",
     "Pasted image 20260205135914.png",
-    "Pasted image 20260129132034.png",
     "CUARTO/AII/Presentacion.md",
     "CUARTO/PHAE",
     "CUARTO/SSII/Teoria_2526.md",
