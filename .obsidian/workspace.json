@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "CUARTO/AII/Teoria_2526.md",
+                "file": "CUARTO/PHAE/Teoria_2526.md",
                 "mode": "source",
                 "source": false
               },
@@ -78,7 +78,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 300,
+    "collapsed": true
   },
   "right": {
     "id": "3ad564d399e497ab",
@@ -184,18 +185,19 @@
   },
   "active": "f76c0dfd568461ec",
   "lastOpenFiles": [
-    "CUARTO/PHAE/Teoria_2526.md",
+    "Pasted image 20260416135908.png",
+    "Pasted image 20260416135242.png",
+    "Pasted image 20260416135153.png",
+    "Pasted image 20260416134807.png",
+    "Pasted image 20260416133533.png",
+    "Pasted image 20260416133515.png",
+    "Pasted image 20260416133353.png",
+    "Pasted image 20260416133151.png",
+    "Pasted image 20260414141023.png",
+    "Pasted image 20260414135255.png",
+    "Pasted image 20260414133557.png",
     "CUARTO/AII/Teoria_2526.md",
-    "Pasted image 20260224113246.png",
-    "Pasted image 20260224112101.png",
-    "Pasted image 20260224110141.png",
-    "Pasted image 20260217115003.png",
-    "Pasted image 20260210134109.png",
-    "Pasted image 20260210131013.png",
-    "Pasted image 20260210130956.png",
-    "Pasted image 20260210125017.png",
-    "Pasted image 20260205135941.png",
-    "Pasted image 20260205135914.png",
+    "CUARTO/PHAE/Teoria_2526.md",
     "CUARTO/AII/Presentacion.md",
     "CUARTO/PHAE",
     "CUARTO/SSII/Teoria_2526.md",

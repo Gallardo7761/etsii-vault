@@ -329,3 +329,54 @@ jan 2005 to feb 2008
 now to +2h
 -1y6mo to +2 yrs 23d
 ```
+# <mark style="background: #FFF3A3A6;">Introducción a los sistemas de recomendación</mark>
+## <mark style="background: #ADCCFFA6;">1. Introducción</mark>
+Un sistema de recomendación es bueno cuando también recomienda items del conjunto de los menos populares.
+![[Pasted image 20260414110436.png]]
+Hay varios tipos:
+### <mark style="background: #FFB86CA6;">Colaborativos</mark>
+![[Pasted image 20260414110116.png]]
+### <mark style="background: #FFB86CA6;">Basado en contenido</mark>
+![[Pasted image 20260414110247.png]]
+### <mark style="background: #FFB86CA6;">Basado en conocimiento</mark>
+![[Pasted image 20260414110315.png]]
+## <mark style="background: #ADCCFFA6;">2. Sistemas de recomendación colaborativos</mark>
+Es el más usado para recomendar items. Lo suelen usar sitos de _e-commerce_ ya son muy conocidos y hay varios algoritmos. Se pueden aplicar a muchos dominios (libros, películas, etc).
+
+**Entrada**
+- Matriz usuarios-ratings
+**Salida**
+- Predicción numérica sobre el gusto de un usuario sobre un item
+- Una lista de los top N items más recomendados
+### <mark style="background: #FFB86CA6;">Nearest neighbor</mark>
+Dado un usuario $A$ y un item $i$ todavía no visto por $A$:
+- Se busca un conjunto de usuarios que se parecen a $A$ (neighbors) a los que les gustaron los mismos items que $A$ en el pasado.
+- Se usa, por ejemplo, la media para predecir si a $A$ le gusta el item $i$.
+- Se repite para todos los items que $A$ no ha visto, y se le recomiendan los que tienen más reseñas.
+#### <mark style="background: #D2B3FFA6;">Ejemplo</mark>
+![[Pasted image 20260414111105.png]]
+### <mark style="background: #FFB86CA6;">Midiendo la similaridad entre usuarios</mark>
+Lo más usado es el **coeficiente de correlación de Pearson**.
+- $a$, $b$ : usuarios
+- $r_{a, p}$ : reseña del usuario $a$ para el item $p$
+- $P$ : conjunto de items reseñado tanto por $a$ como por $b$.
+- valores posibles $\in [-1, 1]$
+
+![[Pasted image 20260414111421.png]]
+#### <mark style="background: #D2B3FFA6;">Haciendo predicciones</mark>
+
+![[Pasted image 20260414111533.png]]
+
+#### <mark style="background: #D2B3FFA6;">Mejorando la función de predicción</mark>
+- No todas las reseñas tienen el mismo peso:  dar más peso a items con reseñas más variadas
+- Cuanto más se parecen los usuarios más peso tienen sus puntuaciones
+### <mark style="background: #FFB86CA6;">Basado en memoria VS Basado en modelo</mark>
+Para no tener que recomendar basándose en la matriz ya que si esta es muy grande cuesta mucho tiempo, se usan modelos que aproximan la matriz original y son mucho más rápidos. Un sistema colaborativo basado en modelo es por ejemplo el **basado en items**.
+### <mark style="background: #FFB86CA6;">Basado en items</mark>
+Usa la similaridad entre items y no usuarios para las predicciones. Las puntuaciones se ven como vectores en un espacio n-dimensional. La similaridad es el ángulo entre los vectores.
+![[Pasted image 20260414112557.png]]
+#### <mark style="background: #D2B3FFA6;">Haciendo predicciones</mark>
+
+![[Pasted image 20260414112740.png]]
+
+Se puede precalcular $sim(i, p)$ para que el cálculo no sea con la matriz si no con resultados ya calculados.

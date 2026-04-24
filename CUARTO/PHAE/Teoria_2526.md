@@ -174,3 +174,162 @@ Soporte para JTAG. Hasta 8 procesadores MicroBlaze. Interfaces AXI4-Lite o PLBv4
 ## <mark style="background: #ADCCFFA6;">4. Flujo de diseño</mark>
 ![[Pasted image 20260210134109.png|500]]
 Al desaarrollar software en un computador, el IDE y la aplicación se ejecutan en la misma máquina (código nativo). Sin embargo en un SE, se ejecutan cada uno en un sitio (compilación cruzada). 
+# <mark style="background: #FFF3A3A6;">TEMA 4: Arquitectura, compilación y optimización</mark>
+## <mark style="background: #ADCCFFA6;">1. Arquitectura del sistema</mark>
+La síntesis es partir de las especificaciones del comportamiento de un sistema y unas restricciones que deben satisfacerse para encontrar una estructura que implemente dicho comportamiento y satisfaga dichas restricciones.
+![[Pasted image 20260414124654.png]]
+1. Se compila y se realiza una optimización.
+2. Se planifican las tareas que realizará el sistema.
+3. Se asignan recursos hardware genéricos que realizarán el algoritmo.
+4. Se escogen componentes reales de una librería de componentes.
+### <mark style="background: #FFB86CA6;">Estructura de un sistema digital</mark>
+Consta de una **unidad de datos** y de una **unidad de control**. La unidad de datos realiza el procesado de los datos bajo la supervisión de la unidad de control. 
+![[Pasted image 20260414125114.png]]
+### <mark style="background: #FFB86CA6;">Unidad de control</mark>
+Es básicamente una FSM.
+![[Pasted image 20260414125146.png]]
+Una **microorden** es una función primitiva en la máquina (ej: leer un bus). Una **microinstrucción** es el conjunto de valores que puede tomar la UC en un instante de tiempo. Puede ser cableada (implementada directamente en hardware, RISC) o microprogramada (reprogramable con µcódigo, CISC). 
+### <mark style="background: #FFB86CA6;">Datapath</mark>
+Tiene una estructura general de un sistema secuencial y se constituye por:
+- Un conjunto de **registros** de entrada, intermedios y resultado
+- Un conjunto de **unidades funcionales**
+- Una **red de interconexión**
+### <mark style="background: #FFB86CA6;">Elementos de almacenamiento</mark>
+- **Latch:** cambia en nivel
+- **Flip-Flop:** cambia en flanco
+### <mark style="background: #FFB86CA6;">Subsistemas combinacionales</mark>
+Son circuitos combinacionales que realizan funciones lógicas complejas. Tienen señales de datos y control.
+## <mark style="background: #ADCCFFA6;">2. Compilación: Representación interna</mark>
+El primer paso es compilar la descripción en lenguaje formal a una representación interna que normalmente se representa mediante un grafo. Los vértices del grafo son operaciones y las aristas son dependencias de datos o control.
+### <mark style="background: #FFB86CA6;">Modelo de flujo de control</mark>
+Se basa en el modelo clásico de Von Neumann donde las instrucciones se ejecutan secuencialmente mediante el PC. Los lenguajes de programación **imperativos** están diseñados para especificar explícitamente el flujo de control.
+#### <mark style="background: #FF5582A6;">Definición</mark>
+Un **bloque básico** está constituido por una serie de instrucciones secuenciales que no modifican el flujo de control.
+
+Este modelo se representa mediante un grafo donde los $V$ son bloques básicos y las $E$ son dependencias de control.
+![[Pasted image 20260414131125.png]]
+### <mark style="background: #FFB86CA6;">Modelo de flujo de datos</mark>
+En el grafo de este modelo, los $V$ son operaciones y las $E$ son dependencias de control.
+![[Pasted image 20260414131141.png]]
+### <mark style="background: #FFB86CA6;">Modelo de flujo de control y datos (CDFG)</mark>
+Se usa un único grafo que representa tanto datos como control. El grafo se define como $CDFG(V_O, V_C, E, E_C, E_S)$ :
+- $V_O$: operaciones
+- $V_C$: actuadores de control (saltos, bucles, etc)
+- $E$: enlaces de flujo de datos. Unen vértices de $V_O$
+- $E_C$: enlaces de control. Unen vértices de $V_C$
+- $E_S$: enlaces de secuencia. Unen vértices de o bien de $V_O$ o bien de $V_C$
+![[Pasted image 20260414131325.png]]
+El grafo se recorre colocando _tokens_ de manera similar a las redes de Petri. Un actuador se dispara cuando tiene un _token_ en su entrada (simulación disparada por eventos). Las aristas del grafo representan variables, por lo que deben tener propiedades como el tipo o la anchura de bits.
+
+Las **constantes** son vértices con solamente salidas. Las **operaciones** pueden ser aritmético-lógicas o funciones complejas. El vértice de **retraso** representa operaciones de retraso $Z^{-m}$ donde $m$ es el nº de ciclos de reloj que retrasa.
+
+El vértice **select** se usa para seleccionar varios valores según un condicional (switch-case).
+#### <mark style="background: #D2B3FFA6;">Ejemplo</mark>
+![[Pasted image 20260414132606.png]]
+
+Los vértices del grafo de control son las construcciones del lenguaje (if, else, case, loop), llamadas a funciones, etc. Los vértices del grafo de datos son operadores, variables, índices de array, etc.
+## <mark style="background: #ADCCFFA6;">3. Optimización: Transformaciones del grafo</mark>
+Hay tres tipos de optimización:
+- **Del compilador:** las realiza el compilador. Plegado de constantes, eliminación de operadores reduntantes, propagación de constantes, etc.
+- **Del grafo de flujo:** 
+	- Reducción de altura.
+	  ![[Pasted image 20260414133054.png]]
+	- Transformación del tipo de grafo (control a datos o viceversa)
+	  ![[Pasted image 20260414133130.png]]
+	- Aplanamiento del grafo. Sirve para deshacer bucles.
+	  ![[Pasted image 20260414133155.png]]
+- **Específicas del hardware:**
+	- Nivel lógico:
+	  ![[Pasted image 20260414133532.png]]
+	- Nivel RT:
+	  ![[Pasted image 20260414133557.png]]
+## <mark style="background: #ADCCFFA6;">4. Grafo para una descripción estructural</mark>
+El resultado final (el circuito) es un grafo que representa el _datapath_ y la UC. Es un grafo $G(C, N, E)$ donde:
+- $C$ son los componentes del sistema (UF, memoria, control, etc)
+- $N$ son MUX
+- $E$ son las conexiones entre $C$ y $N$ (el cableado).
+# <mark style="background: #FFF3A3A6;">TEMA 5: Planificación de tareas y asignación de recursos</mark>
+## <mark style="background: #ADCCFFA6;">1. Planificación de tareas</mark>
+### <mark style="background: #FFB86CA6;">Tipos de algoritmos</mark>
+- **Constructivos:** van asignando elementos tratando de minimizar el coste final
+- **Iterativos:** se generan nuevas soluciones mejroes que las anteriores.
+- **Iterativo-constructivos**: mezcla de los dos anteriores. Solución inicial constructiva y se van produciendo mejoras iterativamente.
+
+El _scheduling_ es la planificación de operaciones a los distintos **pasos de control (ciclos de reloj)**. Hay dos algoritmos principales:
+- ALAP (As Late As Possible)
+- ASAP (As Soon As Possible)
+
+![[Pasted image 20260414135255.png]]
+La cardinalidad (camino más largo) de ASAP y ALAP para un mismo grafo de datos es la misma.
+
+Los algoritmos se caracterizan según tres aspectos:
+- La F.O. y las restricciones
+- La interacción entre el _scheduling_ y la asignación de recursos
+- El tipo de algoritmo
+#### <mark style="background: #D2B3FFA6;">Algoritmo de Hu</mark>
+Los algoritmos ASAP y ALAP no tienen en cuenta los recursos. Para ello existe el **algoritmo de Hu** que es de tipo ASAP y tiene en cuenta los recursos para planificar las operaciones. Normalmente Hu es más lento que ASAP puro.
+![[Pasted image 20260414141023.png]]
+#### <mark style="background: #D2B3FFA6;">Algoritmos basados en listas</mark>
+En cada paso las operaciones disponibles son ordenadas según una prioridad. Respecto a Hu, $V$ quedaría así: $V = \{2,3,5,6,4,1\}$.
+#### <mark style="background: #D2B3FFA6;">Algoritmo global: Directed Force (HAL)</mark>
+1. Repetir hasta que se distribuyan las operaciones
+2. Formar las distribuciones ALAP y ASAP
+3. Para cada operación $i$ se calcula su probabilidad $p_{ij}$
+4. Para cada paso de contorl se obtiene la distribución:
+   $$
+   \begin{equation}
+   DG_{i,j}=\sum\limits_{i=\text{operaciones}}{p_{i}}
+   \end{equation}
+   $$
+5. Se obtiene la **fuerza**, que es el efecto que tiene colocar cada operación en un sitio. **Se tienen en cuenta siempre antecesores y sucesores a $i$**
+   $$
+   \begin{equation}
+   F_{i,j}=\sum\limits_{j=\text{pasos de control}}{DG_{i,j}\times p_{i}}
+   \end{equation}
+   $$
+6. Distribuir la operación $i$ en el paso de control $j$ para el $\min(F_{i,j})$ y distribuir las operaciones unidas por dependencias con $i$.
+#### <mark style="background: #D2B3FFA6;">Algoritmo iterativo/constructivo: Branch & Bound</mark>
+Va construyendo un árbol de posibles soluciones (todas las combinaciones) y se queda con la primera **solución factible**.
+## <mark style="background: #ADCCFFA6;">2. Asignación de recursos</mark>
+Se mapean las operaciones a unidades funcionales, las variables a registros y la interconexión entre operadores y registros usando buses y MUXes. El objetivo es minimizar la cantidad de HW requerido.
+
+Esto se hace formando grupos de operaciones **compatibles**, que son operaciones que pueden usar la misma UF (se ejecutan en distintos ciclos).
+![[Pasted image 20260416133151.png]]
+### <mark style="background: #FFB86CA6;">Algoritmo de clase compatible</mark>
+
+![[Pasted image 20260416133515.png]]
+![[Pasted image 20260416133533.png]]
+Se pueden optimizar también las redes de interconexión
+![[Pasted image 20260416134807.png]]
+### <mark style="background: #FFB86CA6;">Algoritmo de Tseng & Siewiorek</mark>
+Se basa en dos matrices: la matriz de vértices (lista bidimensional en realidad) y la matriz de aristas (matriz de adyacencia). A la hora de agrupar vértices, se tiene en cuenta el número de aristas que se borran, que es para cada vértice del nuevo clúster:
+- 1 por cada vecinos comunes
+- 1 por la arista que los une
+- 1 por cada vecino no común
+Es decir:
+$$
+\begin{equation}
+N\times V_C+M\times V_{NC}+1
+\end{equation}
+$$
+![[Pasted image 20260416135153.png]]
+![[Pasted image 20260416135242.png]]
+### <mark style="background: #FFB86CA6;">Asignación de recursos para bajo consumo</mark>
+#### <mark style="background: #D2B3FFA6;">Aislamiento de operandos</mark>
+Se basa en construir una tabla de utilización de UFs a criterio del diseñador para colocar **biestables** delante de aquellas UF que se considere que no se usan.
+![[Pasted image 20260416135908.png]]
+#### <mark style="background: #D2B3FFA6;">Segmentación de la memoria</mark>
+Se basa en considerar segmentos de memoria no usados cuando no almacenan información útil. Cuando no se usan se ponen en _sleep_.
+### <mark style="background: #FFB86CA6;">Técnica de particionado</mark>
+#### <mark style="background: #D2B3FFA6;">Clustering jerárquico</mark>
+Es un algoritmo iterativo que va agrupando los objetos más proximos. Se obtiene un árbol de clústers jerárquicos de manera que un corte genera varios sub-árboles.
+#### <mark style="background: #D2B3FFA6;">Min-cut</mark>
+Se definen las funciones de coste externo (EC) y coste interno (IC)..
+$EC_i=\sum\limits_{v_k\in V_2}{c_{ik}}$
+$IC_i=\sum\limits_{v_m\in V_1}{c_{im}}$
+$\forall v_i\in V_1$
+
+La **ganancia** de intercambiar nodos entre los clústeres $V_1$ y $V_2$ viene dada por:
+$ganancia(v_i, v_j)=D_i+D_j-2·c_{ij}$
+## <mark style="background: #ADCCFFA6;">3. Mapeado tecnológico</mark>
+Se implementa el sistema con componentes reales de una librería de componentes, teniendo en cuenta parámetros como retrasos, consumo y área.
